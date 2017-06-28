@@ -8,9 +8,7 @@ before running: do this in bash
  $ mongod --dbpath ./data
 """
 
-import pymongo
 from pymongo import MongoClient
-import pprint
 
 
 class MongoManager:
@@ -61,6 +59,45 @@ class MongoManager:
         """
         return self.db.courses.delete_one({'dept': dept, 'cid': cid}).deleted_count == 1
 
+    def get_single_requirement(self, name):
+        """
+        get a requirement by name
+        :param name: requirement name
+        :return: a requirement dict
+        """
+        return self.db.requirements.find_one({'name': name})
+
+    def insert_single_requirement(self, requirement):
+        """
+        :param requirement: a requirement dict
+        :return: ObjectId Object. a inserted_id of the course
+        """
+        return self.db.requirements.insert_one(requirement).inserted_id
+
+    def update_single_requirement(self, requirement):
+        """
+        update the requirement with the same name, if not found, create one
+        :param requirement: requirement dict
+        :return: True if found one and updated.
+        """
+        return self.db.requirements.update_one(
+            {'name': requirement['name']},
+            {'$set': requirement},
+            upsert=True).modified_count == 1
+
+    def delete_single_requirement(self, name):
+        return self.db.requirements.delete_one({'name': name}).deleted_count == 1
+
+    def get_all_docs(self, doc_type):
+        """
+        :param doc_type: document type, such as courses, or requirements
+        :return: all documents in that doc type in the database
+        ** may be super big, use wisely **
+        """
+        import pprint
+        for doc in self.db[doc_type].find():
+            pprint.pprint(doc)
+
     def load_course_from_txt(self, filename):
         """
         load course info to database from txt file
@@ -89,48 +126,6 @@ class MongoManager:
             print("txt loading ERROR: ", e)
         else:
             print("Successfully loaded txt file", filename)
-
-    def get_single_requirement(self, name):
-        """
-        get a requirement by name
-        :param name: requirement name
-        :return: a requirement dict
-        """
-        return self.db.requirements.find_one({'name': name})
-
-
-    def insert_single_requirement(self, requirement):
-        """
-        :param requirement: a requirement dict
-        :return: ObjectId Object. a inserted_id of the course
-        """
-        return self.db.requirements.insert_one(requirement).inserted_id
-
-
-    def update_single_requirement(self, requirement):
-        """
-        update the requirement with the same name, if not found, create one
-        :param requirement: requirement dict
-        :return: True if found one and updated.
-        """
-        return self.db.requirements.update_one(
-            {'name': requirement['name']},
-            {'$set': requirement},
-            upsert=True).modified_count == 1
-
-    def delete_single_requirement(self, name):
-        return self.db.requirements.delete_one({'name': name}).deleted_count == 1
-
-
-    def get_all_docs(self, doc_type):
-        """
-        :param doc_type: document type, such as courses, or requirements
-        :return: all documents in that doc type in the database
-        ** may be super big, use wisely **
-        """
-        for doc in self.db[doc_type].find():
-            pprint.pprint(doc)
-
 
     def load_requirement_from_txt(self, filename):
         """
@@ -161,7 +156,6 @@ class MongoManager:
     def drop_database(self):
         self.client.drop_database('CS-database')
 
-
     def _format_prereqs(self, prereqs):
         """
         convert OR sets to OR lists in order to load them into the db
@@ -184,7 +178,10 @@ if __name__ == '__main__':
     manager = MongoManager('localhost', 27017)
     # manager.get_all_docs('courses')
 
-    course = {'cid': '162', 'upperOnly': False, 'units': 0.0, 'quarters': [1, 4], 'dept': 'COMPSCI', 'name': 'FORMAL LANG & AUTM', 'prereq': [['CSE23', 'I&CSCI46', 'I&CSCIH23', 'I&CSCI23', 'CSE46'], ['MATH2A'], ['MATH2B'], ['I&CSCI6B'], ['I&CSCI6D']]}
+    course = {'cid': '162', 'upperOnly': False, 'units': 0.0, 'quarters': [1, 4], 'dept': 'COMPSCI',
+              'name': 'FORMAL LANG & AUTM',
+              'prereq': [['CSE23', 'I&CSCI46', 'I&CSCIH23', 'I&CSCI23', 'CSE46'], ['MATH2A'], ['MATH2B'], ['I&CSCI6B'],
+                         ['I&CSCI6D']]}
     print(manager.update_single_course(course))
     print(manager.get_single_course('COMPSCI', '162'))
     # print (manager.delete_single_course('COMPSCI', '161'))
