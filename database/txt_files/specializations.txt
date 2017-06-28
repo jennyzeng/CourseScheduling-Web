@@ -78,7 +78,7 @@ GEVIII -1
 }
 ;
 CS-Lower-division
-all
+16
 {
 I&CSCI 31
 I&CSCI 32
@@ -219,12 +219,6 @@ COMPSCI 152
 COMPSCI 153
 COMPSCI 154
 }
-recommend
-{
-COMPSCI 131
-COMPSCI 142A
-COMPSCI 143A
-}
 ;
 Bioinformatics
 1
@@ -297,7 +291,7 @@ COMPSCI 184B
 }
 ;
 Networked Systems
-all
+4
 {
 COMPSCI 132
 COMPSCI 133
@@ -329,13 +323,6 @@ COMPSCI 142A
 COMPSCI 142B
 COMPSCI 143A
 COMPSCI 143B
-}
-recommend
-{
-COMPSCI 132
-COMPSCI 134
-COMPSCI 144
-COMPSCI 152
 }
 ;
 Visual Computing
