@@ -6,34 +6,47 @@
 git clone https://github.com/jennyzeng/CourseScheduling-Web.git
 ```
 
-### Database
+install Docker at [https://www.docker.com/](https://www.docker.com/)
 
-install [MongoDB](https://www.mongodb.com/)
+Then, `cd` to the repo, run
 
 ```
-# go to the repo dir
-$ cd CourseScheduling-Web
-# make directory for MongoDB
-$ mkdir -p ./data/db
-# run MongoDB using the db path we just created
-$ mongod -dbpath ./data
+$ docker-compose up --build
 ```
 
-### Python installation
-install [python 3.6](https://www.python.org/) 
+you will see the demo page at [http://localhost:8000/](http://localhost:8000/)
 
-create python3.6 virtual env called `flask` in the repo directory
+after that you can run 
+
 ```
-# activate the virtual env
-$ source activate ./flask/bin/activate
-# install packages
-(flask) $ flask/bin/pip install -r ./requirements.txt
+$ docker-compose up
 ```
 
-### flask
-to be continue...
+to start it, and 
+```
+$ docker-compose down
+```
+to stop 
 
-## Reference
+some other related operations:
 
-- https://blog.miguelgrinberg.com/post/designing-a-restful-api-with-python-and-flask
-- http://www.bogotobogo.com/python/MongoDB_PyMongo/python_MongoDB_RESTAPI_with_Flask.php
+```
+# Remove stopped containers
+docker-compose rm -f
+# Remove "dangling" images
+docker rmi -f $(docker images -qf dangling=true)
+```
+
+## about testing
+first, use `docker-compose up` to run the container,
+then in another terminal, 
+do 
+
+```
+$ docker-compose exec website py.test CourseScheduling/tests
+```
+or 
+
+```
+$ docker-compose exec website py.test --cov-report term-missing --cov
+```
