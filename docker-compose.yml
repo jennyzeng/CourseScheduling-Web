@@ -1,0 +1,16 @@
+version: '2'
+
+services:
+  website:
+    build: .
+    command: >
+      gunicorn -b 0.0.0.0:8000
+        --access-logfile -
+        --reload
+        "CourseScheduling.app:create_app()"
+    environment:
+      PYTHONUNBUFFERED: 'true'
+    volumes:
+      - '.:/CourseScheduling'
+    ports:
+      - '8000:8000'
