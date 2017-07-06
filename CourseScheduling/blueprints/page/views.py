@@ -18,6 +18,4 @@ def privacy():
     return render_template('page/privacy.html')
 
 
-@page.route('/output')
-def schedule_output():
-    return render_template('page/output.html')
+

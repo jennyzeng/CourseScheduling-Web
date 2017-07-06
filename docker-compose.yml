@@ -1,6 +1,26 @@
 version: '2'
 
 services:
+  mongodb:
+    image: mongo:latest
+    container_name: "mongodb"
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/dev/null
+    volumes:
+      - ./data/db:/data/db
+    ports:
+        - 27017:27017
+    command: mongod --smallfiles --logpath=/dev/null #--auth # --quiet
+
+#  celery:
+#    build: .
+#    command: celery worker -l info -A CourseScheduling.blueprints.contact.tasks
+#    env_file:
+#      - '.env'
+#    volumes:
+#      - '.:/CourseScheduling'
+
   website:
     build: .
     command: >
@@ -14,3 +34,4 @@ services:
       - '.:/CourseScheduling'
     ports:
       - '8000:8000'
+    
