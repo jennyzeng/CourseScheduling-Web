@@ -5,7 +5,7 @@ import click
 
 
 @click.command()
-@click.argument('path', default=os.path.join('CourseScheduling', 'tests'))
+@click.argument('path', default=os.path.join('CourseSchedulingAlgorithm', 'tests'))
 def cli(path):
     """
     Run tests with Pytest.

@@ -8,34 +8,34 @@
     <div class="row text-center lg-margin-bottom">
       <h1>Feeling lucky?</h1>
       <h3 class="text-muted">
-        Test your luck against the roll of the dice and win today
+        Your Generated Schedule
       </h3>
     </div>
     <div class="row text-center">
-      <div class="col-lg-4">
-        <i class="fa fa-fw fa-4x fa-bullhorn text-primary"></i>
-        <h2>Place bets</h2>
-        <p class="text-muted">Correctly guess the dice's roll.</p>
-        <p>
-          <a href="#" class="btn btn-default">Sign up</a>
-        </p>
-      </div>
-      <div class="col-lg-4">
-        <i class="fa fa-fw fa-4x fa-database text-primary"></i>
-        <h2>Win currency</h2>
-        <p class="text-muted">Gain coins if your guess is correct.</p>
-        <p>
-          <a href="#" class="btn btn-default">Sign up</a>
-        </p>
-      </div>
-      <div class="col-lg-4">
-        <i class="fa fa-fw fa-4x fa-trophy text-primary"></i>
-        <h2>Leaderboard</h2>
-        <p class="text-muted">Compare your results to others.</p>
-        <p>
-          <a href="#" class="btn btn-default">Sign up</a>
-        </p>
-      </div>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th class="text-center">quarter</th>
+            <th class="text-center"> cur units </th>
+            <th class="text-center" colspan="{{ row_length }}">courses</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for index in range(schedule.L|length) %}
+          <tr>
+            <th scope="row">{{ index }}</th>
+            <td>{{ schedule.curWidths[index] }}</td>
+              {% for col in range(row_length) %}
+                  {% if col < schedule.L[index]|length %}
+                      <td>{{ schedule.L[index][col] }}</td>
+                  {% else %}
+                      <td> </td>
+                  {% endif%}
+              {% endfor %}
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
     </div>
   </div>
 {% endblock %}
