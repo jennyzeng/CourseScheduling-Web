@@ -163,48 +163,65 @@
   #sendmessage.show,.show  {
     display:block;
   }
+
 {% endblock %}
 
 
 
 
 {% block body %}
-
   <h1>Course Scheduling</h1>
 
    <form>
-
      <div>
        <div id="sendmessage"> Your message has been sent successfully. Thank you. </div>
 
-
        <div class="leftcontact">
          <div class="form-group">
-           <p>Specialization Name<span>*</span></p>
-           <span class="icon-case"><i class="fa fa-book"></i></span>
-           <input type="text" name="specialization" id="specialization" data-rule="required"/>
-           <div class="validation"></div>
+           <p>Current Quarter (Fall, Winter, Spring) <span>*</span></p>
+           <select>
+             <option value="--" selected="true" disabled="disabled">--</option>
+             <option value="fall">Fall</option>
+             <option value="winter">Winter</option>
+             <option value="spring">Spring</option>
+             <option value="ssi">Summer Session I</option>
+             <option value="ssii">Summer Session II</option>
+             <option value="ss10">Summer Session 10-Week</option>
+           </select>
          </div>
-
-         <div class="form-group">
-           <p>Number of Credits Applied <span>*</span></p>
-           <span class="icon-case"><i class="fa fa-bar-chart"></i></span>
-           <input type="number" step="0.01" min=0 name="credits" id="credits" data-rule="required"/>
-           <div class="validation"></div>
-         </div>
-
-     </div>
+       </div>
 
      <div class="rightcontact">
-
-         <div class="form-group">
-           <p>Current Quarter (Fall, Winter, Spring) <span>*</span></p>
-           <span class="icon-case"><i class="fa fa-calendar"></i></span>
-           <input type="text" name="quarter" id="quarter" data-rule="required" />
-           <div class="validation"></div>
-         </div>
-
+       <div class="form-group">
+         <p>Number of Credits Applied <span>*</span></p>
+         <span class="icon-case"><i class="fa fa-bar-chart"></i></span>
+         <input type="number" step="0.1" min=0 name="credits" id="credits" data-rule="required"/>
+         <div class="validation"></div>
+       </div>
      </div>
+
+     <div class="form-group">
+       <p>Requirements <span>*</span></p>
+       <span class="icon-case"><i class="fa fa-book"></i></span>
+       <input type="text" name="requirements" id="requirements" data-rule="required"/>
+       <div class="validation"></div>
+     </div>
+
+     <div class="form-group">
+       <p>Specialization Name (CS Major Only) <span>*</span></p>
+       <select>
+         <option value="--" selected="true" disabled="disabled">--</option>
+         <option value="AI">Inteligent System</option>
+         <option value="Info">Information</option>
+         <option value="Algo">Algorithm</option>
+         <option value="AES">Architecture and Embedded Systems</option>
+         <option value="General">General Computer Science</option>
+         <option value="Network">Networked Systems</option>
+         <option value="Software">Systems and Software</option>
+         <option value="Visual">Visual Computing</option>
+       </select>
+     </div>
+
      <div class="form-group">
        <p>Finished Course(s) (In the form of [‘cs111’, ‘cs1232’] ) <span>*</span></p>
        <span class="icon-case"><i class="fa fa-comments-o"></i></span>
