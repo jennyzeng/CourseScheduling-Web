@@ -8,6 +8,7 @@
           content="{% block meta_description %}{% endblock %}">
 
     <title>{% block title %}{% endblock %}</title>
+    <style>{% block style %}{% endblock %}</style>
 
     <link
       rel="stylesheet"
@@ -34,10 +35,10 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a href="{{ url_for('page.home') }}">
-            <img src="{{ url_for('static', filename='images/snake-eyes.jpg') }}"
-                 class="img-responsive"
-                 width="229" height="50" title="Snake Eyes" alt="Snake Eyes"/>
+          <a href="{{ url_for('schedule.schedule_home') }}">
+            <img src="{{ url_for('static', filename='images/UCIrvine.png') }}"
+                 class="img-responsive" height="48" width="220"
+                 title="UC Irvine" alt="UC Irvine"/>
           </a>
         </div>
       </div>
@@ -51,9 +52,9 @@
     <footer class="footer text-center">
       <div class="container">
         <ul class="list-inline">
-          <li class="text-muted">Snake Eyes &copy; 2016</li>
-          <li><a href="{{ url_for('page.privacy') }}">Privacy Policy</a></li>
-          <li><a href="{{ url_for('page.terms') }}">Terms of Service</a></li>
+          <li class="text-muted">Course Scheduling &copy; 2017</li>
+          <li><a href="{{ url_for('schedule.privacy') }}">Privacy Policy</a></li>
+          <li><a href="{{ url_for('schedule.terms') }}">Terms of Service</a></li>
         </ul>
       </div>
     </footer>

@@ -2,7 +2,12 @@ from flask import Blueprint, render_template
 
 schedule = Blueprint('schedule', __name__, template_folder='templates')
 import logging
-@schedule.route('/schedule')
+
+@schedule.route('/')
+def schedule_home():
+    return render_template('schedule/input.html')
+
+@schedule.route('/output')
 def schedule_output():
 
     from lib.CourseSchedulingAlgorithm.Schedule import Schedule as CSschedule
@@ -23,6 +28,14 @@ def schedule_output():
     return render_template('schedule/output.html',
                            schedule=csschedule, row_length=max_row_length)
 
+@schedule.route('/terms')
+def terms():
+    return render_template('schedule/terms.html')
+
+
+@schedule.route('/privacy')
+def privacy():
+    return render_template('schedule/privacy.html')
 #
 # layer: 0, with width 13 and max 13
 # I&CSCI31; MATH2A; I&CSCI6B; I&CSCI90
