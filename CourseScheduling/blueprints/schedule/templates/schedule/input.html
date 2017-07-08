@@ -10,18 +10,6 @@
     font-family: 'Open Sans', sans-serif;
   }
 
-  .info p {
-    text-align:center;
-    color: #999;
-    text-transform:none;
-    font-weight:600;
-    font-size:15px;
-    margin-top:2px
-  }
-
-  .info i {
-    color:#F6AA93;
-  }
   form h1 {
     font-size: 18px;
     background: #F6AA93 none repeat scroll 0% 0%;
@@ -35,9 +23,9 @@
 
   form {
     border-radius: 5px;
-    max-width:700px;
+    max-width:1000px;
     width:100%;
-    margin: 5% auto;
+    margin: 2% auto;
     background-color: #FFFFFF;
     overflow: hidden;
   }
@@ -60,16 +48,6 @@
     margin:50px 0px 0px 0px
   }
 
-  input {
-    border-radius: 0px 5px 5px 0px;
-    border: 1px solid #eee;
-    margin-bottom: 15px;
-    width: 75%;
-    height: 40px;
-    float: left;
-    padding: 0px 15px;
-  }
-
   a {
     text-decoration:inherit
   }
@@ -87,6 +65,16 @@
   .form-group {
     overflow: hidden;
     clear: both;
+  }
+
+  .input-field {
+    border-radius: 0px 5px 5px 0px;
+    border: 1px solid #eee;
+    margin-bottom: 15px;
+    width: 75%;
+    height: 40px;
+    float: left;
+    padding: 0px 15px;
   }
 
   .icon-case {
@@ -122,11 +110,13 @@
     font-size: 18px;
   }
 
+  .row {
+    padding: 0px 0px 0px 15px;
+  }
+
   .leftcontact {
     width:50%;
     float:left;
-    <!-- border-right: 1px dotted #CCC; -->
-    <!-- box-sizing: border-box; -->
     padding: 0px 15px 0px 0px;
   }
 
@@ -188,6 +178,7 @@ $(".js-example-basic-multiple").select2();
 
        <div class="leftcontact">
          <div class="form-group">
+<<<<<<< Updated upstream
            <p>Current Quarter <span>*</span></p>
            <select class="js-example-basic-single">
              <option value="--" selected="true" disabled="disabled">--</option>
@@ -238,6 +229,82 @@ $(".js-example-basic-multiple").select2();
        <textarea name="courses" rows="14" data-rule="required" ></textarea>
        <div class="validation"></div>
      </div>
+=======
+           <p>Current Quarter (Fall, Winter, Spring) <span>*</span></p>
+           <span class="icon-case"><i class="fa fa-calendar"></i></span>
+           <input class="input-field" type="text" name="quarter" id="quarter" data-rule="required" />
+           <div class="validation"></div>
+         </div>
+     </div>
+
+     <div class="rightcontact">
+       <div class="form-group">
+         <p>Number of Credits Applied <span>*</span></p>
+         <span class="icon-case"><i class="fa fa-bar-chart"></i></span>
+         <input class="input-field" type="number" step="0.01" min=0 name="credits" id="credits" data-rule="required"/>
+         <div class="validation"></div>
+       </div>
+     </div>
+
+     <div class="form-group">
+       <p>Requirements <span>*</span></p>
+       <div class="row">
+          <div class="col-sm-1 col-md-1 col-lg-1 "></div>
+          <div class="col-sm-3 col-md-3 col-lg-3 checkbox-inline">
+            <label><input type="checkbox" id="inlineCheckbox1" value="university"> University
+            </label>
+          </div>
+          <div class="col-sm-3 col-md-3 col-lg-3 checkbox-inline">
+            <label><input type="checkbox" id="inlineCheckbox1" value="ge1"> General Education &#8544;
+            </label>
+          </div>
+          <div class="col-sm-3 col-md-3 col-lg-3 checkbox-inline">
+            <label><input type="checkbox" id="inlineCheckbox1" value="ge2"> General Education &#8545;
+            </label>
+          </div>
+          <div class="col-sm-2 col-md-2 col-lg-2 "></div>
+      </div>
+      <div class="row">
+         <div class="col-sm-1 col-md-1 col-lg-1 "></div>
+         <div class="col-sm-3 col-md-3 col-lg-3 checkbox-inline">
+           <label><input type="checkbox" id="inlineCheckbox1" value="ge3"> General Education &#8546;
+           </label>
+         </div>
+         <div class="col-sm-3 col-md-3 col-lg-3 checkbox-inline">
+           <label><input type="checkbox" id="inlineCheckbox1" value="ge4"> General Education &#8547;
+           </label>
+         </div>
+         <div class="col-sm-3 col-md-3 col-lg-3 checkbox-inline">
+           <label><input type="checkbox" id="inlineCheckbox1" value="ge5"> General Education &#8548;
+           </label>
+         </div>
+         <div class="col-sm-2 col-md-2 col-lg-2 "></div>
+     </div>
+     <div class="row">
+        <div class="col-sm-1 col-md-1 col-lg-1 "></div>
+        <div class="col-sm-3 col-md-3 col-lg-3 checkbox-inline">
+          <label><input type="checkbox" id="inlineCheckbox1" value="ge6"> General Education &#8549;
+          </label>
+        </div>
+        <div class="col-sm-3 col-md-3 col-lg-3 checkbox-inline">
+          <label><input type="checkbox" id="inlineCheckbox1" value="ge7"> General Education &#8550;
+          </label>
+        </div>
+        <div class="col-sm-3 col-md-3 col-lg-3 checkbox-inline">
+          <label><input type="checkbox" id="inlineCheckbox1" value="ge8"> General Education &#8551;
+          </label>
+        </div>
+        <div class="col-sm-2 col-md-2 col-lg-2 "></div>
+    </div>
+    </div>
+
+    <div class="form-group">
+       <p>Specialization Name<span>*</span></p>
+       <span class="icon-case"><i class="fa fa-book"></i></span>
+       <input class="input-field" type="text" name="specialization" id="specialization" data-rule="required"/>
+       <div class="validation"></div>
+    </div>
+>>>>>>> Stashed changes
 
      <div class="form-group">
        <p>Unwanted Course(s) (Note that there are courses you cannot avoid [i.e. major requirements]) <span>*</span></p>
