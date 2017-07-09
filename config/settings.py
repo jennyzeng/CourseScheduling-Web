@@ -4,7 +4,14 @@ SERVER_NAME = "localhost:8000"
 
 SECRET_KEY = 'insecurekeyfordev'
 
-MONGODB_SETTINGS = {'DB': 'CS-database'}
+# MONGODB_SETTINGS = {
+#     'db':'CS-database',
+#     'host': 'mongodb://localhost/CS-database'#,
+#     # 'port': 27017
+# }
+MONGODB_HOST = 'mongodb'
+MONGODB_PORT = 27017
+MONGODB_DB = 'CS-database'
 
 DEBUG_TB_PANELS = (
     'flask_debugtoolbar.panels.versions.VersionDebugPanel',

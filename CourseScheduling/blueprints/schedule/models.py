@@ -13,11 +13,11 @@ class Course(db.Document):
     pub_date = db.DateTimeField(default=datetime.now)
 
 
-class SubReq(db.Document):
-    req_list = db.ListField(db.StringField(max_length=20))
-    req_num = db.IntField(min_value=0)
+# class SubReq(db.Document):
+#     req_list = db.ListField(db.StringField(max_length=20))
+#     req_num = db.IntField(min_value=0)
 
 class Requirement(db.Document):
     name = db.StringField(max_length=20)
-    sub_reqs = db.ListField(SubReq)
+    sub_reqs = db.ListField(db.DictField())
 

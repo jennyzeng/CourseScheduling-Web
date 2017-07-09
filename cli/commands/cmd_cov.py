@@ -4,7 +4,7 @@ import click
 
 
 @click.command()
-@click.argument('path', default='CourseSchedulingAlgorithm')
+@click.argument('path', default='CourseScheduling')
 def cli(path):
     """
     Run a test coverage report.
