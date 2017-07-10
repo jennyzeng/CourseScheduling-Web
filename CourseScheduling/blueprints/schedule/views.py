@@ -36,15 +36,15 @@ def schedule_output():
     # units applied
     applied_units = 0
     # set of courses taken
-    taken = set(['MATH1B'])
+    taken = {'MATH1B'}
     # width setting
     max_widths = {0: 13, 'else': 16}
     # avoid
     avoid = {'COMPSCI141'}
     # requirements 
-    req = set(["University", "GEI", "GEII", "GEIII", "GEIV",
+    req = {"University", "GEI", "GEII", "GEIII", "GEIV",
               "GEV", "GEVI", "GEVII", "GEVIII", "CS-Lower-division", "CS-Upper-division",
-              "Intelligent Systems"])
+              "Intelligent Systems"}
 
     ##############################################
 
