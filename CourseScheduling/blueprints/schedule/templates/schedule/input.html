@@ -172,7 +172,7 @@ $(".js-example-basic-multiple").select2();
 
   <h1>Course Scheduling</h1>
 
-   <form>
+   <form action="{{ url_for('schedule.schedule_output') }}" method="post">
      <div>
        <div id="sendmessage"> Your message has been sent successfully. Thank you. </div>
 
@@ -284,7 +284,8 @@ $(".js-example-basic-multiple").select2();
      </div>
 
    </div>
-    <a href="{{ url_for('schedule.schedule_output') }} " class="btn btn-lg button-send" role="button">Send</a>
+   <!-- <a href="{{ url_for('schedule.schedule_output') }}" class="btn btn-lg button-send" role="button">Send</a> -->
+   <button class="btn btn-lg button-send submit" role="button">Send</button>
 
   </form>
 

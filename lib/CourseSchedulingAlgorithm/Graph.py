@@ -7,7 +7,7 @@ __author__ = "Jenny Zeng"
 __email__ = "jennyzengzzh@gmail.com"
 
 class CourseGraph:
-    def __init__(self, G: dict, r_detail: dict,R:dict, avoid=None, taken=None):
+    def __init__(self, G: dict, r_detail: dict, R: dict, avoid=None, taken=None):
         """
         :param G: a dict object representing the graph for courses
         :param r_detail: a **detail** requirement table. It is required.

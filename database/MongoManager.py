@@ -174,7 +174,7 @@ class MongoManager:
 
 
 if __name__ == '__main__':
-    manager = MongoManager('mongodb', 27017)
+    manager = MongoManager('localhost', 27017)
     manager.load_course_from_txt('database/txt_files/fullCourses_new.txt')
     manager.load_requirement_from_txt('database/txt_files/specializations.txt')
     # # manager.get_all_docs('Course')
