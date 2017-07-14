@@ -2,7 +2,7 @@ from flask import Flask
 
 from CourseScheduling.blueprints.page import page
 from CourseScheduling.blueprints.schedule import schedule
-from CourseScheduling.extensions import debug_toolbar, db, mongoInterface
+from CourseScheduling.extensions import debug_toolbar, db, mongoInterface, admin
 
 def create_app(settings_override=None):
     """
@@ -35,5 +35,8 @@ def extensions(app):
     """
     debug_toolbar.init_app(app)
     db.init_app(app)
+    admin.init_app(app)
+    import CourseScheduling.blueprints.admin.views
+
     app.session_interface = mongoInterface
     return None

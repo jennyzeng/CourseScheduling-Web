@@ -5,6 +5,10 @@ Flask-PyMongo==0.5.1
 pymongo==3.4.0
 flask-mongoengine==0.9.3
 
+# Admin
+flask_admin==1.5.0
+
+
 # Application server for both development and production.
 gunicorn==19.7
 
