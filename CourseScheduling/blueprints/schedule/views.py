@@ -50,6 +50,8 @@ def schedule_output():
 
     # 现在把数据库的data拿出来 然后一个个建立 lib.CourseSchedulingAlgorithm.Course 然后装进Graph (jenny的example是这么做的).
     # 未来优化：因为db里已经有一份copy了，所以两倍的memory。之后应该要改一下。
+
+    # ！！！新修改了此处 从直接在这里query db的东西 改成调用dbHelper 里面的function
     G = dict()
     for c in Course.objects:
       G[c.dept+c.cid] = cs.Course(name=c.name, units=c.units, quarter_codes=c.quarters, 
@@ -62,6 +64,8 @@ def schedule_output():
       for subr in Requirement.objects(name=r)[0].sub_reqs:
         R[r].append(subr.get('req_num'))
         R_detail[r].append(set(subr.get('req_list')))
+
+    #########################
 
     # update requirement table based on the taken information
     cs.update_requirements(R_detail, R, taken)
