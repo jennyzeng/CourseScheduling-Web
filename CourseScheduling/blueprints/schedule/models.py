@@ -27,13 +27,13 @@ class SubReq(db.EmbeddedDocument):
     # we need a more complicated model later such that we can
     # refer to the courses in the subreq!!!
 
-    req_list = db.ListField(db.StringField(max_length=20))
+    req_list = db.ListField(db.StringField(max_length=30))
     # req_list = db.ListField(db.ReferenceField('Course'))
     req_num = db.IntField(min_value=0)
 
 class Requirement(db.Document):
-    name = db.StringField(max_length=20)
+    name = db.StringField(max_length=50)
     # TODO: comment out 的是新model，暂时无法使用
-    # sub_reqs = db.ListField(db.EmbeddedDocumentField(SubReq))
+    sub_reqs = db.ListField(db.EmbeddedDocumentField(SubReq))
 
-    sub_reqs = db.ListField(db.DictField())
+    # sub_reqs = db.ListField(db.DictField())
