@@ -10,14 +10,14 @@ from CourseScheduling.blueprints.schedule.models import Course, Requirement
 class CourseView(ModelView):
     column_filters = ['dept', 'cid']
 
-    column_searchable_list = ('cname','dept', 'cid')
+    column_searchable_list = ('name', 'dept', 'cid')
 
 
 
 class RequirementView(ModelView):
-    column_filters = ['rname']
+    column_filters = ['name']
 
-    column_searchable_list = ('rname')
+    column_searchable_list = ('name')
 
     # form_ajax_refs = {
     #     '': {
