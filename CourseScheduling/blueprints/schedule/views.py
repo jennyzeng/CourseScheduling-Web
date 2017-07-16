@@ -37,7 +37,7 @@ def schedule_output():
     # config upper standing units
     upper_units = 90
     # start quarter
-    startQ = form.getlist("quarter")[0]
+    startQ = int(form.getlist("quarter")[0])
     # units applied
     applied_units = float(form.getlist("credits")[0])
     # set of courses taken

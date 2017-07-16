@@ -90,11 +90,11 @@ def load_requirement_from_txt(filename):
                 elif re.match("(\}|\{)", block[i]):
                     i += 1
                 else:
-                    requirement.sub_reqs[-1]['req_list'].append(block[i])
+                    requirement.sub_reqs[-1]['req_list'].append(block[i].strip())
                     i += 1
             print(requirement.name)
             requirement.save()
 
 if __name__ == '__main__':
     load_course_from_txt('database/txt_files/fullCourses_new.txt')
-    # load_requirement_from_txt('database/txt_files/specializations.txt')
+    load_requirement_from_txt('database/txt_files/specializations.txt')
