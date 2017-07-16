@@ -18,22 +18,31 @@ class Course(db.Document):
     # change the way we load data will fix this problem
     pub_date = db.DateTimeField(default=datetime.now)
 
+    meta = {
+        'indexes': [
+            ('dept', 'cid') # compound idnex
+        ]
+    }
+
     def __unicode__(self):
         return self.name
 
-# no idea why this one is not working
 
 class SubReq(db.EmbeddedDocument):
     # we need a more complicated model later such that we can
     # refer to the courses in the subreq!!!
 
     # req_list = db.ListField(db.StringField(max_length=20))
-    req_list = db.ListField(db.ReferenceField(Course))
+    req_list = db.ListField(db.ReferenceField(Course, dbref=True))
     req_num = db.IntField(min_value=0)
 
 class Requirement(db.Document):
-    name = db.StringField(max_length=20)
-    # TODO: comment out 的是新model，暂时无法使用
-    # sub_reqs = db.ListField(db.EmbeddedDocumentField(SubReq))
+    name = db.StringField(max_length=60)
+    major = db.StringField(max_length=60, default="universal")
+    sub_reqs = db.ListField(db.EmbeddedDocumentField(SubReq))
 
-    sub_reqs = db.ListField(db.DictField())
+    meta = {
+        'indexes': [
+            ('name', 'major') # compound idnex
+        ]
+    }

@@ -25,7 +25,7 @@ class RequirementView(ModelView):
     #     }
     # }
 
-admin.add_view(CourseView(Course))
+# admin.add_view(CourseView(Course))
 
 # TODO: fix the Invalid search field Exception
 # admin.add_view(RequirementView(Requirement))

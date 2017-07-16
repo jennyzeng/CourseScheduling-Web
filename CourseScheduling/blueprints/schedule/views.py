@@ -52,18 +52,22 @@ def schedule_output():
     # 未来优化：因为db里已经有一份copy了，所以两倍的memory。之后应该要改一下。
 
     # ！！！新修改了此处 从直接在这里query db的东西 改成调用dbHelper 里面的function
-    G = dict()
-    for c in Course.objects:
-      G[c.dept+c.cid] = cs.Course(name=c.name, units=c.units, quarter_codes=c.quarters, 
-            prereq=c.prereq, is_upper_only=c.upperOnly)
 
-    R, R_detail = dict(), dict()
+    # new MODEL applied
+    G, R, R_detail = dict(), dict(), dict()
     for r in req:
-      R[r] = list()
-      R_detail[r] = list()
-      for subr in Requirement.objects(name=r)[0].sub_reqs:
-        R[r].append(subr.get('req_num'))
-        R_detail[r].append(set(subr.get('req_list')))
+        R[r] = list()
+        R_detail[r] = list()
+        for subr in Requirement.objects(name=r).first().sub_reqs:
+            c_set = set()
+            R[r].append(subr.req_num)
+            for c in subr.req_list:
+                c_name = c.dept + c.cid
+                c_set.add(c_name)
+                G[c_name] = cs.Course(name=c.name, units=c.units, quarter_codes=c.quarters, 
+                    prereq=c.prereq, is_upper_only=c.upperOnly)
+            R_detail[r].append(c_set)
+
 
     #########################
 

@@ -75,7 +75,7 @@ def load_requirement(filename='database/txt_files/specializations.txt'):
 				else:
 					dept, cid = block[i].strip().split()
 					if not Course.objects(dept=dept, cid=cid).first():
-						print (dept, cid)
+						print ("Error in ", dept, cid)
 						i += 1
 						continue
 					requirement.sub_reqs[-1].req_list.append(Course.objects(dept=dept, cid=cid).first())
