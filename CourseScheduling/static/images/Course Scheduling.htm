@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://localhost:8000/ -->
+<html class="gr__localhost"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Course Scheduling Home Page">
+
+    <title>Course Scheduling</title>
+    <style>
+  body {
+    margin: auto;
+    background: #eaeaea;
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  form h1 {
+    font-size: 18px;
+    background: #F6AA93 none repeat scroll 0% 0%;
+    color: rgb(255, 255, 255);
+    padding: 22px 25px;
+    border-radius: 5px 5px 0px 0px;
+    margin: auto;
+    text-shadow: none;
+    text-align:left
+  }
+
+  form {
+    border-radius: 5px;
+    max-width:1000px;
+    width:100%;
+    margin: 2% auto;
+    background-color: #FFFFFF;
+    overflow: hidden;
+  }
+
+  p span {
+    color: #F00;
+  }
+
+  p {
+    margin: 0px;
+    font-weight: 500;
+    line-height: 2;
+    color:#333;
+  }
+
+  h1 {
+    text-align:center;
+    color: #666;
+    text-shadow: 1px 1px 0px #FFF;
+    margin:50px 0px 0px 0px
+  }
+
+  a {
+    text-decoration:inherit
+  }
+
+  textarea {
+    border-radius: 0px 5px 5px 0px;
+    border: 1px solid #EEE;
+    margin: 0;
+    width: 75%;
+    height: 130px;
+    float: left;
+    padding: 0px 15px;
+  }
+
+  .form-group {
+    overflow: hidden;
+    clear: both;
+  }
+
+  .input-field {
+    border-radius: 0px 5px 5px 0px;
+    border: 1px solid #eee;
+    margin-bottom: 15px;
+    width: 75%;
+    height: 40px;
+    float: left;
+    padding: 0px 15px;
+  }
+
+  .icon-case {
+    width: 40px;
+    float: left;
+    border-radius: 5px 0px 0px 5px;
+    background:#eeeeee;
+    height:40px;
+    position: relative;
+    text-align: center;
+    line-height:40px;
+  }
+
+  i {
+    color:#555;
+  }
+
+  .contentform {
+    padding: 30px 30px;
+  }
+
+  .button-send{
+    background-color: #81BDA4;
+    color: #FFF;
+    text-align: center;
+    width: 90%;
+    border:0;
+    <!-- padding: 17px 25px; -->
+    border-radius: 0px 0px 5px 5px;
+    cursor: pointer;
+    margin-top: 40px;
+    margin
+    font-size: 18px;
+  }
+
+  .row {
+    padding: 0px 0px 0px 15px;
+  }
+
+  .leftcontact {
+    width:50%;
+    float:left;
+    padding: 0px 15px 0px 0px;
+  }
+
+  .rightcontact {
+    width:50%;
+    float:right;
+    <!-- box-sizing: border-box; -->
+    padding: 0px 0px 0px 15px;
+  }
+
+  .validation {
+    display:none;
+    margin: 0 0 10px;
+    font-weight:400;
+    font-size:13px;
+    color: #DE5959;
+  }
+
+  #sendmessage {
+    border:1px solid #fff;
+    display:none;
+    text-align:center;
+    margin:10px 0;
+    font-weight:600;
+    margin-bottom:30px;
+    background-color: #EBF6E0;
+    color: #5F9025;
+    border: 1px solid #B3DC82;
+    padding: 13px 40px 13px 18px;
+    border-radius: 3px;
+    box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.03);
+  }
+
+  #sendmessage.show,.show  {
+    display:block;
+  }
+
+</style>
+
+    <link rel="stylesheet" href="./Course Scheduling_files/bootstrap.min.css">
+    <link rel="stylesheet" href="./Course Scheduling_files/main.css">
+    <link rel="stylesheet" href="./Course Scheduling_files/font-awesome.min.css">
+    <script src="./Course Scheduling_files/jquery-1.12.2.min.js" integrity="sha256-lZFHibXzMHo3GGeehn1hudTAP3Sc0uKXBXAzHX1sjtk=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="./Course Scheduling_files/toolbar.css" type="text/css"></head>
+  <body data-gr-c-s-loaded="true">
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="http://localhost:8000/">
+            <img src="./Course Scheduling_files/UCIrvine.png" class="img-responsive" height="48" width="220" title="UC Irvine" alt="UC Irvine">
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container">
+      <div class="md-margin-top"></div>
+      
+
+<script type="text/javascript">
+
+</script>
+
+  <h1>Course Scheduling</h1>
+
+   <form action="http://localhost:8000/output" method="post">
+     <div>
+       <div id="sendmessage"> Your message has been sent successfully. Thank you. </div>
+
+       <div class="leftcontact">
+         <div class="form-group">
+           <p>Current Quarter <span>*</span></p>
+           <span class="icon-case"><i class="fa fa-calendar"></i></span>
+           <select class="js-example-basic-single input-field" id="quarter">
+             <option value="--" selected="true" disabled="disabled">--</option>
+             <option value="fall">Fall</option>
+             <option value="winter">Winter</option>
+             <option value="spring">Spring</option>
+             <option value="ssi">Summer Session I</option>
+             <option value="ssii">Summer Session II</option>
+             <option value="ss10">Summer Session 10-Week</option>
+           </select>
+         </div>
+       </div>
+
+     <div class="rightcontact">
+       <div class="form-group">
+         <p>Number of Credits Applied <span>*</span></p>
+         <span class="icon-case"><i class="fa fa-bar-chart"></i></span>
+         <input class="input-field" type="number" step="0.1" min="0" name="credits" id="credits" data-rule="required">
+         <div class="validation"></div>
+       </div>
+     </div>
+
+     <div class="form-group">
+       <p>Requirements <span>*</span></p>
+       <div class="row">
+          <div class="col-sm-1 col-md-1 col-lg-1 "></div>
+          <div class="col-sm-3 col-md-3 col-lg-3 checkbox-inline">
+            <label><input type="checkbox" id="inlineCheckbox1" value="university"> University
+            </label>
+          </div>
+          <div class="col-sm-3 col-md-3 col-lg-3 checkbox-inline">
+            <label><input type="checkbox" id="ge1" value="ge1"> General Education Ⅰ
+            </label>
+          </div>
+          <div class="col-sm-3 col-md-3 col-lg-3 checkbox-inline">
+            <label><input type="checkbox" id="ge2" value="ge2"> General Education Ⅱ
+            </label>
+          </div>
+          <div class="col-sm-2 col-md-2 col-lg-2 "></div>
+      </div>
+      <div class="row">
+         <div class="col-sm-1 col-md-1 col-lg-1 "></div>
+         <div class="col-sm-3 col-md-3 col-lg-3 checkbox-inline">
+           <label><input type="checkbox" id="ge3" value="ge3"> General Education Ⅲ
+           </label>
+         </div>
+         <div class="col-sm-3 col-md-3 col-lg-3 checkbox-inline">
+           <label><input type="checkbox" id="ge4" value="ge4"> General Education Ⅳ
+           </label>
+         </div>
+         <div class="col-sm-3 col-md-3 col-lg-3 checkbox-inline">
+           <label><input type="checkbox" id="ge5" value="ge5"> General Education Ⅴ
+           </label>
+         </div>
+         <div class="col-sm-2 col-md-2 col-lg-2 "></div>
+     </div>
+     <div class="row">
+        <div class="col-sm-1 col-md-1 col-lg-1 "></div>
+        <div class="col-sm-3 col-md-3 col-lg-3 checkbox-inline">
+          <label><input type="checkbox" id="ge6" value="ge6"> General Education Ⅵ
+          </label>
+        </div>
+        <div class="col-sm-3 col-md-3 col-lg-3 checkbox-inline">
+          <label><input type="checkbox" id="ge7" value="ge7"> General Education Ⅶ
+          </label>
+        </div>
+        <div class="col-sm-3 col-md-3 col-lg-3 checkbox-inline">
+          <label><input type="checkbox" id="ge8" value="ge8"> General Education Ⅷ
+          </label>
+        </div>
+        <div class="col-sm-2 col-md-2 col-lg-2 "></div>
+    </div>
+    </div>
+
+     <div class="form-group">
+       <p>Specialization Name (CS Major Only) <span>*</span></p>
+       <span class="icon-case"><i class="fa fa-book"></i></span>
+       <select class="js-example-basic-multiple input-field" id="specialization">
+         <option value="--" selected="true" disabled="disabled">--</option>
+         <option value="AI">Inteligent System</option>
+         <option value="Info">Information</option>
+         <option value="Algo">Algorithm</option>
+         <option value="AES">Architecture and Embedded Systems</option>
+         <option value="General">General Computer Science</option>
+         <option value="Network">Networked Systems</option>
+         <option value="Software">Systems and Software</option>
+         <option value="Visual">Visual Computing</option>
+       </select>
+     </div>
+
+     <div class="form-group">
+       <p>Finished Course(s) (In the form of [‘cs111’, ‘cs132’] ) <span>*</span></p>
+       <span class="icon-case"><i class="fa fa-comments-o"></i></span>
+       <textarea id="finished" name="courses" rows="14" data-rule="required"></textarea>
+       <div class="validation"></div>
+     </div>
+
+     <div class="form-group">
+       <p>Unwanted Course(s) (Note that there are courses you cannot avoid [i.e. major requirements]) <span>*</span></p>
+       <span class="icon-case"><i class="fa fa-comments-o"></i></span>
+       <textarea id="unwanted" name="courses" rows="14" data-rule="required"></textarea>
+       <div class="validation"></div>
+     </div>
+
+   </div>
+   <!-- <a href="/output" class="btn btn-lg button-send" role="button">Send</a> -->
+   <button class="btn btn-lg button-send submit" role="button">Send</button>
+
+  </form>
+
+
+    </main>
+
+    <footer class="footer text-center">
+      <div class="container">
+        <ul class="list-inline">
+          <li class="text-muted">Course Scheduling © 2017</li>
+          <li><a href="http://localhost:8000/privacy">Privacy Policy</a></li>
+          <li><a href="http://localhost:8000/terms">Terms of Service</a></li>
+        </ul>
+      </div>
+    </footer>
+  <div id="flDebug" style="">
+  <script type="text/javascript">var DEBUG_TOOLBAR_STATIC_PATH = '/_debug_toolbar/static/'</script>
+  <script type="text/javascript" src="./Course Scheduling_files/jquery.js"></script>
+  <script type="text/javascript" src="./Course Scheduling_files/jquery.tablesorter.js"></script>
+  <script type="text/javascript" src="./Course Scheduling_files/toolbar.js"></script>
+
+  <div style="display: none;" id="flDebugToolbar">
+    <ol id="flDebugPanelList">
+      
+      <li><a id="flHideToolBarButton" href="http://localhost:8000/#" title="Hide Toolbar">Hide »</a></li>
+      
+
+      
+      <li id="flDebugVersionPanel">
+        
+        <a href="http://localhost:8000/" title="Versions" class="flDebugVersionPanel">
+        
+
+        Versions
+        <br><small>Flask 0.12.2</small>
+
+        
+        </a>
+        
+        
+      </li>
+      
+      <li id="flDebugTimerPanel">
+        
+        <a href="http://localhost:8000/" title="Resource Usage" class="flDebugTimerPanel">
+        
+
+        Time
+        <br><small>CPU: 10.00ms (21.15ms)</small>
+
+        
+        </a>
+        
+        
+      </li>
+      
+      <li id="flDebugHeaderPanel">
+        
+        <a href="http://localhost:8000/" title="HTTP Headers" class="flDebugHeaderPanel">
+        
+
+        HTTP Headers
+        
+
+        
+        </a>
+        
+        
+      </li>
+      
+      <li id="flDebugRequestVarsPanel">
+        
+        <a href="http://localhost:8000/" title="Request Vars" class="flDebugRequestVarsPanel">
+        
+
+        Request Vars
+        
+
+        
+        </a>
+        
+        
+      </li>
+      
+      <li id="flDebugTemplatePanel">
+        
+        <a href="http://localhost:8000/" title="Templates" class="flDebugTemplatePanel">
+        
+
+        Templates
+        <br><small>1 rendered</small>
+
+        
+        </a>
+        
+        
+      </li>
+      
+      <li id="flDebugLoggingPanel">
+        
+        <a href="http://localhost:8000/" title="Log Messages" class="flDebugLoggingPanel">
+        
+
+        Logging
+        <br><small>0 messages</small>
+
+        
+        </a>
+        
+        
+      </li>
+      
+      <li id="flDebugMongoDBPanel">
+        
+        <a href="http://localhost:8000/" title="MongoDB Operations" class="flDebugMongoDBPanel">
+        
+
+        MongoDB
+        <br><small>0 operations in 0.00ms</small>
+
+        
+        </a>
+        
+        
+      </li>
+      
+    </ol>
+  </div>
+  <div style="" id="flDebugToolbarHandle">
+    <a title="Show Toolbar" id="flShowToolBarButton" href="http://localhost:8000/#">«</a>
+  </div>
+  
+    
+    <div id="flDebugVersionPanel-content" class="panelContent" style="display: none;">
+      <div class="flDebugPanelTitle">
+        <a href="http://localhost:8000/" class="flDebugClose">Close</a>
+        <h3>Versions</h3>
+      </div>
+      <div class="flDebugPanelContent">
+        <div class="scroll">
+          <h4>Installed Packages</h4>
+
+<p>
+  Installation paths relative to:
+</p>
+<pre>/usr/local/lib/python3.5/site-packages
+</pre>
+
+<table>
+  <thead>
+    <tr>
+      <th>Package</th>
+      <th>Version</th>
+      <th>Installed Path</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+      <tr class="flDebugOdd">
+        <td>blinker</td>
+        <td>1.4</td>
+        <td></td>
+      </tr>
+    
+      <tr class="flDebugEven">
+        <td>click</td>
+        <td>6.4</td>
+        <td></td>
+      </tr>
+    
+      <tr class="flDebugOdd">
+        <td>coverage</td>
+        <td>4.4.1</td>
+        <td></td>
+      </tr>
+    
+      <tr class="flDebugEven">
+        <td>flake8</td>
+        <td>3.3.0</td>
+        <td></td>
+      </tr>
+    
+      <tr class="flDebugOdd">
+        <td>Flask</td>
+        <td>0.12.2</td>
+        <td></td>
+      </tr>
+    
+      <tr class="flDebugEven">
+        <td>Flask-Admin</td>
+        <td>1.5.0</td>
+        <td></td>
+      </tr>
+    
+      <tr class="flDebugOdd">
+        <td>Flask-DebugToolbar</td>
+        <td>0.10.0</td>
+        <td></td>
+      </tr>
+    
+      <tr class="flDebugEven">
+        <td>flask-mongoengine</td>
+        <td>0.9.3</td>
+        <td></td>
+      </tr>
+    
+      <tr class="flDebugOdd">
+        <td>Flask-PyMongo</td>
+        <td>0.5.1</td>
+        <td></td>
+      </tr>
+    
+      <tr class="flDebugEven">
+        <td>Flask-WTF</td>
+        <td>0.14.2</td>
+        <td></td>
+      </tr>
+    
+      <tr class="flDebugOdd">
+        <td>gunicorn</td>
+        <td>19.7.0</td>
+        <td></td>
+      </tr>
+    
+      <tr class="flDebugEven">
+        <td>itsdangerous</td>
+        <td>0.24</td>
+        <td></td>
+      </tr>
+    
+      <tr class="flDebugOdd">
+        <td>Jinja2</td>
+        <td>2.9.6</td>
+        <td></td>
+      </tr>
+    
+      <tr class="flDebugEven">
+        <td>MarkupSafe</td>
+        <td>1.0</td>
+        <td></td>
+      </tr>
+    
+      <tr class="flDebugOdd">
+        <td>mccabe</td>
+        <td>0.6.1</td>
+        <td></td>
+      </tr>
+    
+      <tr class="flDebugEven">
+        <td>mongoengine</td>
+        <td>0.13.0</td>
+        <td></td>
+      </tr>
+    
+      <tr class="flDebugOdd">
+        <td>pip</td>
+        <td>9.0.1</td>
+        <td></td>
+      </tr>
+    
+      <tr class="flDebugEven">
+        <td>py</td>
+        <td>1.4.34</td>
+        <td></td>
+      </tr>
+    
+      <tr class="flDebugOdd">
+        <td>pycodestyle</td>
+        <td>2.3.1</td>
+        <td></td>
+      </tr>
+    
+      <tr class="flDebugEven">
+        <td>pyflakes</td>
+        <td>1.5.0</td>
+        <td></td>
+      </tr>
+    
+      <tr class="flDebugOdd">
+        <td>pymongo</td>
+        <td>3.4.0</td>
+        <td></td>
+      </tr>
+    
+      <tr class="flDebugEven">
+        <td>pytest</td>
+        <td>3.1.2</td>
+        <td></td>
+      </tr>
+    
+      <tr class="flDebugOdd">
+        <td>pytest-cov</td>
+        <td>2.5.1</td>
+        <td></td>
+      </tr>
+    
+      <tr class="flDebugEven">
+        <td>setuptools</td>
+        <td>36.0.1</td>
+        <td></td>
+      </tr>
+    
+      <tr class="flDebugOdd">
+        <td>six</td>
+        <td>1.10.0</td>
+        <td></td>
+      </tr>
+    
+      <tr class="flDebugEven">
+        <td>Werkzeug</td>
+        <td>0.12.2</td>
+        <td></td>
+      </tr>
+    
+      <tr class="flDebugOdd">
+        <td>wheel</td>
+        <td>0.29.0</td>
+        <td></td>
+      </tr>
+    
+      <tr class="flDebugEven">
+        <td>WTForms</td>
+        <td>2.1</td>
+        <td></td>
+      </tr>
+    
+  </tbody>
+</table>
+        </div>
+      </div>
+    </div>
+    
+  
+    
+    <div id="flDebugTimerPanel-content" class="panelContent" style="display: none;">
+      <div class="flDebugPanelTitle">
+        <a href="http://localhost:8000/" class="flDebugClose">Close</a>
+        <h3>Resource Usage</h3>
+      </div>
+      <div class="flDebugPanelContent">
+        <div class="scroll">
+          <table>
+  <colgroup>
+    <col style="width:20%">
+    <col>
+  </colgroup>
+  <thead>
+    <tr>
+      <th>Resource</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+      <tr class="flDebugOdd">
+        <td>User CPU time</td>
+        <td>0.000 msec</td>
+      </tr>
+    
+      <tr class="flDebugEven">
+        <td>System CPU time</td>
+        <td>10.000 msec</td>
+      </tr>
+    
+      <tr class="flDebugOdd">
+        <td>Total CPU time</td>
+        <td>10.000 msec</td>
+      </tr>
+    
+      <tr class="flDebugEven">
+        <td>Elapsed time</td>
+        <td>21.153 msec</td>
+      </tr>
+    
+      <tr class="flDebugOdd">
+        <td>Context switches</td>
+        <td>31 voluntary, 0 involuntary</td>
+      </tr>
+    
+  </tbody>
+</table>
+
+        </div>
+      </div>
+    </div>
+    
+  
+    
+    <div id="flDebugHeaderPanel-content" class="panelContent" style="display: none;">
+      <div class="flDebugPanelTitle">
+        <a href="http://localhost:8000/" class="flDebugClose">Close</a>
+        <h3>HTTP Headers</h3>
+      </div>
+      <div class="flDebugPanelContent">
+        <div class="scroll">
+          <table>
+  <thead>
+    <tr>
+      <th>Key</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+      <tr class="flDebugOdd">
+        <td>HTTP_ACCEPT</td>
+        <td>text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8</td>
+      </tr>
+    
+      <tr class="flDebugEven">
+        <td>HTTP_ACCEPT_ENCODING</td>
+        <td>gzip, deflate, br</td>
+      </tr>
+    
+      <tr class="flDebugOdd">
+        <td>HTTP_ACCEPT_LANGUAGE</td>
+        <td>en-US,en;q=0.8,zh-CN;q=0.6,zh;q=0.4</td>
+      </tr>
+    
+      <tr class="flDebugEven">
+        <td>HTTP_CACHE_CONTROL</td>
+        <td>max-age=0</td>
+      </tr>
+    
+      <tr class="flDebugOdd">
+        <td>HTTP_CONNECTION</td>
+        <td>keep-alive</td>
+      </tr>
+    
+      <tr class="flDebugEven">
+        <td>HTTP_HOST</td>
+        <td>localhost:8000</td>
+      </tr>
+    
+      <tr class="flDebugOdd">
+        <td>HTTP_USER_AGENT</td>
+        <td>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36</td>
+      </tr>
+    
+      <tr class="flDebugEven">
+        <td>QUERY_STRING</td>
+        <td></td>
+      </tr>
+    
+      <tr class="flDebugOdd">
+        <td>REMOTE_ADDR</td>
+        <td>172.18.0.1</td>
+      </tr>
+    
+      <tr class="flDebugEven">
+        <td>REQUEST_METHOD</td>
+        <td>GET</td>
+      </tr>
+    
+      <tr class="flDebugOdd">
+        <td>SCRIPT_NAME</td>
+        <td></td>
+      </tr>
+    
+      <tr class="flDebugEven">
+        <td>SERVER_NAME</td>
+        <td>0.0.0.0</td>
+      </tr>
+    
+      <tr class="flDebugOdd">
+        <td>SERVER_PORT</td>
+        <td>8000</td>
+      </tr>
+    
+      <tr class="flDebugEven">
+        <td>SERVER_PROTOCOL</td>
+        <td>HTTP/1.1</td>
+      </tr>
+    
+      <tr class="flDebugOdd">
+        <td>SERVER_SOFTWARE</td>
+        <td>gunicorn/19.7.0</td>
+      </tr>
+    
+  </tbody>
+</table>
+        </div>
+      </div>
+    </div>
+    
+  
+    
+    <div id="flDebugRequestVarsPanel-content" class="panelContent" style="display: none;">
+      <div class="flDebugPanelTitle">
+        <a href="http://localhost:8000/" class="flDebugClose">Close</a>
+        <h3>Request Vars</h3>
+      </div>
+      <div class="flDebugPanelContent">
+        <div class="scroll">
+          
+<h4>View information</h4>
+<table>
+  <thead>
+    <tr>
+      <th>View Function</th>
+      <th>args</th>
+      <th>kwargs</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>CourseScheduling.blueprints.schedule.views.schedule_home</td>
+      <td>[]</td>
+      <td>
+        
+          None
+        
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+<h4>COOKIES Variables</h4>
+
+  
+<table>
+  <colgroup>
+    <col style="width:20%">
+    <col>
+  </colgroup>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr class="flDebugOdd">
+      <td>'fldt'</td>
+      <td>'hide'</td>
+    </tr>
+    
+  </tbody>
+</table>
+
+
+
+<h4>SESSION Variables</h4>
+
+  <p>No SESSION data</p>
+
+
+
+
+
+
+<h4>GET Variables</h4>
+
+  
+<table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+  </tbody>
+</table>
+
+
+
+<h4>POST Variables</h4>
+
+  
+<table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+  </tbody>
+</table>
+
+
+        </div>
+      </div>
+    </div>
+    
+  
+    
+    <div id="flDebugTemplatePanel-content" class="panelContent" style="display: none;">
+      <div class="flDebugPanelTitle">
+        <a href="http://localhost:8000/" class="flDebugClose">Close</a>
+        <h3>Templates</h3>
+      </div>
+      <div class="flDebugPanelContent">
+        <div class="scroll">
+          
+  
+  
+    <h4>schedule/input.html</h4>
+    <table>
+      <thead>
+        <tr>
+          <th>Variable</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <tr class="flDebugOdd">
+          <td>g</td>
+          <td>&lt;flask.g of 'CourseScheduling.app'&gt;</td>
+        </tr>
+        
+        <tr class="flDebugEven">
+          <td>request</td>
+          <td>&lt;Request 'http://localhost:8000/' [GET]&gt;</td>
+        </tr>
+        
+        <tr class="flDebugOdd">
+          <td>session</td>
+          <td>&lt;MongoEngineSession {}&gt;</td>
+        </tr>
+        
+      </tbody>
+    </table>
+  
+
+        </div>
+      </div>
+    </div>
+    
+  
+    
+    <div id="flDebugLoggingPanel-content" class="panelContent" style="display: none;">
+      <div class="flDebugPanelTitle">
+        <a href="http://localhost:8000/" class="flDebugClose">Close</a>
+        <h3>Log Messages</h3>
+      </div>
+      <div class="flDebugPanelContent">
+        <div class="scroll">
+          
+  <p>No messages logged.</p>
+
+
+
+        </div>
+      </div>
+    </div>
+    
+  
+    
+    <div id="flDebugMongoDBPanel-content" class="panelContent" style="display: none;">
+      <div class="flDebugPanelTitle">
+        <a href="http://localhost:8000/" class="flDebugClose">Close</a>
+        <h3>MongoDB Operations</h3>
+      </div>
+      <div class="flDebugPanelContent">
+        <div class="scroll">
+          <style type="text/css">
+.code {
+    font-family: 'Consolas', 'Deja Vu Sans Mono', 'Bitstream Vera Sans Mono', 'Monaco', 'Courier New', monospace !important;
+}
+.mongo-stack-trace {
+    line-height: 2.3em !important;
+}
+.mongo-stack-trace tr {
+    border-top: 1px dotted #ccc !important;
+}
+.mongo-stack-trace table th {
+    text-align: left !important;
+}
+
+#flDebug .mongo-stack-trace, #flDebug .mongo-data, .mongo-op-table .toolbar-query {
+    display:none;
+}
+
+#flDebug .mongo-stack-trace table tr.mongo-stack-trace-hide {
+    background: #eee!important;
+    display:none;
+}
+
+#flDebug .panelContent .mongo-op-table,
+#flDebug .panelContent .mongo-stack-trace table { display: table;}
+
+.mongo-op-table td.fifty {width: 50%; word-wrap: break-word;}
+.mongo-op-table td.thirty {width: 30%; word-wrap: break-word;}
+
+</style>
+
+
+
+
+
+<h4>Queries</h4>
+
+<p>No queries recorded</p>
+
+
+
+
+<h4>Removes</h4>
+
+<p>No removes recorded</p>
+
+
+
+
+<h4>Inserts</h4>
+
+<p>No inserts recorded</p>
+
+
+
+
+<h4>Updates</h4>
+
+<p>No updates recorded</p>
+
+
+
+<script>
+(function($) {
+
+    $('a.mongo-toggle-trace').click(function(){
+        $("#"+$(this).attr('data-row')).toggle();
+    });
+    $('a.mongo-toggle-data').click(function(){
+        $("#"+$(this).attr('data-row')).toggle();
+    });
+
+    $('a.mongo-toggle-full-trace').click(function(){
+        $(this).closest('table').find('tr.mongo-stack-trace-hide').toggle();
+    });
+
+})(jQuery.noConflict(true));
+</script>
+        </div>
+      </div>
+    </div>
+    
+  
+  <div id="flDebugWindow" class="panelContent" style="display: none;"></div>
+</div>
+</body></html>

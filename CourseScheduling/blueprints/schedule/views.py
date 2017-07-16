@@ -1,8 +1,10 @@
 import logging
+from CourseScheduling.blueprints.schedule.dbHelper import getCourse, getRequirements
 from flask import Blueprint, render_template, request
 from CourseScheduling.blueprints.schedule.models import Course, Requirement
 import lib.CourseSchedulingAlgorithm as cs
-from CourseScheduling.blueprints.schedule.dbHelper import getCourse, getRequirements
+import ast
+
 schedule = Blueprint('schedule', __name__, template_folder='templates')
 
 @schedule.route('/')
@@ -21,44 +23,44 @@ def test():
 @schedule.route('/output', methods=['POST', 'GET'])
 def schedule_output():
 
-    # user info should be private 
-    # also user info could be too large for GET request
-    # if request.method != 'POST':
-    #   return "Naughty boy. Maybe next time."
+    REQUIREMENTS = {"University", "GEI", "GEII", "GEIII", "GEIV",
+                    "GEV", "GEVI", "GEVII", "GEVIII", "CS-Lower-division", "CS-Upper-division"}
 
-    ############### fake input ###################
-    
-    # input will be provided by POST request. 
+    # user info should be private
+    # also user info could be too large for GET request
+    if request.method != 'POST':
+        return render_template('schedule/input.html')
+
+    form = request.form
+
+    # input will be provided by POST request.
     # config upper standing units
     upper_units = 90
-    # start quarter 
-    startQ = 0
+    # start quarter
+    startQ = form.getlist("quarter")[0]
     # units applied
-    applied_units = 0
+    applied_units = float(form.getlist("credits")[0])
     # set of courses taken
-    taken = {'MATH1B'}
+    taken = set(ast.literal_eval(form.getlist("finished")[0])) #{'MATH1B'}
     # width setting
     max_widths = {0: 13, 'else': 16}
     # avoid
-    avoid = {'COMPSCI141'}
-    # requirements 
-    req = {"University", "GEI", "GEII", "GEIII", "GEIV",
-              "GEV", "GEVI", "GEVII", "GEVIII", "CS-Lower-division", "CS-Upper-division",
-              "Intelligent Systems"}
+    avoid = set(ast.literal_eval(form.getlist("unwanted")[0])) #{'COMPSCI141'}
+    # requirements
+    req = set()
+    for requirement in REQUIREMENTS:
+        if form.getlist(requirement):
+            req.add(requirement)
+    if form.getlist("specialization"):
+        req.add(form.getlist("specialization")[0])
 
-    ##############################################
+    print(req)
 
-    # 现在把数据库的data拿出来 然后一个个建立 lib.CourseSchedulingAlgorithm.Course 然后装进Graph (jenny的example是这么做的).
-    # 未来优化：因为db里已经有一份copy了，所以两倍的memory。之后应该要改一下。
-
-    # ！！！新修改了此处 从直接在这里query db的东西 改成调用dbHelper 里面的function
     G = dict()
     for c in Course.objects:
-      G[c.dept+" " +c.cid] = getCourse(c.dept, c.cid)
+      G[c.dept+c.cid] = getCourse(c.dept, c.cid)
 
     R, R_detail = getRequirements(req)
-
-    #########################
 
     # update requirement table based on the taken information
     cs.update_requirements(R_detail, R, taken)

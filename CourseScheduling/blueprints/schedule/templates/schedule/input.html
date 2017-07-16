@@ -162,11 +162,6 @@
 {% block body %}
 
 <script type="text/javascript">
-$(document).ready(function() {
-  $('.js-example-basic-single').select2();
-});
-
-$(".js-example-basic-multiple").select2();
 
 </script>
 
@@ -180,14 +175,13 @@ $(".js-example-basic-multiple").select2();
          <div class="form-group">
            <p>Current Quarter <span>*</span></p>
            <span class="icon-case"><i class="fa fa-calendar"></i></span>
-           <select class="js-example-basic-single input-field">
-             <option value="--" selected="true" disabled="disabled">--</option>
-             <option value="fall">Fall</option>
-             <option value="winter">Winter</option>
-             <option value="spring">Spring</option>
-             <option value="ssi">Summer Session I</option>
-             <option value="ssii">Summer Session II</option>
-             <option value="ss10">Summer Session 10-Week</option>
+           <select class="js-example-basic-single input-field" name='quarter' required>
+             <option value="0" selected="true">Fall</option>
+             <option value="1">Winter</option>
+             <option value="2">Spring</option>
+             <!-- <option value="3">Summer Session I</option>
+             <option value="4">Summer Session II</option>
+             <option value="5">Summer Session 10-Week</option> -->
            </select>
          </div>
        </div>
@@ -196,7 +190,7 @@ $(".js-example-basic-multiple").select2();
        <div class="form-group">
          <p>Number of Credits Applied <span>*</span></p>
          <span class="icon-case"><i class="fa fa-bar-chart"></i></span>
-         <input class="input-field" type="number" step="0.1" min=0 name="credits" id="credits" data-rule="required"/>
+         <input class="input-field" type="number" step="0.1" min=0 name="credits" required/>
          <div class="validation"></div>
        </div>
      </div>
@@ -206,15 +200,15 @@ $(".js-example-basic-multiple").select2();
        <div class="row">
           <div class="col-sm-1 col-md-1 col-lg-1 "></div>
           <div class="col-sm-3 col-md-3 col-lg-3 checkbox-inline">
-            <label><input type="checkbox" id="inlineCheckbox1" value="university"> University
+            <label><input type="checkbox" name="University"> University
             </label>
           </div>
           <div class="col-sm-3 col-md-3 col-lg-3 checkbox-inline">
-            <label><input type="checkbox" id="inlineCheckbox1" value="ge1"> General Education &#8544;
+            <label><input type="checkbox" name="GEI"> General Education &#8544;
             </label>
           </div>
           <div class="col-sm-3 col-md-3 col-lg-3 checkbox-inline">
-            <label><input type="checkbox" id="inlineCheckbox1" value="ge2"> General Education &#8545;
+            <label><input type="checkbox" name="GEII"> General Education &#8545;
             </label>
           </div>
           <div class="col-sm-2 col-md-2 col-lg-2 "></div>
@@ -222,15 +216,15 @@ $(".js-example-basic-multiple").select2();
       <div class="row">
          <div class="col-sm-1 col-md-1 col-lg-1 "></div>
          <div class="col-sm-3 col-md-3 col-lg-3 checkbox-inline">
-           <label><input type="checkbox" id="inlineCheckbox1" value="ge3"> General Education &#8546;
+           <label><input type="checkbox" name="GEIII"> General Education &#8546;
            </label>
          </div>
          <div class="col-sm-3 col-md-3 col-lg-3 checkbox-inline">
-           <label><input type="checkbox" id="inlineCheckbox1" value="ge4"> General Education &#8547;
+           <label><input type="checkbox" name="GEIV"> General Education &#8547;
            </label>
          </div>
          <div class="col-sm-3 col-md-3 col-lg-3 checkbox-inline">
-           <label><input type="checkbox" id="inlineCheckbox1" value="ge5"> General Education &#8548;
+           <label><input type="checkbox" name="GEV"> General Education &#8548;
            </label>
          </div>
          <div class="col-sm-2 col-md-2 col-lg-2 "></div>
@@ -238,48 +232,59 @@ $(".js-example-basic-multiple").select2();
      <div class="row">
         <div class="col-sm-1 col-md-1 col-lg-1 "></div>
         <div class="col-sm-3 col-md-3 col-lg-3 checkbox-inline">
-          <label><input type="checkbox" id="inlineCheckbox1" value="ge6"> General Education &#8549;
+          <label><input type="checkbox" name="GEVI"> General Education &#8549;
           </label>
         </div>
         <div class="col-sm-3 col-md-3 col-lg-3 checkbox-inline">
-          <label><input type="checkbox" id="inlineCheckbox1" value="ge7"> General Education &#8550;
+          <label><input type="checkbox" name="GEVII"> General Education &#8550;
           </label>
         </div>
         <div class="col-sm-3 col-md-3 col-lg-3 checkbox-inline">
-          <label><input type="checkbox" id="inlineCheckbox1" value="ge8"> General Education &#8551;
+          <label><input type="checkbox" name="GEVIII"> General Education &#8551;
           </label>
         </div>
         <div class="col-sm-2 col-md-2 col-lg-2 "></div>
     </div>
-    </div>
+    <div class="row">
+       <div class="col-sm-1 col-md-1 col-lg-1 "></div>
+       <div class="col-sm-3 col-md-3 col-lg-3 checkbox-inline">
+         <label><input type="checkbox" name="CS-Lower-division"> CS Lower Division
+         </label>
+       </div>
+       <div class="col-sm-3 col-md-3 col-lg-3 checkbox-inline">
+         <label><input type="checkbox" name="CS-Upper-division"> CS Uppter Division
+         </label>
+       </div>
+       <div class="col-sm-2 col-md-2 col-lg-2 "></div>
+   </div>
+  </div>
 
-     <div class="form-group">
-       <p>Specialization Name (CS Major Only) <span>*</span></p>
-       <span class="icon-case"><i class="fa fa-book"></i></span>
-       <select class="js-example-basic-multiple input-field">
-         <option value="--" selected="true" disabled="disabled">--</option>
-         <option value="AI">Inteligent System</option>
-         <option value="Info">Information</option>
-         <option value="Algo">Algorithm</option>
-         <option value="AES">Architecture and Embedded Systems</option>
-         <option value="General">General Computer Science</option>
-         <option value="Network">Networked Systems</option>
-         <option value="Software">Systems and Software</option>
-         <option value="Visual">Visual Computing</option>
-       </select>
-     </div>
+   <div class="form-group">
+     <p>Specialization Name (CS Major Only) <span>*</span></p>
+     <span class="icon-case"><i class="fa fa-book"></i></span>
+     <select class="js-example-basic-multiple input-field" name="specialization" required>
+       <option value="Inteligent System" selected="true">Inteligent System</option>
+       <option value="Information">Information</option>
+       <option value="Algorithm">Algorithm</option>
+       <option value="Architecture and Embedded Systems">Architecture and Embedded Systems</option>
+       <option value="General Computer Science">General Computer Science</option>
+       <option value="Networked Systems">Networked Systems</option>
+       <option value="Systems and Software">Systems and Software</option>
+       <option value="Visual Computing">Visual Computing</option>
+     </select>
+   </div>
 
      <div class="form-group">
        <p>Finished Course(s) (In the form of [‘cs111’, ‘cs132’] ) <span>*</span></p>
        <span class="icon-case"><i class="fa fa-comments-o"></i></span>
-       <textarea name="courses" rows="14" data-rule="required" ></textarea>
+       <textarea id="finished" name="finished" rows="14" required ></textarea>
        <div class="validation"></div>
      </div>
 
      <div class="form-group">
        <p>Unwanted Course(s) (Note that there are courses you cannot avoid [i.e. major requirements]) <span>*</span></p>
        <span class="icon-case"><i class="fa fa-comments-o"></i></span>
-       <textarea name="courses" rows="14" data-rule="required" ></textarea>
+       <textarea id="unwanted" name="unwanted" rows="14" required ></textarea>
        <div class="validation"></div>
      </div>
 
