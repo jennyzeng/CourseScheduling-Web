@@ -13,6 +13,7 @@ def getRequirements(reqs):
     for r in reqs:
         R[r] = list()
         R_detail[r] = list()
+        if not Requirement.objects(name=r).first(): continue
         for subr in Requirement.objects(name=r).first().sub_reqs:
             R[r].append(subr.req_num)
             R_detail[r].append(set(subr.req_list))

@@ -21,7 +21,7 @@ class Course(db.Document):
     def __unicode__(self):
         return self.name
 
-# no idea why this one is not working
+
 
 class SubReq(db.EmbeddedDocument):
     # we need a more complicated model later such that we can

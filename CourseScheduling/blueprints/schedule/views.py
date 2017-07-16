@@ -2,7 +2,7 @@ import logging
 from flask import Blueprint, render_template, request
 from CourseScheduling.blueprints.schedule.models import Course, Requirement
 import lib.CourseSchedulingAlgorithm as cs
-
+from CourseScheduling.blueprints.schedule.dbHelper import getCourse, getRequirements
 schedule = Blueprint('schedule', __name__, template_folder='templates')
 
 @schedule.route('/')
@@ -23,8 +23,8 @@ def schedule_output():
 
     # user info should be private 
     # also user info could be too large for GET request
-    if request.method != 'POST':
-      return "Naughty boy. Maybe next time."
+    # if request.method != 'POST':
+    #   return "Naughty boy. Maybe next time."
 
     ############### fake input ###################
     
@@ -54,16 +54,9 @@ def schedule_output():
     # ！！！新修改了此处 从直接在这里query db的东西 改成调用dbHelper 里面的function
     G = dict()
     for c in Course.objects:
-      G[c.dept+c.cid] = cs.Course(name=c.name, units=c.units, quarter_codes=c.quarters, 
-            prereq=c.prereq, is_upper_only=c.upperOnly)
+      G[c.dept+" " +c.cid] = getCourse(c.dept, c.cid)
 
-    R, R_detail = dict(), dict()
-    for r in req:
-      R[r] = list()
-      R_detail[r] = list()
-      for subr in Requirement.objects(name=r)[0].sub_reqs:
-        R[r].append(subr.get('req_num'))
-        R_detail[r].append(set(subr.get('req_list')))
+    R, R_detail = getRequirements(req)
 
     #########################
 

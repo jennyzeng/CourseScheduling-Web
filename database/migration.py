@@ -90,7 +90,7 @@ def load_requirement_from_txt(filename):
                 elif re.match("(\}|\{)", block[i]):
                     i += 1
                 else:
-                    requirement.sub_reqs[-1]['req_list'].append(block[i].replace(" ", ""))
+                    requirement.sub_reqs[-1]['req_list'].append(block[i])
                     i += 1
             print(requirement.name)
             requirement.save()
