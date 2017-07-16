@@ -24,15 +24,16 @@ class RequirementView(ModelView):
 
     column_searchable_list = ['name']
 
-    # form_subdocuments = {
-    #     'sub_reqs': {
-    #         'form_subdocuments': {
-    #             None: {
-    #                 'form_columns': ('req_list', 'req_num')
-    #             }
-    #         }
-    #     }
-    # }
+    form_subdocuments = {
+        'sub_reqs': {
+            'form_subdocuments': {
+                None: {
+                    'form_columns': ('req_list', 'req_num')
+                }
+            }
+        }
+    }
+    # create_model =
 
 
 admin.add_view(CourseView(Course))

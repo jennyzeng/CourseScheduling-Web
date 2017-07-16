@@ -33,7 +33,4 @@ class SubReq(db.EmbeddedDocument):
 
 class Requirement(db.Document):
     name = db.StringField(max_length=50)
-    # TODO: comment out 的是新model，暂时无法使用
     sub_reqs = db.ListField(db.EmbeddedDocumentField(SubReq))
-
-    # sub_reqs = db.ListField(db.DictField())

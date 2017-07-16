@@ -14,6 +14,6 @@ def getRequirements(reqs):
         R[r] = list()
         R_detail[r] = list()
         for subr in Requirement.objects(name=r).first().sub_reqs:
-            R[r].append(subr.get('req_num'))
-            R_detail[r].append(set(subr.get('req_list')))
+            R[r].append(subr.req_num)
+            R_detail[r].append(set(subr.req_list))
     return R, R_detail

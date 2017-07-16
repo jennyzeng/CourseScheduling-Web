@@ -6,7 +6,9 @@ import sys
 
 """
 use 
+
 $ docker-compose exec website python database/migration.py
+
 to load data
 """
 app = create_app()
