@@ -58,7 +58,7 @@ def schedule_output():
 
     G = dict()
     for c in Course.objects:
-      G[c.dept+c.cid] = getCourse(c.dept, c.cid)
+      G[c.dept+" " +c.cid] = getCourse(c.dept, c.cid)
 
     R, R_detail = getRequirements(req)
 
