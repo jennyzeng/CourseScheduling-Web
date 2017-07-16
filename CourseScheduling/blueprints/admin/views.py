@@ -4,19 +4,14 @@
 
 from flask_admin.contrib.mongoengine import ModelView
 from CourseScheduling.extensions import admin
-from CourseScheduling.blueprints.schedule.models import Course, Requirement
+from CourseScheduling.blueprints.schedule.models import Course, Requirement, Major
 from flask_admin.form import rules
+
 
 class CourseView(ModelView):
     column_filters = ['dept', 'cid']
 
     column_searchable_list = ('name', 'dept', 'cid')
-
-    # form_ajax_refs = {
-    #     '': {
-    #         'fields': ('name',)
-    #     }
-    # }
 
 
 class RequirementView(ModelView):
@@ -28,14 +23,26 @@ class RequirementView(ModelView):
         'sub_reqs': {
             'form_subdocuments': {
                 None: {
-                    'form_columns': ('req_list', 'req_num')
+                    # Add <hr> at the end of the form
+                    'form_rules': ('req_list', 'req_num', rules.HTML('<hr>'))
                 }
             }
         }
     }
-    # create_model =
+
+class MajorView(ModelView):
+    column_filters = ['name']
+    column_searchable_list = ['name']
+
+    #form = MajorForm
+
+    # def create_form(self):
+    #     form = super(MajorView, self).create_form()
+    #     return form
+
+
 
 
 admin.add_view(CourseView(Course))
-
 admin.add_view(RequirementView(Requirement))
+admin.add_view(MajorView(Major))

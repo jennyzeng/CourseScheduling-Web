@@ -1,7 +1,7 @@
 import logging
 from CourseScheduling.blueprints.schedule.dbHelper import getCourse, getRequirements
 from flask import Blueprint, render_template, request
-from CourseScheduling.blueprints.schedule.models import Course, Requirement
+from CourseScheduling.blueprints.schedule.models import Course
 import lib.CourseSchedulingAlgorithm as cs
 import ast
 

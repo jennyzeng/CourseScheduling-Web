@@ -34,3 +34,13 @@ class SubReq(db.EmbeddedDocument):
 class Requirement(db.Document):
     name = db.StringField(max_length=50)
     sub_reqs = db.ListField(db.EmbeddedDocumentField(SubReq))
+
+    def __unicode__(self):
+        return self.name
+
+class Major(db.Document):
+    name = db.StringField(max_length=30)
+    requirements = db.ListField(db.StringField(max_length=30))
+
+    def __unicode__(self):
+        return self.name
