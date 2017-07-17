@@ -22,3 +22,6 @@ Click==6.4
 
 # Extensions.
 flask-debugtoolbar==0.10.0
+
+# flask-script
+flask-script==2.0.5

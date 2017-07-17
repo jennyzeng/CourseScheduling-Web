@@ -1,6 +1,6 @@
 from flask_script import Command, Manager, Option
 from CourseScheduling.app import create_app
-from CourseScheduling.blueprints.schedule.models import Course, Requirement, SubReq
+from CourseScheduling.blueprints.schedule.models import Course, Requirement, SubReq, Major
 
 manager = Manager(create_app)
 
@@ -51,13 +51,14 @@ def load_course(filename="database/txt_files/fullcourses_new.txt"):
 
 
 @manager.command
-def load_requirement(filename='database/txt_files/specializations.txt'):
+def load_requirement(name='universal', filename='database/txt_files/universal.txt'):
 	"""
     load requirement info to database from txt file
     this one does not consider the recommand!
     :param filename: txt file path
 	"""
-	import re
+	import re, os 
+	major = Major(name=name, requirements=[])
 	with open(filename) as f:
 		content = f.read().split(";")
 		for block in content:
@@ -81,7 +82,10 @@ def load_requirement(filename='database/txt_files/specializations.txt'):
 					requirement.sub_reqs[-1].req_list.append(Course.objects(dept=dept, cid=cid).first())
 					i += 1
 			print (requirement.name)
+			major.requirements.append(requirement)
 			requirement.save()
+		major.save()
+
 
 
 @manager.command

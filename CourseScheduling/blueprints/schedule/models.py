@@ -27,7 +27,6 @@ class Course(db.Document):
     def __unicode__(self):
         return self.name
 
-
 class SubReq(db.EmbeddedDocument):
     # we need a more complicated model later such that we can
     # refer to the courses in the subreq!!!
@@ -38,11 +37,20 @@ class SubReq(db.EmbeddedDocument):
 
 class Requirement(db.Document):
     name = db.StringField(max_length=60)
-    major = db.StringField(max_length=60, default="universal")
     sub_reqs = db.ListField(db.EmbeddedDocumentField(SubReq))
 
     meta = {
         'indexes': [
-            ('name', 'major') # compound idnex
+            'name' # compound idnex
+        ]
+    }
+
+class Major(db.Document):
+    name = db.StringField(max_length=60, default="universal")
+    requirements = db.ListField(db.ReferenceField(Requirement, dbref=True))
+    
+    meta = {
+        'indexes': [
+            'name'
         ]
     }

@@ -4,7 +4,7 @@ services:
 
   mongodb:
     image: mongo:latest
-    container_name: "mongodb"
+    container_name: "localhost"
     environment:
       - MONGO_DATA_DIR=/data/db
       - MONGO_LOG_DIR=/dev/null
