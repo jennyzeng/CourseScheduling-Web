@@ -3,8 +3,6 @@
 # no auth for now
 
 from flask_admin.contrib.mongoengine import ModelView
-from CourseScheduling.extensions import admin
-from CourseScheduling.blueprints.schedule.models import Course, Requirement, Major
 from flask_admin.form import rules
 
 
@@ -45,9 +43,3 @@ class MajorView(ModelView):
     #     form = super(MajorView, self).create_form()
     #     return form
 
-
-
-
-# admin.add_view(CourseView(Course))
-# admin.add_view(RequirementView(Requirement))
-# admin.add_view(MajorView(Major))

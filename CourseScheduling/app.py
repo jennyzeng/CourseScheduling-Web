@@ -36,7 +36,8 @@ def extensions(app):
     debug_toolbar.init_app(app)
     db.init_app(app)
     admin.init_app(app)
-    from CourseScheduling.blueprints.admin.views import CourseView, Course, Requirement, RequirementView
+    from CourseScheduling.blueprints.admin.views import CourseView, RequirementView
+    from CourseScheduling.blueprints.schedule.models import Course, Requirement
     admin.add_view(CourseView(Course))
     admin.add_view(RequirementView(Requirement))
 

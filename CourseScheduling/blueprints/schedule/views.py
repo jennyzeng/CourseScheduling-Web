@@ -1,5 +1,5 @@
 import logging
-from CourseScheduling.blueprints.schedule.dbHelper import getCourse, getRequirements
+from CourseScheduling.blueprints.schedule.dbHelper import getCourse, getRequirements, getInfo
 from flask import Blueprint, render_template, request
 from CourseScheduling.blueprints.schedule.models import Course
 import lib.CourseSchedulingAlgorithm as cs
@@ -56,11 +56,7 @@ def schedule_output():
 
     print(req)
 
-    G = dict()
-    for c in Course.objects:
-      G[c.dept+" " +c.cid] = getCourse(c.dept, c.cid)
-
-    R, R_detail = getRequirements(req)
+    G, R, R_detail = getInfo(req)
 
     # update requirement table based on the taken information
     cs.update_requirements(R_detail, R, taken)
