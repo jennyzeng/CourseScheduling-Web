@@ -7,4 +7,4 @@ import flask_admin as admin
 debug_toolbar = DebugToolbarExtension()
 db = MongoEngine()
 mongoInterface = MongoEngineSessionInterface(db)
-admin = admin.Admin(name='MongoAdmin', template_mode='bootstrap3')
+admin = admin.Admin(name='MongoAdmin')

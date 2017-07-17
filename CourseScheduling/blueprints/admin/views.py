@@ -9,12 +9,16 @@ from flask_admin.form import rules
 
 
 class CourseView(ModelView):
+    can_create = True
+    can_edit = True
     column_filters = ['dept', 'cid']
 
     column_searchable_list = ('name', 'dept', 'cid')
 
 
 class RequirementView(ModelView):
+    can_create = True
+    can_edit = True
     column_filters = ['name']
 
     column_searchable_list = ['name']
@@ -33,7 +37,8 @@ class RequirementView(ModelView):
 class MajorView(ModelView):
     column_filters = ['name']
     column_searchable_list = ['name']
-
+    can_create = True
+    can_edit = True
     #form = MajorForm
 
     # def create_form(self):
@@ -43,6 +48,6 @@ class MajorView(ModelView):
 
 
 
-admin.add_view(CourseView(Course))
-admin.add_view(RequirementView(Requirement))
-admin.add_view(MajorView(Major))
+# admin.add_view(CourseView(Course))
+# admin.add_view(RequirementView(Requirement))
+# admin.add_view(MajorView(Major))

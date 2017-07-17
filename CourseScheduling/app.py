@@ -36,7 +36,9 @@ def extensions(app):
     debug_toolbar.init_app(app)
     db.init_app(app)
     admin.init_app(app)
-    import CourseScheduling.blueprints.admin.views
+    from CourseScheduling.blueprints.admin.views import CourseView, Course, Requirement, RequirementView
+    admin.add_view(CourseView(Course))
+    admin.add_view(RequirementView(Requirement))
 
     app.session_interface = mongoInterface
     return None
