@@ -41,7 +41,14 @@ docker rmi -f $(docker images -qf dangling=true)
 When our services are running, in another terminal, do
 
 ```
-docker-compose exec website python database/MongoManager.py
+To load course: 
+
+docker-compose exec website python CourseScheduling/manage.py load_course -f [path-to-the-file]
+
+To load requirements with major:
+
+docker-compose exec website python CourseScheduling/manage.py load_requirement -n [major-name] -f [path-to-the-file]
+
 ```
 remember that if you want to access the database in docker, the host name is the name of the database container name. 
 That is, 'mongodb' in our case (You can see it in docker-compose.yml). 
@@ -63,6 +70,16 @@ or
 ```
 $ docker-compose exec website CourseScheduling conv
 ```
+
+## Models
+
+Course
+
+Requirement
+- SubSreq
+
+Major
+- Requirement
 
 ## Reference
 

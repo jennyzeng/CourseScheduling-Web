@@ -1,0 +1,79 @@
+University
+1
+{
+HISTORY 40A
+HISTORY 40B
+HISTORY 40C
+}
+1
+{
+POLSCI 21A
+}
+;
+GEI
+2
+{
+WRITING LOW1
+WRITING LOW2
+}
+;
+GEII
+3
+{
+GEII -1
+GEII -2
+I&CSCI 31
+I&CSCI 51
+}
+;
+GEIII
+3
+{
+POLSCI 21A
+GEIII -1
+GEIII -2
+GEIII -3
+}
+;
+GEIV
+3
+{
+HISTORY 40A
+HISTORY 40B
+HISTORY 40C
+GEIV -1
+GEIV -2
+GEIV -3
+}
+;
+GEV
+2
+{
+I&CSCI 32
+STATS 67
+GEV -Va1
+}
+1
+{
+I&CSCI 6B
+GEV -Vb1
+}
+;
+GEVI
+1
+{
+GEVI -1
+}
+;
+GEVII
+1
+{
+GEVII -1
+}
+;
+GEVIII
+1
+{
+GEVIII -1
+}
+;
