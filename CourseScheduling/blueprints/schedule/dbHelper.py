@@ -29,6 +29,14 @@ def getInfo(req):
                 c_name = c.dept + " " + c.cid
                 c_set.add(c_name)
                 G[c_name] = cs.Course(name=c.name, units=c.units, quarter_codes=c.quarters,
-                    prereq=c.prereq, is_upper_only=c.upperOnly)
+                    prereq=convert_prereq(c.prereq), is_upper_only=c.upperOnly)
             R_detail[r].append(c_set)
     return G, R, R_detail
+
+def convert_prereq(prereq):
+    output = []
+    for or_set in prereq:
+        output.append([])
+        for course in or_set:
+            output[-1].append(course.dept+" "+ course.cid)
+    return output

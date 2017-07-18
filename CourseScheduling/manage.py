@@ -15,9 +15,19 @@ def format_prereqs(prereqs):
         [['CSE46', 'I&CSCI23', 'CSE23', 'I&CSCI46', 'I&CSCIH23'],
                              ['I&CSCI6B'], ['I&CSCI6D'], ['MATH2B']]
         """
+
+
+
 	output = []
 	for or_set in prereqs:
-		output.append(list(or_set))
+		output.append([])
+		for course in or_set:
+			a_tuple = course.strip().split(' ')
+			dept, cid = a_tuple
+			course_obj = Course.objects(dept=dept, cid=cid).first()
+			if course_obj:
+				output[-1].append(course_obj)
+		if not output[-1]: output.pop()
 	return output
 
 
@@ -38,7 +48,7 @@ def load_course(filename="database/txt_files/fullcourses_new.txt"):
 				line = line.strip().split(";")
 				course = Course(
 					dept=line[0], cid=line[1],
-					name=line[2], prereq=format_prereqs(eval(line[3])),
+					name=line[2],
 					units=float(line[4]), quarters=list(eval(line[5])),
 					upperOnly=eval(line[6])
 				)
@@ -48,8 +58,17 @@ def load_course(filename="database/txt_files/fullcourses_new.txt"):
 		print("txt loading ERROR: ", e)
 	else:
 		print("Successfully loaded txt file", filename)
-
-
+		# to refer to the course object, we have to load courses without adding prereqs first,
+		# and add the prereqs later
+		with open(filename, 'r') as f:
+			line = f.readline()
+			while line:
+				line = line.strip().split(";")
+				course_obj = Course.objects(dept=line[0], cid=line[1]).first()
+				if course_obj:
+					course_obj.prereq = format_prereqs(eval(line[3]))
+					course_obj.save()
+				line = f.readline()
 @manager.command
 def load_requirement(name='universal', filename='database/txt_files/universal.txt'):
 	"""

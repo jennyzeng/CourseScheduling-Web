@@ -38,11 +38,6 @@ class MajorView(ModelView):
     column_searchable_list = ['name']
     can_create = True
     can_edit = True
-    #form = MajorForm
-
-    # def create_form(self):
-    #     form = super(MajorView, self).create_form()
-    #     return form
 
 
 

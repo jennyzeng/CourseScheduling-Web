@@ -10,7 +10,7 @@ class Course(db.Document):
     # guess it is better to change the prereq one later...
     # may change it to be a list of Courses not string.
     # so eventually we get a relational model = =...
-    prereq = db.ListField(db.ListField(db.StringField()))
+    prereq = db.ListField(db.ListField(db.ReferenceField('Course', dbref=True)))
     units = db.FloatField()
     quarters = db.ListField(db.IntField(min_value=0))
     upperOnly = db.BooleanField(default=False)
@@ -25,7 +25,7 @@ class Course(db.Document):
     }
 
     def __unicode__(self):
-        return self.name
+        return self.dept +" "+ self.cid
 
 class SubReq(db.EmbeddedDocument):
     # we need a more complicated model later such that we can
@@ -44,6 +44,8 @@ class Requirement(db.Document):
             'name' # compound idnex
         ]
     }
+    def __unicode__(self):
+        return self.name
 
 class Major(db.Document):
     name = db.StringField(max_length=60, default="universal")
@@ -54,11 +56,5 @@ class Major(db.Document):
             'name'
         ]
     }
-
-
-class Major(db.Document):
-    name = db.StringField(max_length=30)
-    requirements = db.ListField(db.StringField(max_length=30))
-
     def __unicode__(self):
         return self.name

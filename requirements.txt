@@ -1,14 +1,11 @@
 Flask
-flask_script
 
 # MongoDB
-
-Flask-Admin
 Flask-MongoEngine
 Flask-Login>=0.3.0
 
 # Admin
-#flask_admin==1.5.0
+flask_admin==1.5.0
 
 
 # Application server for both development and production.
@@ -23,7 +20,7 @@ flake8==3.3.0
 Click==6.4
 
 # Extensions.
-flask-debugtoolbar==0.10.0
+flask-debugtoolbar==0.10.1
 
 # flask-script
 flask-script==2.0.5
