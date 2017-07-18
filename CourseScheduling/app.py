@@ -19,10 +19,13 @@ def create_app(settings_override=None):
     if settings_override:
         app.config.update(settings_override)
 
+
     app.register_blueprint(page)
     app.register_blueprint(schedule)
     extensions(app)
 
+
+    # debug_toolbar.init_app(app)
     return app
 
 
@@ -35,11 +38,8 @@ def extensions(app):
     """
     debug_toolbar.init_app(app)
     db.init_app(app)
-    admin.init_app(app)
-    from CourseScheduling.blueprints.admin.views import CourseView, RequirementView
-    from CourseScheduling.blueprints.schedule.models import Course, Requirement
-    admin.add_view(CourseView(Course))
-    admin.add_view(RequirementView(Requirement))
 
     app.session_interface = mongoInterface
+    admin.init_app(app)
+    import CourseScheduling.blueprints.admin.views
     return None

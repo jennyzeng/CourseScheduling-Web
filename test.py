@@ -1,110 +1,122 @@
-from datetime import datetime
-
+import datetime
 from flask import Flask
-
 import flask_admin as admin
 from flask_mongoengine import MongoEngine
 from flask_admin.form import rules
 from flask_admin.contrib.mongoengine import ModelView
-
+from flask_debugtoolbar import DebugToolbarExtension
 # Create application
 app = Flask(__name__)
 
 # Create dummy secrey key so we can use sessions
 app.config['SECRET_KEY'] = '123456790'
-app.config['MONGODB_SETTINGS'] = {'DB': 'CS-database', 'host': 'localhost'}
+app.config['MONGODB_SETTINGS'] = {'DB': 'test', 'host': 'localhost'}
 # Create models
+
+
+app.config['DEBUG'] = True
+
+app.config['DEBUG_TB_PANELS'] = (
+    'flask_debugtoolbar.panels.versions.VersionDebugPanel',
+    'flask_mongoengine.panels.MongoDebugPanel'
+)
 db = MongoEngine()
 db.init_app(app)
+toolbar = DebugToolbarExtension()
+toolbar.init_app(app)
 
 
-
-class Course(db.Document):
-    dept = db.StringField(max_length=10)
-    cid = db.StringField(max_length=10)
-    name = db.StringField(max_length=60)
-
-    # guess it is better to change the prereq one later...
-    # may change it to be a list of Courses not string.
-    # so eventually we get a relational model = =...
-    prereq = db.ListField(db.ListField(db.StringField()))
-    units = db.FloatField()
-    quarters = db.ListField(db.IntField(min_value=0))
-    upperOnly = db.BooleanField(default=False)
-    # for sample data in db right now, the pub_date is not correct
-    # change the way we load data will fix this problem
-    pub_date = db.DateTimeField(default=datetime.now)
-
-    meta = {
-        'indexes': [
-            ('dept', 'cid') # compound idnex
-        ]
-    }
+# Define mongoengine documents
+class User(db.Document):
+    name = db.StringField(max_length=40)
+    tags = db.ListField(db.ReferenceField('Tag'))
+    password = db.StringField(max_length=40)
 
     def __unicode__(self):
         return self.name
 
 
-class SubReq(db.EmbeddedDocument):
-    # we need a more complicated model later such that we can
-    # refer to the courses in the subreq!!!
+class Todo(db.Document):
+    title = db.StringField(max_length=60)
+    text = db.StringField()
+    done = db.BooleanField(default=False)
+    pub_date = db.DateTimeField(default=datetime.datetime.now)
+    user = db.ReferenceField(User, required=False)
 
-    # req_list = db.ListField(db.StringField(max_length=20))
-    req_list = db.ListField(db.ReferenceField(Course, dbref=True))
-    req_num = db.IntField(min_value=0)
-
-class Requirement(db.Document):
-    name = db.StringField(max_length=60)
-    major = db.StringField(max_length=60, default="universal")
-    sub_reqs = db.ListField(db.EmbeddedDocumentField(SubReq))
-
-    meta = {
-        'indexes': [
-            ('name', 'major') # compound idnex
-        ]
-    }
+    # Required for administrative interface
+    def __unicode__(self):
+        return self.title
 
 
-class Major(db.Document):
-    name = db.StringField(max_length=30)
-    requirements = db.ListField(db.StringField(max_length=30))
+class Tag(db.Document):
+    name = db.StringField(max_length=10)
 
     def __unicode__(self):
         return self.name
 
 
-class CourseView(ModelView):
-    column_filters = ['dept', 'cid']
+class Comment(db.EmbeddedDocument):
+    name = db.StringField(max_length=20, required=True)
+    value = db.StringField(max_length=20)
+    tag = db.ReferenceField(Tag)
 
-    column_searchable_list = ('name', 'dept', 'cid')
+
+class Post(db.Document):
+    name = db.StringField(max_length=20, required=True)
+    value = db.StringField(max_length=20)
+    inner = db.ListField(db.EmbeddedDocumentField(Comment))
+    lols = db.ListField(db.StringField(max_length=20))
 
 
-class RequirementView(ModelView):
+class File(db.Document):
+    name = db.StringField(max_length=20)
+    data = db.FileField()
+
+
+class Image(db.Document):
+    name = db.StringField(max_length=20)
+    image = db.ImageField(thumbnail_size=(100, 100, True))
+
+
+# Customized admin views
+class UserView(ModelView):
     column_filters = ['name']
 
-    column_searchable_list = ['name']
+    column_searchable_list = ('name', 'password')
 
+    form_ajax_refs = {
+        'tags': {
+            'fields': ('name',)
+        }
+    }
+
+
+class TodoView(ModelView):
+    column_filters = ['done']
+
+    form_ajax_refs = {
+        'user': {
+            'fields': ['name']
+        }
+    }
+
+
+class PostView(ModelView):
     form_subdocuments = {
-        'sub_reqs': {
+        'inner': {
             'form_subdocuments': {
                 None: {
                     # Add <hr> at the end of the form
-                    'form_rules': ('req_list', 'req_num', rules.HTML('<hr>'))
+                    'form_rules': ('name', 'tag', 'value', rules.HTML('<hr>')),
+                    'form_widget_args': {
+                        'name': {
+                            'style': 'color: red'
+                        }
+                    }
                 }
             }
         }
     }
-
-class MajorView(ModelView):
-    column_filters = ['name']
-    column_searchable_list = ['name']
-
-    #form = MajorForm
-
-    # def create_form(self):
-    #     form = super(MajorView, self).create_form()
-    #     return form
-
 
 # Flask views
 @app.route('/')
@@ -117,10 +129,12 @@ if __name__ == '__main__':
     admin = admin.Admin(app, 'Example: MongoEngine')
 
     # Add views
-
-    admin.add_view(CourseView(Course))
-    admin.add_view(RequirementView(Requirement))
-    admin.add_view(MajorView(Major))
+    admin.add_view(UserView(User))
+    admin.add_view(TodoView(Todo))
+    admin.add_view(ModelView(Tag))
+    admin.add_view(PostView(Post))
+    admin.add_view(ModelView(File))
+    admin.add_view(ModelView(Image))
 
     # Start app
     app.run(debug=True)

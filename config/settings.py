@@ -13,6 +13,7 @@ MONGODB_HOST = 'mongodb'
 MONGODB_PORT = 27017
 MONGODB_DB = 'CS-database'
 
+
 DEBUG_TB_PANELS = (
     'flask_debugtoolbar.panels.versions.VersionDebugPanel',
     'flask_debugtoolbar.panels.timer.TimerDebugPanel',
@@ -20,5 +21,5 @@ DEBUG_TB_PANELS = (
     'flask_debugtoolbar.panels.request_vars.RequestVarsDebugPanel',
     'flask_debugtoolbar.panels.template.TemplateDebugPanel',
     'flask_debugtoolbar.panels.logger.LoggingPanel',
-    'flask_mongoengine.panels.MongoDebugPanel'
+    # 'flask_mongoengine.panels.MongoDebugPanel'
 )
