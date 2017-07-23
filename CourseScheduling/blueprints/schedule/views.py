@@ -1,5 +1,4 @@
-import logging
-from CourseScheduling.blueprints.schedule.dbHelper import getCourse, getRequirements, getInfo
+from CourseScheduling.blueprints.schedule.dbHelper import getInfo
 from flask import Blueprint, render_template, request
 from CourseScheduling.blueprints.schedule.models import Course
 import lib.CourseSchedulingAlgorithm as cs
