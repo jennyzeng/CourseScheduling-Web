@@ -56,7 +56,7 @@ class CourseView(ModelView):
                 abort(403)
             else:
                 # login
-                return redirect(url_for('admin.login_view', next=request.url))
+                return redirect(url_for('security.login', next=request.url))
 
 
 class RequirementView(ModelView):
@@ -96,7 +96,7 @@ class RequirementView(ModelView):
                 abort(403)
             else:
                 # login
-                return redirect(url_for('admin.login_view', next=request.url))
+                return redirect(url_for('security.login', next=request.url))
 
 
 class MajorView(ModelView):
@@ -124,7 +124,7 @@ class MajorView(ModelView):
                 abort(403)
             else:
                 # login
-                return redirect(url_for('admin.login_view', next=request.url))
+                return redirect(url_for('security.login', next=request.url))
 
 
 class UserView(ModelView):
@@ -152,7 +152,7 @@ class UserView(ModelView):
                 abort(403)
             else:
                 # login
-                return redirect(url_for('admin.login_view', next=request.url))
+                return redirect(url_for('security.login', next=request.url))
 
 
 class RoleView(ModelView):
@@ -180,4 +180,4 @@ class RoleView(ModelView):
                 abort(403)
             else:
                 # login
-                return redirect(url_for('admin.login_view', next=request.url))
+                return redirect(url_for('security.login', next=request.url))
