@@ -1,5 +1,4 @@
-import logging
-from CourseScheduling.blueprints.schedule.dbHelper import getCourse, getRequirements, getInfo
+from CourseScheduling.blueprints.schedule.dbHelper import getInfo
 from flask import Blueprint, render_template, request
 from CourseScheduling.blueprints.schedule.models import Course
 import lib.CourseSchedulingAlgorithm as cs
@@ -10,14 +9,6 @@ schedule = Blueprint('schedule', __name__, template_folder='templates')
 @schedule.route('/')
 def schedule_home():
     return render_template('schedule/input.html')
-
-
-@schedule.route('/test')
-def test():
-    output = []
-    for course in Course.objects(dept='COMPSCI'):
-        output.append(course.name)
-    return str(output)
 
 
 @schedule.route('/output', methods=['POST', 'GET'])
