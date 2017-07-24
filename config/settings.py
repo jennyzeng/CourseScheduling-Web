@@ -1,14 +1,14 @@
+
 DEBUG = True
 
 SERVER_NAME = "localhost:8000"
 
 SECRET_KEY = 'insecurekeyfordev'
+SECURITY_PASSWORD_HASH = "sha512_crypt"
+SECURITY_PASSWORD_SALT = "5gz"
+SECURITY_POST_LOGIN_VIEW = 'admin'
+SECURITY_POST_LOGOUT_VIEW = 'admin'
 
-# MONGODB_SETTINGS = {
-#     'db':'CS-database',
-#     'host': 'mongodb://localhost/CS-database'#,
-#     # 'port': 27017
-# }
 MONGODB_HOST = 'mongodb'
 MONGODB_PORT = 27017
 MONGODB_DB = 'CS-database'

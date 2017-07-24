@@ -2,7 +2,6 @@ from flask import Flask, url_for
 
 from CourseScheduling.blueprints.page import page
 from CourseScheduling.blueprints.schedule import schedule
-from CourseScheduling.blueprints.user import users
 from CourseScheduling.extensions import debug_toolbar, db, mongoInterface, admin
 from CourseScheduling.blueprints.schedule.models import Course, Requirement, Major
 from CourseScheduling.blueprints.admin.views import (CourseView, RequirementView,
@@ -12,7 +11,9 @@ from flask_security import MongoEngineUserDatastore
 from flask_admin import helpers as admin_helpers
 from flask_security import Security
 import flask_login as login
+from CourseScheduling.blueprints.admin.views import HomeView
 security = None
+
 
 def create_app(settings_override=None):
     """
@@ -31,7 +32,7 @@ def create_app(settings_override=None):
 
     app.register_blueprint(page)
     app.register_blueprint(schedule)
-    app.register_blueprint(users)
+    # app.register_blueprint(users)
     extensions(app)
 
     return app
@@ -54,6 +55,7 @@ def extensions(app):
     user_datastore = MongoEngineUserDatastore(db, User, Role)
     security = Security(app, user_datastore)
     # add admin view
+    admin.index_view=HomeView()
     admin.init_app(app)
     admin.add_view(CourseView(Course))
     admin.add_view(RequirementView(Requirement))

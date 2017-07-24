@@ -11,14 +11,6 @@ def schedule_home():
     return render_template('schedule/input.html')
 
 
-@schedule.route('/test')
-def test():
-    output = []
-    for course in Course.objects(dept='COMPSCI'):
-        output.append(course.name)
-    return str(output)
-
-
 @schedule.route('/output', methods=['POST', 'GET'])
 def schedule_output():
 

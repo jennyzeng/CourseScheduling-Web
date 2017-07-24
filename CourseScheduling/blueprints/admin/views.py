@@ -5,10 +5,18 @@
 from flask_admin.contrib.mongoengine import ModelView
 from flask_admin.form import rules
 from flask_security import current_user
-from flask import redirect, request, abort, url_for, render_template
+from flask import redirect, request, abort, url_for
 from flask_admin import AdminIndexView, expose
+import flask_login as login
+
 
 class HomeView(AdminIndexView):
+    @expose('/')
+    def index(self):
+        if not login.current_user.is_authenticated:
+            return redirect(url_for('security.login'))
+        return super(HomeView, self).index()
+
 
     def _handle_view(self, name, **kwargs):
         """
@@ -49,7 +57,7 @@ class CourseView(ModelView):
                 abort(403)
             else:
                 # login
-                return redirect(url_for('security.login', next=request.url))
+                return redirect(url_for('admin.login_view', next=request.url))
 
 
 class RequirementView(ModelView):
@@ -89,7 +97,7 @@ class RequirementView(ModelView):
                 abort(403)
             else:
                 # login
-                return redirect(url_for('security.login', next=request.url))
+                return redirect(url_for('admin.login_view', next=request.url))
 
 
 class MajorView(ModelView):
@@ -117,7 +125,7 @@ class MajorView(ModelView):
                 abort(403)
             else:
                 # login
-                return redirect(url_for('security.login', next=request.url))
+                return redirect(url_for('admin.login_view', next=request.url))
 
 
 class UserView(ModelView):
@@ -145,7 +153,7 @@ class UserView(ModelView):
                 abort(403)
             else:
                 # login
-                return redirect(url_for('security.login', next=request.url))
+                return redirect(url_for('admin.login_view', next=request.url))
 
 
 class RoleView(ModelView):
@@ -173,5 +181,4 @@ class RoleView(ModelView):
                 abort(403)
             else:
                 # login
-                return redirect(url_for('security.login', next=request.url))
-
+                return redirect(url_for('admin.login_view', next=request.url))

@@ -1,1 +1,1 @@
-from CourseScheduling.blueprints.user.views import users
+# from CourseScheduling.blueprints.user.views import users
