@@ -1,4 +1,4 @@
-from flask import Flask, url_for
+from flask import Flask, url_for, render_template
 
 from CourseScheduling.blueprints.page import page
 from CourseScheduling.blueprints.schedule import schedule
@@ -12,6 +12,8 @@ from flask_admin import helpers as admin_helpers
 from flask_security import Security
 import flask_login as login
 from CourseScheduling.blueprints.admin.views import HomeView
+
+
 security = None
 
 
@@ -29,6 +31,7 @@ def create_app(settings_override=None):
 
     if settings_override:
         app.config.update(settings_override)
+    error_templates(app)
 
     app.register_blueprint(page)
     app.register_blueprint(schedule)
@@ -93,3 +96,31 @@ def init_login(app):
     @login_manager.user_loader
     def load_user(user_id):
         return User.objects(id=user_id).first()
+
+
+def error_templates(app):
+    """
+    Register 0 or more custom error pages (mutates the app passed in).
+
+    :param app: Flask application instance
+    :return: None
+    """
+
+    def render_status(status):
+        """
+         Render a custom template for a specific status.
+           Source: http://stackoverflow.com/a/30108946
+
+         :param status: Status as a written name
+         :type status: str
+         :return: None
+         """
+        # Get the status code from the status, default to a 500 so that we
+        # catch all types of errors and treat them as a 500.
+        code = getattr(status, 'code', 500)
+        return render_template('errors/{0}.html'.format(code)), code
+
+    for error in [404, 429, 500]:
+        app.errorhandler(error)(render_status)
+
+    return None

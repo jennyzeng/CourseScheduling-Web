@@ -23,3 +23,4 @@ DEBUG_TB_PANELS = (
     'flask_debugtoolbar.panels.logger.LoggingPanel',
     # 'flask_mongoengine.panels.MongoDebugPanel'
 )
+DEBUG_TB_INTERCEPT_REDIRECTS = False
