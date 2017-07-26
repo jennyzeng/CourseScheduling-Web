@@ -3,8 +3,8 @@ from flask import Flask, url_for, render_template
 from CourseScheduling.blueprints.page import page
 from CourseScheduling.blueprints.schedule import schedule
 from CourseScheduling.extensions import debug_toolbar, db, mongoInterface, admin
-from CourseScheduling.blueprints.schedule.models import Course, Requirement, Major
-from CourseScheduling.blueprints.admin.views import (CourseView, RequirementView,
+from CourseScheduling.blueprints.schedule.models import Course, Requirement, Major, Quarter
+from CourseScheduling.blueprints.admin.views import (CourseView, RequirementView, QuarterView,
                                                      MajorView, UserView, RoleView)
 from CourseScheduling.blueprints.user.models import User, Role
 from flask_security import MongoEngineUserDatastore
@@ -35,7 +35,6 @@ def create_app(settings_override=None):
 
     app.register_blueprint(page)
     app.register_blueprint(schedule)
-    # app.register_blueprint(users)
     extensions(app)
 
     return app
@@ -63,6 +62,7 @@ def extensions(app):
     admin.add_view(CourseView(Course))
     admin.add_view(RequirementView(Requirement))
     admin.add_view(MajorView(Major))
+    admin.add_view(QuarterView(Quarter))
     admin.add_view(UserView(User))
     admin.add_view(RoleView(Role))
     # define a context processor for merging flask-admin's template context into the
