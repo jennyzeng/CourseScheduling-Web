@@ -12,7 +12,7 @@ class Course(db.Document):
     # so eventually we get a relational model = =...
     prereq = db.ListField(db.ListField(db.ReferenceField('Course', dbref=True)))
     units = db.FloatField()
-    quarters = db.ListField(db.IntField(min_value=0))
+    quarters = db.ListField(db.ReferenceField('Quarter', dbref=True))
     upperOnly = db.BooleanField(default=False)
     # for sample data in db right now, the pub_date is not correct
     # change the way we load data will fix this problem
@@ -56,5 +56,12 @@ class Major(db.Document):
             'name'
         ]
     }
+    def __unicode__(self):
+        return self.name
+
+
+class Quarter(db.Document):
+    name = db.StringField(max_length=40)
+    code = db.IntField(min_value=0)
     def __unicode__(self):
         return self.name

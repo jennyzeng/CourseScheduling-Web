@@ -43,7 +43,7 @@ When our services are running, in another terminal, do
 ```
 # To load course: 
 
-docker-compose exec website python CourseScheduling/manage.py load_course -f [path-to-the-file]
+docker-compose exec website python CourseScheduling/manage.py load_course -f [path-to-the-file] 
 
 # To load requirements with major:
 # general:
