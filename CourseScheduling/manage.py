@@ -47,7 +47,7 @@ def format_prereqs(prereqs):
 
 
 @manager.command
-def load_course(filename="database/txt_files/fullcourses_new.txt", delete=False):
+def load_course(filename="database/txt_files/fullcourses_new.txt"):
     """
     load course info to database from txt file
     :param filename: txt file path
@@ -60,7 +60,6 @@ def load_course(filename="database/txt_files/fullcourses_new.txt", delete=False)
     qdict = load_quarters()
     try:
         with open(filename, 'r') as f:
-            if delete: Course.objects().delete()
             line = f.readline()
             while line:
                 line = line.strip().split(";")
