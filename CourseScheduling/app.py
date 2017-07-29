@@ -66,7 +66,7 @@ def extensions(app):
     admin.add_view(QuarterView(Quarter))
     admin.add_view(UserView(User))
     admin.add_view(RoleView(Role))
-    # admin.add_view(HomeView)
+
     # define a context processor for merging flask-admin's template context into the
     # flask-security views.
     @security.context_processor
