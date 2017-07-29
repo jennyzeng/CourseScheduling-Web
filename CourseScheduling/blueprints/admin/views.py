@@ -7,15 +7,23 @@ from flask_admin.form import rules
 from flask_security import current_user
 from flask import redirect, request, abort, url_for
 from flask_admin import AdminIndexView, expose
-import flask_login as login
 
 
 class HomeView(AdminIndexView):
     @expose('/')
     def index(self):
-        if not login.current_user.is_authenticated:
-            return redirect(url_for('security.login'))
+        if not self.is_accessible():
+                return redirect(url_for('security.login', next=request.url))
         return super(HomeView, self).index()
+
+    def is_accessible(self):
+        if not current_user.is_active or not current_user.is_authenticated:
+            return False
+
+        if current_user.has_role('superuser'):
+            return True
+
+        return False
 
     def _handle_view(self, name, **kwargs):
         """

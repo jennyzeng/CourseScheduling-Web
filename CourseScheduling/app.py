@@ -57,14 +57,16 @@ def extensions(app):
     user_datastore = MongoEngineUserDatastore(db, User, Role)
     security = Security(app, user_datastore)
     # add admin view
-    admin.index_view=HomeView()
-    admin.init_app(app)
+
+    admin.init_app(app, index_view=HomeView())
+    # admin.index_view =
     admin.add_view(CourseView(Course))
     admin.add_view(RequirementView(Requirement))
     admin.add_view(MajorView(Major))
     admin.add_view(QuarterView(Quarter))
     admin.add_view(UserView(User))
     admin.add_view(RoleView(Role))
+    # admin.add_view(HomeView)
     # define a context processor for merging flask-admin's template context into the
     # flask-security views.
     @security.context_processor

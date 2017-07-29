@@ -6,4 +6,4 @@ from flask_admin import Admin
 debug_toolbar = DebugToolbarExtension()
 db = MongoEngine()
 mongoInterface = MongoEngineSessionInterface(db)
-admin = Admin(name='MongoAdmin', base_template='admin/mymaster.html')
+admin = Admin(name='Admin', base_template='admin/mymaster.html',url='/admin')
