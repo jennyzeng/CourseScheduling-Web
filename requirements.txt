@@ -25,3 +25,12 @@ flask-debugtoolbar==0.10.0
 
 # flask-script
 flask-script==2.0.5
+
+# requests
+requests==2.12.4
+
+# beautifulsoup4
+beautifulsoup4==4.5.3
+
+# lxml
+lxml==3.7.2

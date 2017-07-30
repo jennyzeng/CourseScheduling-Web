@@ -1,6 +1,7 @@
 import logging
 from flask import Blueprint, render_template, request
 from CourseScheduling.blueprints.schedule.models import Course, Requirement
+from CourseScheduling.blueprints.schedule import dgw_data
 import lib.CourseSchedulingAlgorithm as cs
 
 schedule = Blueprint('schedule', __name__, template_folder='templates')
@@ -17,6 +18,19 @@ def test():
         output.append(course.name)
     return str(output)
 
+@schedule.route('/saveme')
+def saveme():
+    return render_template('schedule/saveme.html')
+
+@schedule.route('/launch')
+def launch():
+    cookie = request.args.get('cookie', '')
+    d = dgw_data.data(cookie)
+    std = d.fetch_student_id()
+    d.fetch_student_detail()
+    student = d.getDict()
+    d.fetch_xml()
+    return render_template('schedule/info.html', student=student)
 
 @schedule.route('/output', methods=['POST', 'GET'])
 def schedule_output():
@@ -90,3 +104,4 @@ def schedule_output():
 
     return render_template('schedule/output.html',
                            schedule=L, row_length=max_row_length)
+
