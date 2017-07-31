@@ -1,0 +1,49 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Course Scheduling{% endblock %}
+{% block meta_description %}Course Scheduling Output{% endblock %}
+
+{% block body %}
+
+<form action="{{ url_for('schedule.schedule_output') }}" method="post" id="preview-form">
+  <input type="hidden" name="quarter" value="{{ quarter }}">
+  <input type="hidden" name="specialization" value="{{ specialization }}">
+  <div class="container sm-margin-top">
+    <div class="row text-center lg-margin-bottom">
+      <h2>Your Schedule Preview</h2>
+      <h3 class="text-muted">
+          Click on the classes you have taken
+      </h3>
+    </div>
+    <div class="row text-center">
+      <table id="preview" class="table table-bordered">
+        <thead>
+          <tr>
+            <th class="text-center" colspan="4">Courses</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for course in courses %}
+            {% if (loop.index - 1)% 4 == 0 %}
+                <tr>
+            {% endif %}
+            <td>{{ course }}</td>
+            {% if loop.index % 4 == 0 %}
+                </tr>
+            {% endif %}
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-5 col-sm-5 col-xs-4"></div>
+    <div class="col-md-2 col-sm-2 col-xs-4">
+      <button class="btn btn-success button-send submit" role="button">Next</button>
+    </div>
+    <div class="col-md-5 col-sm-5 col-xs-4"></div>
+  </div>
+</form>
+
+{% endblock %}
