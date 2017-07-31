@@ -1,0 +1,398 @@
+
+<html lang="en">
+
+<head>
+<!-- %2fdgw%2fIRISLink.cgi; 139-443 -->
+
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Language" content="en" />
+    <script type="text/javascript" src="DGW_objKeyEventHandler.js"></script>
+    <script type="text/javascript" src="BrowserSniffer.js"></script>
+    <noscript>JavaScript is Required!</noscript>
+    <title>Ellucian Degree Works -  
+Student Selection
+</title>
+    <script src="BrowserSniffer.js"></script>
+    <noscript>JavaScript is Required!</noscript>
+    <script src="DGW_Functions.js"></script>
+    <noscript>JavaScript is Required!</noscript>
+    <script src="ToolTip.js"></script>
+    <noscript>JavaScript is Required!</noscript>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Language" content="en" />
+    <link rel="stylesheet" href="DGW_Style.css" type="text/css">
+</head>
+        <script language="JavaScript" src="DGW_SearchDataIsland.js"></script>
+        <script language="JavaScript" src="DGW_SimpleSearchDataIsland.js"></script>
+<body topmargin="0"
+leftmargin="0" marginwidth="0" marginheight="0">
+
+<script>
+
+function ClearStuContextFields(oFormControl, oFormBody){
+
+  if (typeof(oFormControl.STUID) != "undefined")
+    oFormControl.STUID.value = "";
+
+  if (typeof(oFormBody.StudentList) != "undefined")
+    oFormBody.StudentList.options.length = 0;
+
+  if (typeof(oFormBody.DegreeList) != "undefined")
+    oFormBody.DegreeList.options.length = 0;
+
+  if (typeof(oFormBody.Major) != "undefined")
+    oFormBody.Major.value = "";
+
+  if (typeof(oFormBody.School) != "undefined")
+    oFormBody.School.value = "";
+
+  if (typeof(oFormBody.Level) != "undefined")
+    oFormBody.Level.value = "";
+
+  if (typeof(oFormBody.Custom) != "undefined")
+    oFormBody.Custom.value = "";
+
+  if (typeof(oFormBody.LastAudit) != "undefined")
+    oFormBody.LastAudit.value = "";
+
+  if (typeof(oFormBody.LastRefresh) != "undefined")
+    oFormBody.LastRefresh.value = "";
+
+
+  oFormBody.StudentID.focus();
+}
+
+
+</script>
+<!-- ////////////////////////////////////////////////////// NOT-ADVISOR  -->
+
+<!-- User is not an advisor or reg user = stu user; perform ID search -->
+<!-- CFG020 BannerSearch=N - perform an ID search -->
+
+<!-- we need to do an ID search if this is a student or if BannerSearch=N -->
+<form action="IRISLink.cgi" method="POST"
+name="frmSimpleSearchForm">
+
+<xml id="StudentsXML">
+
+<StudentData>
+<GoalDtl Id="72061444" School="U" Degree="BS" DegreeSource="" CatalogYr="20142015"
+ StuLevel="04" Term="201739" ></GoalDtl>
+<GoalDataDtl Id="72061444" School="U" Degree="BS" CatalogYr="20142015"
+ GoalCode="PROGRAM" GoalValue="REG" GoalSeq="0001" AttachCode="" AttachValue="" ></GoalDataDtl>
+<GoalDataDtl Id="72061444" School="U" Degree="BS" CatalogYr="20162017"
+ GoalCode="MAJOR" GoalValue="201" GoalSeq="0001" AttachCode="" AttachValue="" ></GoalDataDtl>
+<GoalDataDtl Id="72061444" School="U" Degree="BS" CatalogYr="20162017"
+ GoalCode="COLLEGE" GoalValue="95" GoalSeq="0001" AttachCode="" AttachValue="" ></GoalDataDtl>
+<GoalDataDtl Id="72061444" School="U" Degree="BS" CatalogYr="20162017"
+ GoalCode="SPEC" GoalValue="201A" GoalSeq="0001" AttachCode="" AttachValue="" ></GoalDataDtl>
+</StudentData>
+</xml>
+
+</form>
+
+<script language="JavaScript">
+
+////////////////////////////////////////////////////////////////////////////
+// REPLACEHTMLCHARS
+// Replace "&amp;" with the Ampersand character "&"
+// Replace "&#39;" with the single quote character "'"
+// Compatibility tested OK with NS 4.79
+////////////////////////////////////////////////////////////////////////////
+function ReplaceHTMLChars(sString)
+{
+        sString = sString.replace(/&amp;/g, "&");
+        sString = sString.replace(/&#39;/g, "'");
+        return sString;
+} // replacehtmlchars
+
+//////////////////////////////////////////////////
+function DataItem(sCode, sLiteral) {
+        this.code = sCode;
+        this.literal = sLiteral;
+}
+//////////////////////////////////////////////////
+function GoalDataItem (sSchool, sDegree, sLevel, sMajor, sDegreeSource) {
+        this.school = sSchool;
+        this.degree = sDegree;
+        this.level  = sLevel;
+        this.major  = sMajor;
+		this.degreesource = sDegreeSource;
+        this.schoolLit = "";
+        this.degreeLit = "";
+        this.levelLit  = "";
+        this.majorLit  = "";
+}
+
+//////////////////////////////////////////////////
+// PARSE CODES
+//////////////////////////////////////////////////
+function ParseCodes ()
+{
+
+// Get the corresponding literal for each code
+for (iGoalIndex = 0; iGoalIndex < aGoalArray.length; iGoalIndex++)
+{
+  // Set defaults in case codes not found in Picklist arrays
+  aGoalArray[iGoalIndex].degreeLit = aGoalArray[iGoalIndex].degree;
+  aGoalArray[iGoalIndex].majorLit  = aGoalArray[iGoalIndex].major;
+  aGoalArray[iGoalIndex].levelLit  = aGoalArray[iGoalIndex].level;
+  //Degree
+  for (iPickIndex = 0; iPickIndex < sDegreePicklist.length; iPickIndex++)
+  {
+	if (Trim(sDegreePicklist[iPickIndex].code) == Trim(aGoalArray[iGoalIndex].degree))
+    {
+	  aGoalArray[iGoalIndex].degreeLit = ReplaceHTMLChars(sDegreePicklist[iPickIndex].literal);
+      // If this is an applicant goal add an asterisk to the end of the degree literal
+	  if (aGoalArray[iGoalIndex].degreesource == "A")
+	  {
+	    aGoalArray[iGoalIndex].degreeLit = Trim(aGoalArray[iGoalIndex].degreeLit) + "*";
+	  }
+	  break;
+    }
+  }
+  //Major
+  for (iPickIndex = 0; iPickIndex < sMajorPicklist.length; iPickIndex++)
+  {
+	if (Trim(sMajorPicklist[iPickIndex].code) == Trim(aGoalArray[iGoalIndex].major))
+    {
+	  aGoalArray[iGoalIndex].majorLit =	ReplaceHTMLChars(sMajorPicklist[iPickIndex].literal);
+      break;
+    }
+  }
+  //Level
+  for (iPickIndex = 0; iPickIndex < sLevelPicklist.length; iPickIndex++)
+  {
+	if (Trim(sLevelPicklist[iPickIndex].code) == Trim(aGoalArray[iGoalIndex].level))
+    {
+	  aGoalArray[iGoalIndex].levelLit =	ReplaceHTMLChars(sLevelPicklist[iPickIndex].literal);
+ break;
+    }
+  }
+} // for codeindex
+
+} // parsecodes
+
+
+sMajorPicklist = new Array();
+sLevelPicklist = new Array();
+sDegreePicklist = new Array();
+sMajorPicklist[sMajorPicklist.length] = new DataItem("279         ", "Aerospace Engineering                             ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("014         ", "African American Studies                          ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("063         ", "Anthropology                                      ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("068         ", "Applied Ecology                                   ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("075         ", "Applied Physics                                   ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("090         ", "Art                                               ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("093         ", "Art History                                       ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("05I         ", "Art, Critical and Curatorial Studies              ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("44D         ", "Arts and Humanities                               ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("100         ", "Asian American Studies                            ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("114         ", "Biochemistry and Molecular Biology                ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("120         ", "Biological Sciences                               ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("05H         ", "Biology/Education                                 ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("03T         ", "Biomedical Computing                              ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("289         ", "Biomedical Engineering                            ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("28B         ", "Biomedical Engr: Premedical                       ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("364         ", "Business Admin: Executive                         ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("141         ", "Business Admin: Full Time                         ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("602         ", "Business Admin: Fully Employed                    ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("764         ", "Business Admin: Health Care Executive             ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("141B        ", "Business Administration: B.A.                     ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("0B4         ", "Business Analytics                                ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("144         ", "Business Economics                                ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("01N         ", "Business Information Management                   ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("294         ", "Chemical Engineering                              ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("153         ", "Chemistry                                         ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("16A         ", "Chicano/Latino Studies                            ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("469         ", "Chinese Language and Literature                   ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("163         ", "Chinese Studies                                   ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("284         ", "Civil Engineering                                 ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("169         ", "Classical Civilization                            ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("174         ", "Classics                                          ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("07Y         ", "Cognitive Sciences                                ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("192         ", "Comparative Literature                            ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("302         ", "Computer Engineering                              ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("04W         ", "Computer Game Science                             ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("201         ", "Computer Science                                  ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("193         ", "Computer Science and Engineering                  ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("220         ", "Criminology Law and Society                       ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("210         ", "Dance                                             ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("796         ", "Dance - Choreography                              ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("797         ", "Dance - Performance                               ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("0AM         ", "Data Science                                      ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("618         ", "Developmental and Cell Biology                    ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("231         ", "Drama                                             ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("064         ", "Drama and Theatre Ph.D.                           ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("763         ", "Earth System Science                              ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("23G         ", "Earth and Environmental Sciences                  ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("03E         ", "Earth and Environmental Studies                   ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("749         ", "East Asian Cultures                               ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("708         ", "Ecology and Evolutionary Biology                  ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("246         ", "Economics                                         ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("249         ", "Education - Credential                            ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("25B         ", "Education - M.A.T.                                ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("08Q         ", "Education Sciences                                ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("276         ", "Electrical Engineering                            ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("273         ", "Engineering                                       ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("345         ", "English                                           ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("230         ", "Environmental Analysis and Design                 ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("384         ", "Environmental Engineering                         ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("351         ", "Environmental Science                             ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("762         ", "European Studies                                  ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("08R         ", "Exercise Sciences                                 ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("367         ", "Film Studies                                      ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("36B         ", "Film and Media Studies                            ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("08T         ", "Finance                                           ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("006         ", "Fine Arts Interdisciplinary                       ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("387         ", "French                                            ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("08Y         ", "Gender and Sexuality Studies                      ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("390         ", "Genetics                                          ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("408         ", "German                                            ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("40B         ", "German Studies                                    ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("49A         ", "Global Cultures                                   ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("0BI         ", "Global Middle East Studies                        ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("429         ", "History                                           ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("99A         ", "Human Biology                                     ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("444         ", "Humanities                                        ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("44C         ", "Humanities and Arts                               ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("09X         ", "ICIT                                              ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("19H         ", "Informatics                                       ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("459         ", "Information &amp; Computer Science                    ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("836         ", "International Studies                             ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("470         ", "Japanese Language and Literature                  ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("01D         ", "Korean Literature and Culture                     ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("495         ", "Latin                                             ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("512         ", "Linguistics                                       ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("48A         ", "Literary Journalism                               ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("32B         ", "Materials Science Engineering                     ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("540         ", "Mathematics                                       ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("277         ", "Mechanical Engineering                            ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("569         ", "Microbiology and Immunology                       ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("579         ", "Music                                             ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("582         ", "Music Performance                                 ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("02B         ", "Music Theatre                                     ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("593         ", "Neurobiology                                      ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("598         ", "Nursing Science                                   ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("75A         ", "Pharmaceutical Sciences                           ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("651         ", "Philosophy                                        ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("666         ", "Physics                                           ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("680         ", "Plant Biology                                     ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("699         ", "Political Science                                 ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("07M         ", "Professional Accountancy                          ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("780         ", "Psychology                                        ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("632         ", "Psychology and Social Behavior                    ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("7A1         ", "Public Health Policy                              ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("7A0         ", "Public Health Sciences                            ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("24G         ", "Quantitative Economics                            ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("801         ", "Religious Studies                                 ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("851         ", "Social Ecology                                    ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("05S         ", "Social Policy and Public Service                  ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("858         ", "Social Science                                    ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("867         ", "Sociology                                         ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("06G         ", "Software Engineering                              ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("882         ", "Spanish                                           ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("091         ", "Studio Art                                        ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("005         ", "Unaffiliated                                      ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("000         ", "Undeclared                                        ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("912         ", "Urban Studies                                     ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("928         ", "Womens Studies                                    ");
+
+sLevelPicklist[sLevelPicklist.length] = new DataItem("01", "Freshman            ");
+sLevelPicklist[sLevelPicklist.length] = new DataItem("02", "Sophomore           ");
+sLevelPicklist[sLevelPicklist.length] = new DataItem("03", "Junior              ");
+sLevelPicklist[sLevelPicklist.length] = new DataItem("04", "Senior              ");
+sLevelPicklist[sLevelPicklist.length] = new DataItem("05", "Master&#39;s Program    ");
+sLevelPicklist[sLevelPicklist.length] = new DataItem("06", "Doctoral Program I  ");
+sLevelPicklist[sLevelPicklist.length] = new DataItem("07", "Doctoral Program II ");
+sLevelPicklist[sLevelPicklist.length] = new DataItem("08", "Doctorial 2A        ");
+sLevelPicklist[sLevelPicklist.length] = new DataItem("09", "Postdoctoral Prog   ");
+
+sDegreePicklist[sDegreePicklist.length] = new DataItem("BA          ", "B.A.      ");
+sDegreePicklist[sDegreePicklist.length] = new DataItem("BFA         ", "B.F.A.    ");
+sDegreePicklist[sDegreePicklist.length] = new DataItem("BMUS        ", "B.Mus.    ");
+sDegreePicklist[sDegreePicklist.length] = new DataItem("BS          ", "B.S.      ");
+sDegreePicklist[sDegreePicklist.length] = new DataItem("CR          ", "Cred.     ");
+sDegreePicklist[sDegreePicklist.length] = new DataItem("MA          ", "M.A.      ");
+sDegreePicklist[sDegreePicklist.length] = new DataItem("MAT         ", "M.A.T.    ");
+sDegreePicklist[sDegreePicklist.length] = new DataItem("MBA         ", "M.B.A.    ");
+sDegreePicklist[sDegreePicklist.length] = new DataItem("MFA         ", "M.F.A.    ");
+sDegreePicklist[sDegreePicklist.length] = new DataItem("MFIN        ", "M.Fin.    ");
+sDegreePicklist[sDegreePicklist.length] = new DataItem("MPAC        ", "M.P.Ac.   ");
+sDegreePicklist[sDegreePicklist.length] = new DataItem("PHD         ", "Ph.D.     ");
+sILStudentName = "WU, YITONG";                            //1.1e
+if (sILStudentName.length > 0) // name found
+{
+  aGoalArray = new Array();
+  iGoalArrayLength = 0;
+  ParseXMLDataIsland_Simple();
+
+  // Parse out the student codes into the array and get the literals
+  ParseCodes ();
+} // if name found
+
+// 1.1d End
+
+
+ClearStuContextFields(top.frControl.document.frmCallScript,
+                      top.frControl.document.frmHoldFields);
+sStuID = "72061444";
+with (top.frControl)
+{
+  InitializeArrays();
+  if (sILStudentName.length == 0 || aGoalArray.length == 0) // No name or goal data found
+  {
+    if (sILStudentName.length == 0)
+      alert ("Student information for ID " + sStuID + " not found");
+    else if (aGoalArray.length == 0)
+      alert ("Student " + sILStudentName + " found for ID " + sStuID + " but degree information not found");
+    parent.frBody.location.href = "SD_GeneralIntroduction.html"; // 1.1f
+    parent.frSelection.location.href = "SD_LoadFrameForm.html"; // 1.1f
+  }
+  else // Student information found
+  {
+    AddStudent(sStuID, sILStudentName);        //1.1e end
+    AddAuditDate(sStuID, '20170730');
+    if (bRefreshUsed)
+    {
+        AddRefreshDateTime (sStuID, '20170626',
+        '1049');
+    }
+    // Add each degree for this student
+    for (iStuIndex = 0; iStuIndex < aGoalArray.length; iStuIndex++)
+    {
+      sDegreeInterest = "  "; // No more deg-ints; use a dummy value
+      AddDegree(sStuID,
+                aGoalArray[iStuIndex].degree,    // Degree Key
+                aGoalArray[iStuIndex].degreeLit, // Degree Short Literal
+                aGoalArray[iStuIndex].school,    // School
+                aGoalArray[iStuIndex].majorLit,  // Major Literal
+                aGoalArray[iStuIndex].levelLit,  // Level Literal
+                sDegreeInterest);                // Degree Interest
+    } // for
+    SelectIDStudents();
+    PopulateStudentList();
+
+    // // When student is loaded click the Audit/Worksheets tab
+    // top.frTabs.SwapDown('Tab_Audit');
+    // top.frTabs.SwapOn('Tab_Audit');
+    // top.frTabs.sHelpPage = 'SD_HelpAuditView.html';
+    // top.frControl.CallScript('SD2AUDCON');
+    // top.frTabs.SwapOut('Tab_Audit');
+  }
+}
+</script>
+
+
+<!-- Banner search = Y (and this is not a student) -->
+
+
+<!-- //////////////////////////////////////////////////// ADVISOR    -->
+
+<!-- //////////////////////////////////////////////////// DEPT HEAD    -->
+
+
+<noscript>JavaScript is Required!</noscript>
+<br />
+</body>
+</html>
+

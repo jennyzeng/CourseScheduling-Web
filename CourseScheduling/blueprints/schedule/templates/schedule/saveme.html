@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>Schuduler</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="description" content="PeterPlanner is a course prerequisite tracker and scheduling tool for UCI students." />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+	<meta property="og:description" content="PeterPlanner is a course prerequisite tracker and scheduling tool for UCI students." />
+	<meta property="og:image" content="http://www.instapaper.com/static/img/insta_logo_large.png" />
+	<script type="text/javascript" src="assets/scripts/vendor.js"></script>
+	<script type="text/javascript" src="assets/scripts/main.js"></script>
+	<link rel="stylesheet" href="assets/stylesheets/saveme.css" />
+</head>
+
+<body class="preload save_mode  lightmode">
+	<div id="page_header" class="page_header">
+		<div class="container page_header_mobile hidden-lg hidden-md hidden-sm">
+			<div class="row">
+				<div class="col-xs-2">
+					<nav class="js_mobile_menu_button mobile_menu_button">
+						<i class="ipicon ipicon-hamburger"></i>
+					</nav>
+				</div>
+				<div class="js_to_top col-xs-8 mobile_logo">How to Launch PeterPlanner</div>
+				<div class="js_to_top col-xs-2 mobile_edit_toggle"></div>
+				<div class="mobile_section_title js_to_top col-xs-8"></div>
+				<div class="mobile_right_button col-xs-2"></div>
+			</div>
+		</div>
+		<div class="container-fluid container_fluid_content page_header_desktop">
+			<div class="row page_header_normal_row">
+				<div class="col-lg-2 hidden-md hidden-sm hidden-xs"></div>
+				<div class="col-lg-10 col-md-12 col-sm-12 col-xs-12">
+					<section class="header_action_bar">
+						<div class="page_title">How to Launch PeterPlanner</div>
+					</section>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="main_container" class="container-fluid container_fluid_content main_container touch_device_scroll_y">
+		<div class="row">
+			<div class="col-lg-2 hidden-md hidden-sm hidden-xs"></div>
+			<div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+				<div id="main_content" class="main_content">
+					<div class="row single_page_content with_tabs">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<div class="ios_show">
+								<h5>Add the Bookmarklet to Your iOS Web Browser</h5>
+								<p><a href="/i__?Paste_here_and_replace_this">Tap this link</a> and follow the instructions.</p>
+							</div>
+							<div class="ios_hide android_hide">
+								<h5>Add the Bookmarklet</h5>
+								<p>Drag the bookmarklet below to your Bookmarks Bar.</p>
+								<p>Then simply click it once you&rsquo;re logged into <a target="_blank" href="https://www.reg.uci.edu/access/student/degreeworks/?seg=U">DegreeWorks</a>.</p>
+								<div class="flash flash_info clearfix padding-20">
+									<a class="js_bookmarklet button_black_outline" href="javascript:if(window.location.href.indexOf('reg.uci.edu/dgw/IRISLink.cgi')!==-1){var url='http://localhost:8000/launch?cookie='+encodeURIComponent(document.cookie);window.open(url);}else{window.location.href='https://www.reg.uci.edu/access/student/degreeworks/?seg=U';}" onclick="return explain_bookmarklet();">Launch Scheduler</a>
+									<span class="margin-left-10">&larr; Drag this button to your Bookmarks Bar.</span>
+								</div>
+								<p><strong>Note:</strong> If you click this bookmarklet on a page other than DegreeWorks, it will take you there first, and once you&rsquo;re logged in, another click will launch PeterPlanner.</p>
+								<h5>How to Show the Bookmarks Bar</h5>
+								<p><strong>Chrome:</strong> <span class="item"><strong>&nbsp;&vellip;&nbsp;</strong></span> &rarr; <span class="item">Bookmarks</span> &rarr; <span class="item">Show Bookmarks Bar</span></p>
+								<p><strong>Safari:</strong> <span class="item">View</span> &rarr; <span class="item">Show Favorites Bar</span></p>
+							</div>
+							<div class="mobile_show margin-top-20">
+								<h5>Save in Your Desktop Browser</h5>
+								<p>View this page in your desktop browser to get the bookmarklet.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-2 hidden-md hidden-sm hidden-xs"></div>
+		</div>
+	</div>
+	<div id="bookmarklet_explain" class="bookmarklet_explain">&uarr; &nbsp; Click &amp; drag up to your Bookmarks Bar.</div>
+	<!-- Modal Windows go here -->
+	<div id="mobile_cover" class="mobile_cover"></div>
+	<div id="modal_backer" class="modal_backer" class="modal_backer"></div>
+	<div id="scroll_indicator_wrapper" class="iScrollVerticalScrollbar scroll_indicator_wrapper">
+		<div id="scroll_indicator" class="iScrollIndicator scroll_indicator"></div>
+	</div>
+	</div>
+</body>
+</html>
+
