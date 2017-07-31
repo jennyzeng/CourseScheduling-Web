@@ -22,8 +22,8 @@ def launch():
     d = dgw_data.data(cookie)
     std = d.fetch_student_id()
     d.fetch_student_detail()
-    student = d.getDict()
     d.fetch_xml()
+    student = d.getDict()
     return render_template('schedule/info.html', student=student)
 
 
