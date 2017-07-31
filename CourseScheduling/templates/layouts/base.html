@@ -28,6 +28,58 @@
             integrity="sha256-lZFHibXzMHo3GGeehn1hudTAP3Sc0uKXBXAzHX1sjtk="
             crossorigin="anonymous"></script>
   </head>
+
+  <script>
+  $(document).ready(function() {
+    $('#preview').on("click", "td", function() {
+      if ($(this).hasClass("info"))
+      {
+        $(this).removeClass("info");
+      } else {
+        $(this).addClass("info");
+      }
+    });
+
+    $('#preview').on("mouseenter", "td", function() {
+      if (!$(this).hasClass("info"))
+      {
+        $(this).addClass("active");
+      }
+    })
+
+    $('#preview').on("mouseleave", "td", function() {
+        $(this).removeClass("active");
+    })
+
+    $("#preview-form").submit( function() {
+      var finished = "[";
+      $("#preview td").each(function() {
+        if ($(this).hasClass("info")) {
+          finished = finished + "'" + $(this).text() + "',";
+        }
+      })
+      finished = finished + "]";
+
+      $('<input />').attr('type', 'hidden')
+       .attr('name', "finished")
+       .attr('value', finished)
+       .appendTo('#preview-form');
+
+       return true;
+    });
+
+
+  });
+
+  </script>
+
+  <style>
+  td {
+    cursor: pointer;
+  }
+  </style>
+
+
   <body>
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">

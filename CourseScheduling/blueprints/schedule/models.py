@@ -20,7 +20,7 @@ class Course(db.Document):
 
     meta = {
         'indexes': [
-            ('dept', 'cid') # compound idnex
+            ('dept', 'cid') # compound index
         ]
     }
 
@@ -50,7 +50,7 @@ class Requirement(db.Document):
 class Major(db.Document):
     name = db.StringField(max_length=60, default="universal")
     requirements = db.ListField(db.ReferenceField(Requirement, dbref=True))
-    
+
     meta = {
         'indexes': [
             'name'
