@@ -2,7 +2,7 @@ class Course:
     # let self to be course v
 
     def __init__(self, name: str, units: int,
-                 quarter_codes: set, prereq: list, is_upper_only=False):
+                 quarter_codes: set, prereq: list, priority=0, is_upper_only=False):
         self.name = name
         self.units = units  # Total units v requires.
         self.quarterCodes = quarter_codes  # In what quarters the department offers this course
@@ -13,6 +13,7 @@ class Course:
         self.label = None  # label of a course
         self.dependentIndex = -1  # The largest layer index of v's dependent schedule.default use -1 to note None
         self.requirements = set()  # A set of requirements that v can satisfy.
+        self.priority = priority
 
     @property
     def courseValue(self):
@@ -20,7 +21,7 @@ class Course:
         calculate the value of v based on the number of requirements v can satisfy
         :return: the value of a course
         """
-        return -len(self.requirements)
+        return -len(self.requirements) - self.priority
 
     def __str__(self):
         return " label: {label}\n units: {units}\n quarterCodes: {qc}\n " \

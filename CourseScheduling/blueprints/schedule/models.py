@@ -17,7 +17,7 @@ class Course(db.Document):
     # for sample data in db right now, the pub_date is not correct
     # change the way we load data will fix this problem
     pub_date = db.DateTimeField(default=datetime.now)
-
+    priority = db.IntField(default=0, min_value=0, max_value=5)
     meta = {
         'indexes': [
             ('dept', 'cid') # compound index

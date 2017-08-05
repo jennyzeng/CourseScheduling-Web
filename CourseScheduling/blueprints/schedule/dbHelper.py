@@ -30,7 +30,9 @@ def getInfo(req):
                 c_set.add(c_name)
                 G[c_name] = cs.Course(name=c.name, units=c.units,
                                       quarter_codes=convert_quarters(c.quarters),
-                                      prereq=convert_prereq(c.prereq), is_upper_only=c.upperOnly)
+                                      prereq=convert_prereq(c.prereq),
+                                      is_upper_only=c.upperOnly,
+                                      priority=c.priority)
             R_detail[r].append(c_set)
     return G, R, R_detail
 

@@ -44,6 +44,10 @@ class Scheduling:
                 best_L = schedule
                 best_u = u
                 best_r = R_temp
+            # free memory after use
+            del G_temp
+            del L_temp
+            del R_temp
         if any([any(i) for i in best_r.values()]):
             warnings.warn("Not all requirements are satisfied.")
 
