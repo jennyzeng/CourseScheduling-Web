@@ -1,4 +1,4 @@
-from CourseScheduling.blueprints.schedule.models import Course, Requirement
+from CourseScheduling.blueprints.schedule.models import Course, Requirement, Major
 import lib.CourseSchedulingAlgorithm as cs
 import warnings
 import logging
@@ -10,8 +10,13 @@ def getCourse(dept, cid):
 
 
 def getRequirements():
-    return {r.name for r in Requirement.Objects()}
+    return {r.name for r in Requirement.objects()}
 
+def getMajorRequirements(major):
+    for m in Major.objects():
+        if m.name == major:
+            return set(m.requirements)
+    return set()
 
 def getInfo(req):
     G, R, R_detail = dict(), dict(), dict()

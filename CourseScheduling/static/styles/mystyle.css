@@ -51,6 +51,11 @@
     padding: 0px 15px;
   }
 
+  .btn-secondary {
+    background-color: #ffffff;
+    border-color: #ffffff;
+  }
+
   .form-group {
     overflow: hidden;
     clear: both;
@@ -99,7 +104,8 @@
   }
 
   .row {
-    padding: 0px 0px 0px 15px;
+    margin-right: 15px;
+    margin-left: 15px;
   }
 
   .leftcontact {

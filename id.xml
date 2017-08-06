@@ -1,0 +1,853 @@
+<html lang="en">
+
+<head>
+<!-- %2fdgw%2fIRISLink.cgi; 139-443 -->
+
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Language" content="en" />
+    <script type="text/javascript" src="DGW_objKeyEventHandler.js"></script>
+    <script type="text/javascript" src="BrowserSniffer.js"></script>
+    <noscript>JavaScript is Required!</noscript>
+    <title>Ellucian Degree Works -  
+Student Selection
+ </title>
+    <script src="BrowserSniffer.js"></script>
+    <noscript>JavaScript is Required!</noscript>
+    <script src="DGW_Functions.js"></script>
+    <noscript>JavaScript is Required!</noscript>
+    <script src="ToolTip.js"></script>
+    <noscript>JavaScript is Required!</noscript>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Language" content="en" />
+    <link rel="stylesheet" href="DGW_Style.css" type="text/css">
+</head>
+
+<script src="DGW_Control.js"></script>
+<noscript>JavaScript is Required!</noscript>
+<script src="DGW_Functions.js"></script>
+<noscript>JavaScript is Required!</noscript>
+<script src="DGW_StudentFunctions.js"></script>
+<noscript>JavaScript is Required!</noscript>
+<script src="ImageSwap.js"></script>
+<noscript>JavaScript is Required!</noscript>
+<script language="JavaScript">
+
+var sTabContext = "WORKSHEETS";
+
+// Date format used in DGW_Functions.js
+sDateFormat = "MDY";
+
+var wAddNote = null;
+
+///////////////////////////////////////////////////////
+function AddNote ()
+{
+// If the window exists and has not been closed
+if (wAddNote != null && !wAddNote.closed)
+  {
+  // The windows was previously created and placed in the background
+  wAddNote.focus();
+  return;
+  }
+
+// Create a new window for the add-note to appear
+var iWidth  = 700;
+var iHeight = 450; // needs to be bigger for Firefox
+var iXPlace = 300;
+var iYPlace = 200;
+var sWindowParams = "width=" + iWidth + ",height=" + iHeight + "," +
+            "toolbar=no,location=no,directories=no,status=no," +
+            "menubar=no," + "scrollbars=yes,resizable=yes";
+var sWindowName = "wAddNote";
+wAddNote = window.open("", sWindowName, sWindowParams);
+wAddNote.resizeTo (iWidth, iHeight);
+//wAddNote.moveTo   (iXPlace, iYPlace);
+
+// Allow the pop-up to reference the main window
+wAddNote.opener = self;
+// Get the add-note page and place it in the new window
+top.frControl.GetScript('SD2NTEADD', 'no-action&ADDNOTEPOPUP=Y', 'no-report', sWindowName);
+// In case it was placed in the background previously
+wAddNote.focus();
+
+} // addnote
+
+/* 1.10 Begin */
+///////////////////////////////////////////////////////
+function RefreshStudent ()
+{
+    //alert("this will do something someday");
+    if (top.frControl.studentArray.length != 0)
+    {
+        if (confirm("This student's data was last refreshed " +
+               document.frmHoldFields.LastRefresh.value + " \n" +
+               "Do you want to refresh again now?"))
+        {
+            refreshForm = document.frmRefresh;
+            refreshForm.STUID.value = top.frControl.iCurrentID;
+            top.frBody.location.href = "SD_Waiting.html";
+            refreshForm.submit();
+        }
+    }
+    else
+    {
+        alert("Please select a student before proceeding.");
+    }
+}
+/* 1.10 End */
+function GetOwnDegreeSubmit() // 1.03 New
+{
+    document.frmGetMyID.STUID.value = document.frmCallScript.USERID.value;
+    document.frmGetMyID.submit();
+}
+function GetPortalStudentSubmit(sPortalStudentId)
+{
+    document.frmGetMyID.STUID.value = sPortalStudentId;
+    document.frmGetMyID.submit();
+}
+function GetMyStudentsXXXXXXXXX()
+{
+    // Advisor or dept search - use the non-ID search page
+    document.frmGetMyID.SCRIPT.value = "SD2STUGET";
+    document.frmGetMyID.submit();
+}
+
+function ToggleRELOADSEP(sTrueOrFalse) // 1.05 New
+{
+    if (sTrueOrFalse == "FALSE")
+        document.frmCallScript.RELOADSEP.value = "FALSE";
+    else
+        document.frmCallScript.RELOADSEP.value = "TRUE";
+}
+// Reload the tab the user is on but using the new degree selected
+// or when a new person is selected from the Name picklist
+function  ReloadTab()
+{
+  if (sTabContext == "PLANNER")
+    top.frTabs.doPlanner();
+  else if (sTabContext == "NOTES")
+    top.frTabs.doNotes();
+  else if (sTabContext == "PETITIONS")
+    top.frTabs.doPetitions();
+  else if (sTabContext == "EXCEPTIONS")
+    top.frTabs.doExceptions();
+  else if (sTabContext == "GPACALC")
+    top.frTabs.doGPACalc();
+  else if (sTabContext == "ADMIN")
+    top.frTabs.doAdmin();
+  else // do worksheet tab
+    top.frTabs.doAudit();
+}
+var iSleepCount = 0;
+var iSleepMax = 100; // 100 x 100ms = 10 seconds
+var iSleepMilliseconds = 100; // for 1/10th of a second
+/////////////////////////////////////////////////////////////
+function waitForFrameset()
+{
+  iSleepCount = 0;
+  checkFramesetLoaded();
+}
+/////////////////////////////////////////////////////////////
+function checkFramesetLoaded()
+{
+  // If the frames finally loaded or we slept long enough; see Functions.js
+  if (top.bBodyFramesetLoaded || iSleepCount > iSleepMax)
+  {
+    //alert ("SD2STUCON: checkFramesetLoaded: top.bBodyFramesetLoaded = " + top.bBodyFramesetLoaded + "; iSleepCount = " + iSleepCount);
+    reallyLoadWorksheetTab();
+    return;
+  }
+
+  iSleepCount++;
+  setTimeout ("checkFramesetLoaded()", iSleepMilliseconds);
+}
+/////////////////////////////////////////////////////////////
+function  LoadWorksheetTab()
+{
+   if (top.isZkLoaded())
+   {
+      top.reloadBodyFrameset(); // sets top.bBodyFramesetLoaded; see Functions.js
+      waitForFrameset();
+   }
+   else
+   {
+      reallyLoadWorksheetTab();
+   }
+}
+/////////////////////////////////////////////////////////////
+function reallyLoadWorksheetTab()
+{
+    // When student is loaded click the Audit/Worksheets tab
+    top.frTabs.sHelpPage = 'SD_HelpAuditView.html';
+    top.frTabs.tabActivateFirst();
+    CallScript('SD2AUDVERT', "", "frLeft");
+}
+
+/////////////////////////////////////// DEBUG
+bDebugOn = false;
+function DebugSw()
+{
+ if (bDebugOn)
+ {
+    bDebugOn = false;
+    alert ("Debug is now OFF");
+ }
+ else // Debug is currently off
+ {
+    bDebugOn = true;
+    alert ("Debug is now ON");
+ }
+}
+top.DebugSw = DebugSw;
+objKeyEventHandler.fAddKeyPressAction("ctrl+alt+d",function(){top.DebugSw();});
+</script>
+<script language="JavaScript">
+</script>
+<noscript>JavaScript is Required!</noscript>
+<script language="JavaScript">
+    var bAdvisorUser = false;
+    var sDegreeLiteral = "";
+    var sSchoolLiteral = "";
+    var sMajorLiteral  = "";
+    var sLevelLiteral  = "";
+    // Only show Degree, School, Level and Major if they are used
+    // The boolean flags and literals are used in
+    // DGW_Control.js and DGW_StudentFunctions.js
+    bDegreeUsed = true;
+    sDegreeLiteral = "Degree              ";
+
+    var bSchoolUsed = false;
+    var bMajorUsed = false;
+    bMajorUsed = true;
+    sMajorLiteral = "Major               ";
+    var bLevelUsed = false;
+    bLevelUsed = true;
+    sLevelLiteral = "Classification      ";
+
+    var bCustomUsed = false;
+
+	var bRefreshUsed = false;
+sIDMask = "N"; // 1.06
+
+function SetElementTitles()
+{
+	sForm = document.frmHoldFields;
+
+	myStudentId = Trim("Student ID          ");
+	myDegree    = Trim("Degree              ");
+	myMajor     = Trim("Major               ");
+	mySchool    = Trim("Level               ");
+	myLevel     = Trim("Classification      ");
+
+	sForm.StudentID.title = myStudentId;
+	document.getElementById("StudentIdLabel").title = myStudentId;
+	document.getElementById("DegreeLabel").title = myDegree;
+
+	sForm.Major.title = myMajor;
+	document.getElementById("MajorLabel").title = myMajor;
+
+
+	sForm.Level.title = myLevel;
+	document.getElementById("LevelLabel").title = myLevel;
+
+}
+
+////////////////////////////////////////////////////////////////////////////
+// REPLACEHTMLCHARS
+// Replace "&amp;" with the Ampersand character "&"
+// Replace "&#39;" with the single quote character "'"
+// Compatibility tested OK with NS 4.79
+////////////////////////////////////////////////////////////////////////////
+function ReplaceHTMLChars(sString)
+{
+        sString = sString.replace(/&amp;/g, "&");
+        sString = sString.replace(/&#39;/g, "'");
+        return sString;
+} // replacehtmlchars
+
+
+/* 1.10 Begin */
+//////////////////////////////////////////////////
+function DataItem(sCode, sLiteral) {
+        this.code = Trim(sCode);
+		this.literal = ReplaceHTMLChars(sLiteral);
+}
+
+sMajorPicklist = new Array();
+sLevelPicklist = new Array();
+sDegreePicklist = new Array();
+sMajorPicklist[sMajorPicklist.length] = new DataItem("279         ", "Aerospace Engineering                             ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("014         ", "African American Studies                          ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("063         ", "Anthropology                                      ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("068         ", "Applied Ecology                                   ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("075         ", "Applied Physics                                   ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("090         ", "Art                                               ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("093         ", "Art History                                       ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("05I         ", "Art, Critical and Curatorial Studies              ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("44D         ", "Arts and Humanities                               ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("100         ", "Asian American Studies                            ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("114         ", "Biochemistry and Molecular Biology                ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("120         ", "Biological Sciences                               ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("05H         ", "Biology/Education                                 ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("03T         ", "Biomedical Computing                              ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("289         ", "Biomedical Engineering                            ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("28B         ", "Biomedical Engr: Premedical                       ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("364         ", "Business Admin: Executive                         ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("141         ", "Business Admin: Full Time                         ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("602         ", "Business Admin: Fully Employed                    ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("764         ", "Business Admin: Health Care Executive             ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("141B        ", "Business Administration: B.A.                     ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("0B4         ", "Business Analytics                                ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("144         ", "Business Economics                                ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("01N         ", "Business Information Management                   ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("294         ", "Chemical Engineering                              ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("153         ", "Chemistry                                         ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("16A         ", "Chicano/Latino Studies                            ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("469         ", "Chinese Language and Literature                   ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("163         ", "Chinese Studies                                   ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("284         ", "Civil Engineering                                 ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("169         ", "Classical Civilization                            ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("174         ", "Classics                                          ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("07Y         ", "Cognitive Sciences                                ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("192         ", "Comparative Literature                            ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("302         ", "Computer Engineering                              ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("04W         ", "Computer Game Science                             ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("201         ", "Computer Science                                  ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("193         ", "Computer Science and Engineering                  ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("220         ", "Criminology Law and Society                       ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("210         ", "Dance                                             ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("796         ", "Dance - Choreography                              ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("797         ", "Dance - Performance                               ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("0AM         ", "Data Science                                      ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("618         ", "Developmental and Cell Biology                    ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("231         ", "Drama                                             ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("064         ", "Drama and Theatre Ph.D.                           ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("763         ", "Earth System Science                              ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("23G         ", "Earth and Environmental Sciences                  ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("03E         ", "Earth and Environmental Studies                   ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("749         ", "East Asian Cultures                               ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("708         ", "Ecology and Evolutionary Biology                  ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("246         ", "Economics                                         ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("249         ", "Education - Credential                            ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("25B         ", "Education - M.A.T.                                ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("08Q         ", "Education Sciences                                ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("276         ", "Electrical Engineering                            ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("273         ", "Engineering                                       ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("345         ", "English                                           ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("230         ", "Environmental Analysis and Design                 ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("384         ", "Environmental Engineering                         ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("351         ", "Environmental Science                             ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("762         ", "European Studies                                  ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("08R         ", "Exercise Sciences                                 ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("367         ", "Film Studies                                      ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("36B         ", "Film and Media Studies                            ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("08T         ", "Finance                                           ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("006         ", "Fine Arts Interdisciplinary                       ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("387         ", "French                                            ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("08Y         ", "Gender and Sexuality Studies                      ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("390         ", "Genetics                                          ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("408         ", "German                                            ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("40B         ", "German Studies                                    ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("49A         ", "Global Cultures                                   ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("0BI         ", "Global Middle East Studies                        ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("429         ", "History                                           ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("99A         ", "Human Biology                                     ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("444         ", "Humanities                                        ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("44C         ", "Humanities and Arts                               ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("09X         ", "ICIT                                              ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("19H         ", "Informatics                                       ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("459         ", "Information &amp; Computer Science                    ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("836         ", "International Studies                             ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("470         ", "Japanese Language and Literature                  ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("01D         ", "Korean Literature and Culture                     ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("495         ", "Latin                                             ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("512         ", "Linguistics                                       ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("48A         ", "Literary Journalism                               ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("32B         ", "Materials Science Engineering                     ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("540         ", "Mathematics                                       ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("277         ", "Mechanical Engineering                            ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("569         ", "Microbiology and Immunology                       ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("579         ", "Music                                             ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("582         ", "Music Performance                                 ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("02B         ", "Music Theatre                                     ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("593         ", "Neurobiology                                      ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("598         ", "Nursing Science                                   ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("75A         ", "Pharmaceutical Sciences                           ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("651         ", "Philosophy                                        ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("666         ", "Physics                                           ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("680         ", "Plant Biology                                     ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("699         ", "Political Science                                 ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("07M         ", "Professional Accountancy                          ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("780         ", "Psychology                                        ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("632         ", "Psychology and Social Behavior                    ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("7A1         ", "Public Health Policy                              ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("7A0         ", "Public Health Sciences                            ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("24G         ", "Quantitative Economics                            ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("801         ", "Religious Studies                                 ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("851         ", "Social Ecology                                    ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("05S         ", "Social Policy and Public Service                  ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("858         ", "Social Science                                    ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("867         ", "Sociology                                         ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("06G         ", "Software Engineering                              ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("882         ", "Spanish                                           ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("091         ", "Studio Art                                        ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("005         ", "Unaffiliated                                      ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("000         ", "Undeclared                                        ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("912         ", "Urban Studies                                     ");
+sMajorPicklist[sMajorPicklist.length] = new DataItem("928         ", "Womens Studies                                    ");
+
+sLevelPicklist[sLevelPicklist.length] = new DataItem("01", "Freshman            ");
+sLevelPicklist[sLevelPicklist.length] = new DataItem("02", "Sophomore           ");
+sLevelPicklist[sLevelPicklist.length] = new DataItem("03", "Junior              ");
+sLevelPicklist[sLevelPicklist.length] = new DataItem("04", "Senior              ");
+sLevelPicklist[sLevelPicklist.length] = new DataItem("05", "Master&#39;s Program    ");
+sLevelPicklist[sLevelPicklist.length] = new DataItem("06", "Doctoral Program I  ");
+sLevelPicklist[sLevelPicklist.length] = new DataItem("07", "Doctoral Program II ");
+sLevelPicklist[sLevelPicklist.length] = new DataItem("08", "Doctorial 2A        ");
+sLevelPicklist[sLevelPicklist.length] = new DataItem("09", "Postdoctoral Prog   ");
+
+sDegreePicklist[sDegreePicklist.length] = new DataItem("BA          ", "B.A.      ");
+sDegreePicklist[sDegreePicklist.length] = new DataItem("BFA         ", "B.F.A.    ");
+sDegreePicklist[sDegreePicklist.length] = new DataItem("BMUS        ", "B.Mus.    ");
+sDegreePicklist[sDegreePicklist.length] = new DataItem("BS          ", "B.S.      ");
+sDegreePicklist[sDegreePicklist.length] = new DataItem("CR          ", "Cred.     ");
+sDegreePicklist[sDegreePicklist.length] = new DataItem("MA          ", "M.A.      ");
+sDegreePicklist[sDegreePicklist.length] = new DataItem("MAT         ", "M.A.T.    ");
+sDegreePicklist[sDegreePicklist.length] = new DataItem("MBA         ", "M.B.A.    ");
+sDegreePicklist[sDegreePicklist.length] = new DataItem("MFA         ", "M.F.A.    ");
+sDegreePicklist[sDegreePicklist.length] = new DataItem("MFIN        ", "M.Fin.    ");
+sDegreePicklist[sDegreePicklist.length] = new DataItem("MPAC        ", "M.P.Ac.   ");
+sDegreePicklist[sDegreePicklist.length] = new DataItem("PHD         ", "Ph.D.     ");
+
+/* 1.10 End   */
+
+////////////////////////////////////////////////////////////
+function DoInitialize()
+{
+var bGetMyStudents  = false;
+var bGetMyOwnDegree = false;
+var bGetPortalStuId = false;
+var sPortalStudentId = "";
+
+InitializeSettings();
+
+  GetOwnDegreeSubmit();
+
+sPortalStudentId = "";
+if (Trim(sPortalStudentId).length > 0)
+ bGetPortalStuId = true;
+
+if (bGetMyOwnDegree) // if student make sure she can only see herself
+  GetOwnDegreeSubmit();
+else if (bGetPortalStuId) // if id passed from portal use it
+  GetPortalStudentSubmit(sPortalStudentId);
+else if (bGetMyStudents)  // advisor/dept - get list of students automatically
+  GetMyStudentsSubmit();
+else // reg user etc - allow user to perform a search - no automatic loading
+  {
+  // do nothing - let user search
+  }
+
+SetElementTitles();
+} // doinitialize
+
+function GetCourseInfoSEPView (sBuffer, sTerm, sReport, sUserClass)
+{
+// Get form we will submit
+submitForm = top.frames.frControl.document.forms.frmCourseInfoSEPView;
+
+if (sBuffer == "NOCLASSESFOUND")
+  {
+  alert ("No classes found to get course information");
+  }
+else // classes found
+  {
+  var sWindowParams = "width=600,height=600" + ",toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes";
+  var sWindowName = "wCourseInfo";
+  var wNew = window.open("", sWindowName, sWindowParams);
+  //wNew.resizeTo (iWidth, iHeight);
+  //wNew.moveTo   (iXPlace, iYPlace);
+  // The control frame has the form to submit
+
+  submitForm.target = sWindowName;
+  submitForm.BUFFER.value = "&";
+  submitForm.BUFFER.value += parseCourseKeyString(sBuffer);
+  submitForm.BUFFER.value += "TERM=" + sTerm + "&";
+  submitForm.BUFFER.value += "REPORT=" + sReport + "&";
+  submitForm.BUFFER.value += "REPORTUCLASS=" + sUserClass + "&";
+
+  //alert("submitForm.BUFFER.value  = " + submitForm.BUFFER.value );
+  submitForm.submit();
+  wNew.focus(); // needed in case window was already open
+  }
+
+} // GetCourseInfoSEPView
+
+function parseCourseKeyString(sString)
+{
+	// | is the separator between disc and number, like this: MATH|101
+	// ^ is the separator between course keys, like this: MATH|101^MATH103
+	var sReturn = "";
+	var sThisString = sString;
+	var sThisCourse = "";
+
+	CourseKeyCheck = sString.indexOf("^");
+
+																				
+	if (CourseKeyCheck > 0)
+	{
+		while (sThisString.length > 1)
+		{
+			iThisLength = sThisString.length;
+			DivisorPos = sThisString.indexOf("^");
+			sThisCourse = sThisString.substring(0, DivisorPos);
+			KeyDivisorPos = sThisCourse.indexOf("|");
+			sReturn += 'COURSEDISC="'
+			sReturn += sThisCourse.substring(0, KeyDivisorPos);
+			sReturn += '"&'
+			sReturn += 'COURSENUMB="'
+			sReturn += sThisCourse.substring(KeyDivisorPos+1, sThisCourse.length);
+			sReturn += '"&'
+			sReturn += 'COURSEATTR=&' // always blank
+			sThisString = sThisString.substring(DivisorPos+1, iThisLength);
+			//alert("sReturn = " + sReturn);
+		}
+	return sReturn;
+	}
+}
+</script>
+<noscript>JavaScript is Required!</noscript>
+<body class="StudentContext" topmargin="0"
+  leftmargin="0" marginwidth="0" marginheight="0"
+  onLoad="DoInitialize()">
+<form action="IRISLink.cgi" method="POST"
+name="frmCourseInfo" target="myNewWin">
+        <input type="hidden" name="SCRIPT"     value="SD2COURSEINFO">
+        <input type="hidden" name="COURSEDISC" value="">
+        <input type="hidden" name="COURSENUMB" value="">
+        <input type="hidden" name="COURSEATTR" value="">
+        <input type="hidden" name="COURSEATTROP" value="">
+        <input type="hidden" name="REPORT" value="">
+        <input type="hidden" name="REPORTUCLASS" value="">
+        <input type="hidden" name="DEBUG"      value="OFF">
+        <input type="hidden" name="ContentType" value="xml">
+</form>
+
+<form action="IRISLink.cgi" method="POST"
+name="frmUpdateAudit" target="myNewWin">
+        <input type="hidden" name="SCRIPT"      value="SD2UPDATEAUDIT">
+        <input type="hidden" name="ACTION"      value="UPDATEAUDIT">
+        <input type="hidden" name="AUDITID"     value="">
+        <input type="hidden" name="FREEZETYPE"  value="">
+        <input type="hidden" name="AUDITDESC"   value="">
+        <input type="hidden" name="STUID"       value="">
+        <input type="hidden" name="USERID"      value="">
+        <input type="hidden" name="DEBUG"       value="OFF">
+        <input type="hidden" name="ContentxxxxType" value="xml">
+</form>
+
+<form action="IRISLink.cgi" method="POST"
+name="frmCourseInfoSEPView" target="myNewWin">
+<input type="hidden" name="SCRIPT"   value="SD2COURSEINFO" />
+<input type="hidden" name="BUFFER"   value=""    />
+<input type="hidden" name="FROM"   value="PLANNER"    />
+<input type="hidden" name="DEBUG"    value="OFF" />
+<input type="hidden" name="ContentType" value="xml" />
+</form>
+
+<!-- LeepFrog's InstantRapport advisor chat -->
+<form action="IRISLink.cgi" method="POST"
+name="frmAdvisorChat" target="myNewWin">
+        <input type="hidden" name="SCRIPT"      value="LEEPIRSTUDENT">
+        <input type="hidden" name="ADVISORID"   value="">
+        <input type="hidden" name="PROFILEINFO"   value="">
+        <input type="hidden" name="DEBUG"       value="OFF">
+</form>
+
+<div id="tooltip" style="position:absolute;visibility:hidden"></div>
+<form action="IRISLink.cgi" method="POST"
+name="OpenSearchForm" target="">
+        <input type="hidden" name="SERVICE" value="SCRIPTER">
+        <input type="hidden" name="SCRIPT" value="">
+        <input type="hidden" name="SEARCHTYPE" value="">
+        <input type="hidden" name="DEBUG"      value="OFF">
+</form>
+<form action="IRISLink.cgi" method="POST"
+name="frmGetID" target="frHold">
+        <input type="hidden" name="SERVICE" value="SCRIPTER">
+        <input type="hidden" name="SCRIPT" value="SD2STUGID">
+        <input type="hidden" name="STUID"> <!-- Needed for Simple ID search -->
+        <!--<input type="hidden" name="E7306"> <!-- advisor-id search -->
+        <input type="hidden" name="DEBUG"      value="OFF">
+        <input type="hidden" name="FILTERMATCH01" value="">
+        <input type="hidden" name="FILTERMATCH02" value="">
+        <input type="hidden" name="FILTERMATCH03" value="">
+        <input type="hidden" name="FILTERMATCH04" value="">
+        <input type="hidden" name="FILTERMATCH05" value="">
+        <input type="hidden" name="FILTERMATCH06" value="">
+        <input type="hidden" name="FILTERMATCH07" value="">
+        <input type="hidden" name="FILTERMATCH08" value="">
+        <input type="hidden" name="FILTERMATCH09" value="">
+        <input type="hidden" name="FILTERMATCH10" value="">
+
+</form>
+
+<form action="IRISLink.cgi" method="POST"
+name="frmGetMyID" target="frHold">
+        <input type="hidden" name="SERVICE" value="SCRIPTER">
+        <input type="hidden" name="SCRIPT" value="SD2STUGID">
+        <input type="hidden" name="STUID"> <!-- Needed for Simple ID search -->
+        <input type="hidden" name="DEBUG"      value="OFF">
+</form>
+
+<form action="IRISLink.cgi" method="POST"
+name="frmCallScript" target="frBody" id="formCallScript">
+        <input type="hidden" name="SERVICE" value="SCRIPTER">
+        <!-- REPORT must come before SCRIPT for SOC reports -->
+        <input type="hidden" name="REPORT" value="">
+        <input type="hidden" name="SCRIPT" value="">
+        <input type="hidden" name="USERID" value="89334833">
+        <input type="hidden" name="USERCLASS" value="STU">
+        <input type="hidden" name="BROWSER" value="">
+        <!-- Set in DGW_Control.js -->
+        <input type="hidden" name="ACTION" value="">
+        <input type="hidden" name="AUDITTYPE" value="">
+        <input type="hidden" name="DEGREETERM" value="">
+        <input type="hidden" name="INTNOTES" value="">
+        <input type="hidden" name="INPROGRESS" value="">
+        <input type="hidden" name="CUTOFFTERM" value="">
+        <input type="hidden" name="REFRESHBRDG" value="">
+        <input type="hidden" name="AUDITID" value="">
+        <input type="hidden" name="JSERRORCALL" value="SetError">
+        <input type="hidden" name="NOTENUM" value="">
+        <input type="hidden" name="NOTETEXT" value="">
+        <input type="hidden" name="NOTEMODE" value="">
+        <input type="hidden" name="PENDING" value="">
+        <input type="hidden" name="INTERNAL" value="">
+        <!-- 1.05 Begin -->
+        <input type="hidden" name="RELOADSEP" value = "TRUE">
+        <input type="hidden" name="PRELOADEDPLAN">
+        <input type="hidden" name="ContentType">
+        <!-- 1.05 End -->
+        <input type="hidden" name="STUID" value="89334833">
+        <input type="hidden" name="SCHOOL" value="U">
+        <input type="hidden" name="STUSCH" value="U">
+        <input type="hidden" name="DEGREE" value="BS">
+        <input type="hidden" name="STUDEG" value="BS">
+        <input type="hidden" name="STUDEGLIT" value="">
+        <input type="hidden" name="STUDI" value="">
+        <input type="hidden" name="STULVL" value="">
+        <input type="hidden" name="STUMAJLIT" value="">
+        <input type="hidden" name="STUCATYEAR" value="">
+        <input type="hidden" name="CLASSES" value=""> <!-- Look-ahead audit -->
+        <input type="hidden" name="DEBUG"      value="OFF">
+</form>
+<!-- 1.10 Start -->
+<form action="IRISLink.cgi" method="POST"
+name="frmRefresh" target="frHold">
+        <input type="hidden" name="SERVICE" value="SCRIPTER">
+        <input type="hidden" name="SCRIPT" value="SD2REFRESH">
+        <input type="hidden" name="STUID"  value="">
+        <input type="hidden" name="SCHOOL" value="U">
+        <input type="hidden" name="STUSCH" value="U">
+        <input type="hidden" name="DEGREE" value="BS">
+        <input type="hidden" name="STUDEG" value="BS">
+        <input type="hidden" name="ContentType" value="xml">
+        <input type="hidden" name="DEBUG"  value="OFF">
+</form>
+<!-- 1.10 End -->
+<!-- ******************************************************************** -->
+
+<form action="IRISLink.cgi" method="POST"
+name="frmHoldFields" target="frBody" onsubmit="return false;">
+
+<!--###################################################################-->
+<!--###################################################################-->
+<!--###################################################################-->
+<table cellspacing="0" cellpadding="0" border="0" width="100%" bordercolor="#000000" class="StuContextTable">
+    <tr>
+        <!--<td nowrap align="left" valign="top">
+            <img src="Images_DG2/spacer.gif" alt="" width="2" height="42">
+        </td>-->
+        <td nowrap align="left" valign="bottom">
+            <img src="Images_DG2/spacer.gif" alt="" width="10" height="1"><br />
+
+        </td>
+        <!--<td nowrap align="left" valign="top">
+            <img src="Images_DG2/spacer.gif" alt="" width="1" height="1">
+        </td>-->
+        <td nowrap align="left" valign="middle">
+            <span class="FieldTitle">
+            <script language="JavaScript">
+                //## Comment: Added for 1.1b search change
+                //## Code: Declare a variable to hold focus sataus
+                var bStudentIDSelected;
+            </script>
+            <noscript>JavaScript is Required!</noscript>
+            <label for="StudentID" id="StudentIdLabel" name="StudentIDLabel"
+			accesskey="s">
+Student ID          <br />
+            </label>
+            <!--## Code: 1.1b added onFocus and onBlur -->
+            <input class="DegInputTextDisplay" type="text" size="6"
+            name="StudentID" id="StudentID"
+            style="width: 78px;"
+            onFocus="this.blur();"
+            onBlur="bStudentIDSelected = false;">
+<script language="JavaScript">
+objKeyEventHandler.fAddKeyPressAction("alt+s",function(){
+top.frames.frControl.document.forms.frmHoldFields.StudentID.focus();
+});
+</script>
+<noscript>JavaScript is Required!</noscript>
+            </span>
+        </td>
+        <!--<td nowrap align="left" valign="top">
+            <img src="Images_DG2/spacer.gif" alt="" width="2" height="1">
+        </td>-->
+        <td align="center" valign="top" nowrap>
+            <nobr>
+            <img src="Images_DG2/spacer.gif" alt="" width="22" height="1">
+            <span class="FieldTitle">
+              <label title="Student List" alt="Student List"
+			  title="Student List" for="StudentList">
+                Name
+              </label>
+            </span>
+            <img src="Images_DG2/spacer.gif" alt="" width="22" height="1">
+            </nobr>
+            <br />
+            <div id="HiddenStudentList" style="display:none;">
+            <select name="StudentList" id="StudentList"
+            size="1" class="DegInputSelect" nowrap
+            style="width: 166px;" onChange="SetStudent();ReloadTab();"
+            accesskey="n">
+                <option value="">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+            </select>
+            </div>
+            <input name="StudentName" id="StudentName"
+            class="DegInputTextDisplay" nowrap
+            style="width: 166px;" title="Student Name"
+            accesskey="n" onFocus="this.blur()">
+
+
+<script language="JavaScript">
+objKeyEventHandler.fAddKeyPressAction("alt+n",function(){
+top.frames.frControl.document.forms.frmHoldFields.StudentList.focus();
+});
+</script>
+<noscript>JavaScript is Required!</noscript>
+        </td>
+        <!--<td nowrap align="left" valign="top">
+            <img src="Images_DG2/spacer.gif" alt="" width="1" height="1">
+        </td>-->
+        <td nowrap align="left" valign="top" rowspan="2">
+            <img src="Images_DG2/spacer.gif" alt="" width="1" height="5"><br />
+            <img src="Images_DG2/Line_WhiteOnGreen.gif" alt="">
+        </td>
+        <td nowrap align="left" valign="top">
+            <img src="Images_DG2/spacer.gif" alt="" width="1" height="1">
+        </td>
+        <td nowrap align="left" valign="middle">
+            <span class="FieldTitle">
+            <label for="Degree" id="DegreeLabel" name="DegreeLabel" >
+Degree              <br />
+            </label>
+            <select name="DegreeList" id="DegreeList"
+            size="1" class="DegInputSelectDisplay"
+            nowrap style="width: 82px;"
+           onChange="parent.frSelection.location.href='SD_LoadFrameForm.html';
+                     ReloadTab();
+                     SetDegree();">
+                <option value="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+            </select>
+            </span>
+        </td>
+        <!--<td nowrap align="left" valign="top">
+            <img src="Images_DG2/spacer.gif" alt="" width="2" height="1">
+        </td>-->
+        <td nowrap align="left" valign="middle">
+            <span class="FieldTitle">
+            <label for="Major" id="MajorLabel" name="MajorLabel">
+Major               <br />
+            <input class="DegInputTextDisplay" type="text" size="12"
+            name="Major" id="Major"
+            value="" style="width: 150px;" onFocus="this.blur();">
+            </label>
+            </span>
+        </td>
+
+        <td nowrap align="left" valign="middle">
+            <span class="FieldTitle">
+                <label for="Level" id="LevelLabel" name="LevelLabel">
+Classification      <br />
+                <input class="DegInputTextDisplay" type="text" size="6"
+                maxlength="10" name="Level" id="Level"
+                value="" style="width: 78px;"
+                onFocus="this.blur();">
+                </label>
+            </span>
+        </td>
+
+<!--              -->
+<!-- CUSTOM FIELD -->
+<!--              -->
+
+        <td nowrap align="left" valign="top" rowspan="2">
+            <img src="Images_DG2/spacer.gif" alt="" width="1" height="5"><br />
+            <img src="Images_DG2/Line_WhiteOnGreen.gif" alt="">
+        </td>
+        <td nowrap align="left" valign="middle">
+            <span class="FieldTitle">
+                <label for="LastAudit" title="Last Audit Date">
+                    Last Audit<br />
+                    <input class="DegInputTextDisplay" type="text" size="6"
+                    name="LastAudit" id="LastAudit" title="Last Audit Date"
+                    style="width: 78px;" onFocus="this.blur();">
+                </label>
+            </span>
+        </td>
+
+
+
+<!-- See if this site is allowing the add-note button; make sure the user is allowed to add notes -->
+
+        <!-- this column helps squish the other columns together to the left -->
+        <td nowrap align="left" valign="top" width="100%">
+            <img src="Images_DG2/spacer.gif" alt="" width="6" height="1">
+        </td>
+
+    </tr>
+</table>
+</form>
+<!--###################################################################-->
+<!--###################################################################-->
+<!--###################################################################-->
+
+<script language="JavaScript">
+    document.frmHoldFields.StudentID.focus();
+</script>
+<noscript>JavaScript is Required!</noscript>
+
+<!-- ******************************************************************** -->
+</body>
+</html>
+

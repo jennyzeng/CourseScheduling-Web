@@ -1,4 +1,4 @@
-from CourseScheduling.blueprints.schedule.dbHelper import getInfo
+from CourseScheduling.blueprints.schedule.dbHelper import getInfo, getRequirements, getMajorRequirements
 from flask import Blueprint, render_template, request
 from CourseScheduling.blueprints.schedule.models import Course
 import lib.CourseSchedulingAlgorithm as cs
@@ -10,6 +10,10 @@ schedule = Blueprint('schedule', __name__, template_folder='templates')
 @schedule.route('/')
 def schedule_home():
     return render_template('schedule/input.html')
+
+@schedule.route('/custom')
+def schedule_custom():
+    return render_template('schedule/customInput.html')
 
 
 @schedule.route('/saveme')
@@ -29,7 +33,6 @@ def launch():
 
 @schedule.route('/output', methods=['POST', 'GET'])
 def schedule_output():
-    print(request.form)
     #
     UNIVERSAL_REQUIREMENTS = {"University", "GEI", "GEII", "GEIII", "GEIV",
                     "GEV", "GEVI", "GEVII", "GEVIII"}
@@ -98,6 +101,16 @@ def schedule_preview():
 
     form = request.form
 
+    major_requirements = set()
+    for major in form.getlist("major"):
+        major_requirements = major_requirements | getMajorRequirements(major)
+
+    # FOR FUTURE REFERENCE
+    # specialization_requirements = set()
+    # for specialization in form.getlist("specialization"):
+    #     print(specialization)
+    #     specialization_requirements = specialization_requirements | getSpecialization(specialization_requirements)
+
     # input will be provided by POST request.
     # config upper standing units
     upper_units = 90
@@ -106,11 +119,11 @@ def schedule_preview():
     # width setting
     max_widths = {0: 200, 'else': 200}
     # union universal and cs general requirements (default)
-    req = UNIVERSAL_REQUIREMENTS | CS_GENERAL_REQUIREMENTS
+    req = UNIVERSAL_REQUIREMENTS | CS_GENERAL_REQUIREMENTS # | major_requirements | specialization_requirements
 
     spec = form.getlist("specialization")[0]
     req.add(spec)
-    print(req)
+    print(getRequirements())
 
     G, R, R_detail = getInfo(req)
 
