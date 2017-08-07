@@ -101,7 +101,7 @@ class data:
 				num = cls['number']
 
 			if len(disc) > 0 and len(num) > 0:
-	 			self.classes.add(disc + num)
+	 			self.classes.add(disc + ' ' + num)
 
 
 
