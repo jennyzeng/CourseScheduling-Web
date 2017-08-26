@@ -10,6 +10,7 @@ class data:
 		self.studentID = None
 		self.major = list()
 		self.minor = list()
+		# spec now only support for CS major
 		self.spec = list()
 		self.classes = set()
 		self.degree = None
@@ -33,9 +34,6 @@ class data:
 
 		body = "SERVICE=SCRIPTER&SCRIPT=SD2STUCON"
 		r = requests.post(self.url, cookies=self.cookies, data=body)
-		
-		with open('id.xml', 'w') as f:
-			f.write(r.text)
 
 		rl = re.findall('<input type="hidden" name="STUID" value="(\d+)">', r.text)
 		if len(rl) == 1:
@@ -45,9 +43,6 @@ class data:
 	def fetch_student_detail(self):
 		body = "SERVICE=SCRIPTER&SCRIPT=SD2STUGID&STUID={id}&DEBUG=OFF".format(id=self.studentID)
 		r = requests.post(self.url, cookies=self.cookies, data=body)
-
-		with open('details.xml', 'w') as f:
-			f.write(r.text)
 
 		soup = BeautifulSoup(r.text, 'lxml')
 		stu_data = soup.find('studentdata')
@@ -70,9 +65,6 @@ class data:
 	def fetch_xml(self):
 		body = "SERVICE=SCRIPTER&REPORT=WEB31&SCRIPT=SD2GETAUD%%26ContentType%%3Dxml&ACTION=REVAUDIT&ContentType=xml&STUID=%s&DEBUG=OFF" % (self.studentID)
 		r = requests.post(self.url, cookies=self.cookies, data=body)
-
-		with open('courses.xml', 'w') as f:
-			f.write(r.text)
 
 		soup = BeautifulSoup(r.text, 'lxml')
 
