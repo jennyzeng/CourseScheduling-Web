@@ -1,5 +1,20 @@
 from CourseScheduling.extensions import db
 from datetime import datetime
+import lib.CourseSchedulingAlgorithm as cs
+
+def convert_prereq(prereq):
+    output = []
+    for or_set in prereq:
+        output.append([])
+        for course in or_set:
+            output[-1].append(course.dept + " " + course.cid)
+    return output
+
+
+def convert_quarters(quarters):
+    for idx, q in enumerate(quarters):
+        quarters[idx] = q.code
+    return quarters
 
 
 class Course(db.Document):
@@ -50,12 +65,37 @@ class Requirement(db.Document):
 class Major(db.Document):
     name = db.StringField(max_length=60, default="universal")
     requirements = db.ListField(db.ReferenceField(Requirement, dbref=True))
-
+    specs = db.DictField(field=db.ReferenceField(Requirement, dbref=True), default=dict)
     meta = {
         'indexes': [
             'name'
         ]
     }
+
+    def prepareScheduling(self, spec=''):
+        G, R, R_detail = dict(), dict(), dict()
+        req = list(self.requirements)
+        if spec != '':
+            req.append(self.specs[spec])
+            print ('spec', self.specs[spec])
+        print ('req', req)
+
+        for r in req:
+            R[r.name] = list()
+            R_detail[r.name] = list()
+
+            for subr in r.sub_reqs:
+                c_set = set()
+                R[r.name].append(subr.req_num)
+                for c in subr.req_list:
+                    c_name = c.dept + " " + c.cid
+                c_set.add(c_name)
+                G[c_name] = cs.Course(name=c.name, units=c.units,
+                                      quarter_codes=convert_quarters(c.quarters),
+                                      prereq=convert_prereq(c.prereq), is_upper_only=c.upperOnly)
+            R_detail[r.name].append(c_set)
+        return G, R, R_detail
+
     def __unicode__(self):
         return self.name
 
