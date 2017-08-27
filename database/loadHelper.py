@@ -1,9 +1,4 @@
-from flask_script import Command, Manager, Option
-from CourseScheduling.app import create_app
 from CourseScheduling.blueprints.schedule.models import Course, Requirement, SubReq, Major, Quarter
-
-manager = Manager(create_app)
-
 
 def load_quarters():
     qdict = ['fall 1', 'winter 1', 'spring 1', 'fall 2', 'winter 2', 'spring 2']
@@ -46,7 +41,6 @@ def format_prereqs(prereqs):
     return output
 
 
-@manager.command
 def load_course(filename="database/txt_files/fullcourses_new.txt"):
     """
     load course info to database from txt file
@@ -88,7 +82,6 @@ def load_course(filename="database/txt_files/fullcourses_new.txt"):
                 line = f.readline()
         print("updated prerequisites")
 
-@manager.command
 def load_requirement(name='universal', filename='database/txt_files/universal.txt'):
     """
     load requirement info to database from txt file
@@ -106,7 +99,7 @@ def load_requirement(name='universal', filename='database/txt_files/universal.tx
         for block in content:
             block = block.strip().split("\n")
             if not block[0]: continue
-            if block[0].lower() == 'spec': 
+            if block[0].lower() == 'spec':
                 spec = True
                 continue
 
@@ -137,11 +130,3 @@ def load_requirement(name='universal', filename='database/txt_files/universal.tx
             requirement.save()
         major.save()
 
-
-@manager.command
-def hello(name='Yitong Wu'):
-    print("hello", name)
-
-
-if __name__ == "__main__":
-    manager.run()
