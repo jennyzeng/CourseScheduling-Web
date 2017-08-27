@@ -6,6 +6,7 @@ from CourseScheduling.extensions import debug_toolbar, db, mongoInterface, admin
 from CourseScheduling.blueprints.schedule.models import Course, Requirement, Major, Quarter
 from CourseScheduling.blueprints.admin.views import (CourseView, RequirementView, QuarterView,
                                                      MajorView, UserView, RoleView)
+from CourseScheduling.blueprints.admin.fileUpload import FileUploadView
 from CourseScheduling.blueprints.user.models import User, Role
 from flask_security import MongoEngineUserDatastore
 from flask_admin import helpers as admin_helpers
@@ -66,7 +67,7 @@ def extensions(app):
     admin.add_view(QuarterView(Quarter))
     admin.add_view(UserView(User))
     admin.add_view(RoleView(Role))
-
+    admin.add_view(FileUploadView(name='Course Upload', endpoint='upload'))
     # define a context processor for merging flask-admin's template context into the
     # flask-security views.
     @security.context_processor
