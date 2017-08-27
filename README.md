@@ -47,17 +47,24 @@ docker-compose exec website python CourseScheduling/manage.py load_course -f [pa
 
 # To load requirements with major:
 # general:
-docker-compose exec website python CourseScheduling/manage.py load_requirement -n [major-name] -f [path-to-the-file]
+docker-compose exec website python database/manage.py load_requirement -n [major-name] -f [path-to-the-file]
 
 ## for universial
-docker-compose exec website python CourseScheduling/manage.py load_requirement
+docker-compose exec website python database/manage.py load_requirement
 
 ## cs major:
-docker-compose exec website python CourseScheduling/manage.py load_requirement -n "Computer Science" -f "database/txt_files/cs.txt" 
+docker-compose exec website python database/manage.py load_requirement -n "Computer Science" -f "database/txt_files/cs.txt" 
 ```
 remember that if you want to access the database in docker, the host name is the name of the database container name. 
 That is, 'mongodb' in our case (You can see it in docker-compose.yml). 
 
+
+## New Crawler that save courses as json file
+
+```
+docker-compose exec website python database/WebSoc.py
+```
+dept list and save path can be edited in database/WebSoc.py main
 
 ## about testing
 

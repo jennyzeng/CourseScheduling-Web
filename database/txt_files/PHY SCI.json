@@ -1,0 +1,38 @@
+{
+    "PHYSCI 105": {
+        "cid": "105",
+        "dept": "PHYSCI",
+        "name": "MID SCI & MATH TCHG",
+        "prereqs": [
+            [
+                "PHY SCI 5",
+                "BIO SCI 14"
+            ]
+        ],
+        "quarters": [
+            0,
+            1,
+            3,
+            4,
+            5
+        ],
+        "units": "3",
+        "upperOnly": false
+    },
+    "PHYSCI 139W": {
+        "cid": "139W",
+        "dept": "PHYSCI",
+        "name": "TECHNICAL WRITING",
+        "prereqs": [],
+        "quarters": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "units": "4",
+        "upperOnly": false
+    }
+}
