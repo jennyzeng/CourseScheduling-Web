@@ -96,16 +96,20 @@ def load_requirement(name='universal', filename='database/txt_files/universal.tx
     :param filename: txt file path
     """
     import re, os
-    # clean old major
+
+    spec = False
+    name = name.lower()
     Major.objects(name=name).upsert_one(requirements=[])
     major = Major.objects(name=name).first()
     with open(filename) as f:
-
         content = f.read().split(";")
         for block in content:
-            block = block.strip().split('\n')
+            block = block.strip().split("\n")
             if not block[0]: continue
-            # clean old requirement
+            if block[0].lower() == 'spec': 
+                spec = True
+                continue
+
             Requirement.objects(name=block[0]).update_one(sub_reqs=[], upsert=True)
             requirement = Requirement.objects(name=block[0]).first()
             i = 1
@@ -126,7 +130,10 @@ def load_requirement(name='universal', filename='database/txt_files/universal.tx
                     requirement.sub_reqs[-1].req_list.append(Course.objects(dept=dept, cid=cid).first())
                     i += 1
             print(requirement.name)
-            major.requirements.append(requirement)
+            if spec:
+                major.specs[requirement.name] = requirement
+            else:
+                major.requirements.append(requirement)
             requirement.save()
         major.save()
 

@@ -10,15 +10,18 @@ class data:
 		self.studentID = None
 		self.major = list()
 		self.minor = list()
+		# spec now only support for CS major
 		self.spec = list()
-		self.applied_classes = list()
+		self.classes = set()
 		self.degree = None
 		self.level = None
+		self.units_applied = 0
 		self.process_cookies(cookies)
 
 	def getDict(self):
 		return {'name':self.name, 'id':self.studentID, 'major':self.major, 'degree':self.degree,
-			'level':self.level, 'spec':self.spec, 'minor':self.minor, 'taken': self.applied_classes}
+			'level':self.level, 'spec':self.spec, 'minor':self.minor, 'taken': self.classes, 
+			'units':self.units_applied}
 
 	def process_cookies(self, cookies):
 		for key_val in cookies.split(';'):
@@ -31,9 +34,6 @@ class data:
 
 		body = "SERVICE=SCRIPTER&SCRIPT=SD2STUCON"
 		r = requests.post(self.url, cookies=self.cookies, data=body)
-		
-		with open('id.xml', 'w') as f:
-			f.write(r.text)
 
 		rl = re.findall('<input type="hidden" name="STUID" value="(\d+)">', r.text)
 		if len(rl) == 1:
@@ -43,9 +43,6 @@ class data:
 	def fetch_student_detail(self):
 		body = "SERVICE=SCRIPTER&SCRIPT=SD2STUGID&STUID={id}&DEBUG=OFF".format(id=self.studentID)
 		r = requests.post(self.url, cookies=self.cookies, data=body)
-
-		with open('details.xml', 'w') as f:
-			f.write(r.text)
 
 		soup = BeautifulSoup(r.text, 'lxml')
 		stu_data = soup.find('studentdata')
@@ -69,10 +66,11 @@ class data:
 		body = "SERVICE=SCRIPTER&REPORT=WEB31&SCRIPT=SD2GETAUD%%26ContentType%%3Dxml&ACTION=REVAUDIT&ContentType=xml&STUID=%s&DEBUG=OFF" % (self.studentID)
 		r = requests.post(self.url, cookies=self.cookies, data=body)
 
-		with open('courses.xml', 'w') as f:
-			f.write(r.text)
-
 		soup = BeautifulSoup(r.text, 'lxml')
+
+		block = soup.find('block')
+		self.units_applied = int(block['credits_applied'])
+
 		for goal in soup.find('deginfo').findAll('goal'):
 			if goal['code'].lower() == 'major':
 				self.major.append(goal['valuelit'])
@@ -81,21 +79,21 @@ class data:
 			elif goal['code'].lower() == 'spec':
 				self.spec.append(goal['valuelit'])
 
-		for applied_classes in soup.findAll('classesapplied'):
-			for cla in applied_classes.findAll('class'):
-				disc, num = '', ''
-				if len(cla.get('disc', '')) > 0:
-					disc = cla['disc']
-				elif len(cla.get('discipline', '')) > 0:
-					disc = cla['discipline']
+		classes = soup.find("clsinfo")
+		for cls in classes.findAll("class"):
+			disc, num = '', ''
+			if len(cls.get('disc', '')) > 0:
+				disc = cls['disc']
+			elif len(cls.get('discipline', '')) > 0:
+				disc = cls['discipline']
 
-				if len(cla.get('num', '')) > 0:
-					num = cla['num']
-				elif len(cla.get('number', '')) > 0:
-					num = cla['number']
+			if len(cls.get('num', '')) > 0:
+				num = cls['num']
+			elif len(cls.get('number', '')) > 0:
+				num = cls['number']
 
-				if len(disc) > 0 and len(num) > 0:
-					self.applied_classes.append(disc + ' ' + num)
+			if len(disc) > 0 and len(num) > 0:
+	 			self.classes.add(disc + ' ' + num)
 
 
 

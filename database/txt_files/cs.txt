@@ -111,6 +111,8 @@ COMPSCI 189
 IN4MATX 134
 }
 ;
+Spec
+;
 Algorithms
 2
 {
@@ -247,6 +249,17 @@ COMPSCI 143B
 }
 ;
 Visual Computing
+4
+{
+COMPSCI 111
+COMPSCI 112
+COMPSCI 114
+COMPSCI 116
+COMPSCI 117
+I&CSCI 162
+}
+;
+CS:General CS
 4
 {
 COMPSCI 111
