@@ -58,7 +58,7 @@ def load_course(filename="database/txt_files/fullcourses_new.txt"):
             while line:
                 line = line.strip().split(";")
                 course = Course.objects(
-                    dept=line[0], cid=line[1]).update_one(
+                    dept=line[0].upper(), cid=line[1]).update_one(
                     name=line[2],
                     units=float(line[4]), quarters=format_quarters(eval(line[5]), qdict),
                     upperOnly=eval(line[6]), upsert=True
@@ -124,7 +124,7 @@ def load_requirement(name='universal', filename='database/txt_files/universal.tx
                     i += 1
             print(requirement.name)
             if spec:
-                major.specs[requirement.name] = requirement
+                major.specs.append(requirement)
             else:
                 major.requirements.append(requirement)
             requirement.save()

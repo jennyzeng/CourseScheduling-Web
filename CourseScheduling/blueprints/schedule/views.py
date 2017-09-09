@@ -31,7 +31,7 @@ def launch():
     uni = Major.objects(name='universal').first()
     G, R, R_detail = uni.prepareScheduling()
     major = Major.objects(name=d.major[0].lower()).first()
-    Gm, Rm, R_detailm = major.prepareScheduling(d.spec[0])
+    Gm, Rm, R_detailm = major.prepareScheduling(d.spec)
     G.update(Gm)
     R.update(Rm)
     R_detail.update(R_detailm)

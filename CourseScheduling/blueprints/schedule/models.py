@@ -18,13 +18,15 @@ def convert_quarters(quarters):
 
 
 class Course(db.Document):
+    # dept name might contain spaces
     dept = db.StringField(max_length=10)
+    # cid in format ^[0-9]+[A-Z]*$
     cid = db.StringField(max_length=10)
+    # name is a brief introduction to the course
     name = db.StringField(max_length=60)
 
-    # guess it is better to change the prereq one later...
-    # may change it to be a list of Courses not string.
-    # so eventually we get a relational model = =...
+    # a list of lists
+    # each nested list contains a reference to a Course object
     prereq = db.ListField(db.ListField(db.ReferenceField('Course', dbref=True)))
     units = db.FloatField()
     quarters = db.ListField(db.ReferenceField('Quarter', dbref=True))
@@ -43,10 +45,7 @@ class Course(db.Document):
         return self.dept +" "+ self.cid
 
 class SubReq(db.EmbeddedDocument):
-    # we need a more complicated model later such that we can
-    # refer to the courses in the subreq!!!
-
-    # req_list = db.ListField(db.StringField(max_length=20))
+    # now each requirement refers to the Course object
     req_list = db.ListField(db.ReferenceField(Course, dbref=True))
     req_num = db.IntField(min_value=0)
 
@@ -63,21 +62,24 @@ class Requirement(db.Document):
         return self.name
 
 class Major(db.Document):
-    name = db.StringField(max_length=60, default="universal")
+    name = db.StringField(max_length=60, default="UNIVERSAL")
     requirements = db.ListField(db.ReferenceField(Requirement, dbref=True))
-    specs = db.DictField(field=db.ReferenceField(Requirement, dbref=True), default=dict)
+    # used to be DictField for better performance,
+    # but admin doesn't work well with complex structure. 
+    specs = db.ListField(field=db.ReferenceField(Requirement, dbref=True))
     meta = {
         'indexes': [
             'name'
         ]
     }
 
-    def prepareScheduling(self, spec=''):
+    def prepareScheduling(self, spec=[]):
         G, R, R_detail = dict(), dict(), dict()
         req = list(self.requirements)
-        if spec != '':
-            req.append(self.specs[spec])
-            print ('spec', self.specs[spec])
+        if len(spec):
+            spec_req = [x for x in self.specs if x in spec]
+            req.extend(spec_req)
+            print ('spec', spec_req)
         print ('req', req)
 
         for r in req:

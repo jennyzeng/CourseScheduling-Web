@@ -113,7 +113,7 @@ IN4MATX 134
 ;
 Spec
 ;
-Algorithms
+CS:Algorithms
 2
 {
 COMPSCI 178
@@ -132,7 +132,7 @@ COMPSCI 177
 COMPSCI 179
 }
 ;
-Architecture and Embedded Systems
+CS:Architecture and Embedded Systems
 4
 {
 COMPSCI 144
@@ -143,7 +143,7 @@ COMPSCI 153
 COMPSCI 154
 }
 ;
-Bioinformatics
+CS:Bioinformatics
 1
 {
 COMPSCI 184A
@@ -156,7 +156,7 @@ COMPSCI 184C
 COMPSCI 189
 }
 ;
-Information
+CS:Information
 3
 {
 COMPSCI 121
@@ -185,7 +185,7 @@ COMPSCI 125
 COMPSCI 179
 }
 ;
-Intelligent Systems
+CS:Intelligent Systems
 3
 {
 COMPSCI 171
@@ -213,7 +213,7 @@ COMPSCI 174
 COMPSCI 184B
 }
 ;
-Networked Systems
+CS:Networked Systems
 4
 {
 COMPSCI 132
@@ -237,7 +237,7 @@ COMPSCI 163
 COMPSCI 169
 }
 ;
-Systems and Software
+CS:Systems and Software
 3
 {
 COMPSCI 131
@@ -248,7 +248,7 @@ COMPSCI 143A
 COMPSCI 143B
 }
 ;
-Visual Computing
+CS:Visual Computing
 4
 {
 COMPSCI 111
