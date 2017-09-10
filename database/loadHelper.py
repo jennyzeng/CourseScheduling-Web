@@ -1,4 +1,5 @@
 from CourseScheduling.blueprints.schedule.models import Course, Requirement, SubReq, Major, Quarter
+import json
 
 def load_quarters():
     qdict = ['fall 1', 'winter 1', 'spring 1', 'fall 2', 'winter 2', 'spring 2']
@@ -33,7 +34,9 @@ def format_prereqs(prereqs):
         output.append([])
         for course in or_set:
             a_tuple = course.strip().split(' ')
-            dept, cid = a_tuple
+            # ex. PHY SCI 122B 
+            # assume the last segment is the cid, everything in front of cid is a dept
+            dept, cid = ' '.join(a_tuple[:-1]), a_tuple[-1]
             course_obj = Course.objects(dept=dept, cid=cid).first()
             if course_obj:
                 output[-1].append(course_obj)
@@ -54,17 +57,40 @@ def load_course(filename="database/txt_files/fullcourses_new.txt"):
     qdict = load_quarters()
     try:
         with open(filename, 'r') as f:
-            line = f.readline()
-            while line:
-                line = line.strip().split(";")
-                course = Course.objects(
-                    dept=line[0].upper(), cid=line[1]).update_one(
-                    name=line[2],
-                    units=float(line[4]), quarters=format_quarters(eval(line[5]), qdict),
-                    upperOnly=eval(line[6]), upsert=True
-                )
-                # course.save()
-                line = f.readline()
+            """
+            # give up ijson because we are plannin to decrease the workload by separating courses by dept, 
+            # so each file won't be too large. 
+
+            # use ijson in case we will parse large course json file in future
+            parser = parse(f)
+            course = None
+            for prefix, event, value in parser:
+                # the begin of the first course in the file 
+                if not course and prefix != '' and event == 'start_map':
+                    course = Course(cid='', dept='', name='')
+                # the rest of the conditional statements are supposed to be excuted line by line 
+                elif prefix[-4:] == '.cid' and event == 'string':
+                    course.cid= value
+                elif prefix.endswith('.dept') and event == 'string':
+                    course.dept = value
+                elif prefix.endswith('.name') and event == 'string':
+                    course.name = value
+                elif prefix[-14:] == '.quarters.item' and event == 'number':
+                    course.quarters.append(Quarter.objects(code=value).first())
+                elif prefix.endswith('.units') and event == 'string':
+                    course.units = int(value)
+                elif prefix.endswith('.upperOnly') and event == 'boolean':
+                    course.upperOnly = value
+                # when the course is loaded and event end_map is happening
+                elif course and prefix == course.dept+' '+course.cid and event == 'end_map':
+                    course.save()
+                    course = None;
+            """
+            
+            for k, c in json.load(f).items():
+                Course(name=c['name'], cid=c['cid'], units=int(c['units']), upperOnly=c['upperOnly'], dept=c['dept'],
+                    quarters=[Quarter.objects(code=x).first() for x in c['quarters']]).save()
+
     except FileNotFoundError as e:
         print("txt loading ERROR: ", e)
     else:
@@ -72,15 +98,10 @@ def load_course(filename="database/txt_files/fullcourses_new.txt"):
         # to refer to the course object, we have to load courses without adding prereqs first,
         # and add the prereqs later
         with open(filename, 'r') as f:
-            line = f.readline()
-            while line:
-                line = line.strip().split(";")
-                course_obj = Course.objects(dept=line[0], cid=line[1]).first()
-                if course_obj:
-                    course_obj.prereq = format_prereqs(eval(line[3]))
-                    course_obj.save()
-                line = f.readline()
-        print("updated prerequisites")
+            for k, c in json.load(f).items():
+                Course.objects(cid=c['cid'], dept=c['dept']).update_one(prereq=format_prereqs(c['prereqs']))
+
+        print ("updated prerequisites")
 
 def load_requirement(name='universal', filename='database/txt_files/universal.txt'):
     """

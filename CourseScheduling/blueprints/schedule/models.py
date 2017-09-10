@@ -27,9 +27,9 @@ class Course(db.Document):
 
     # a list of lists
     # each nested list contains a reference to a Course object
-    prereq = db.ListField(db.ListField(db.ReferenceField('Course', dbref=True)))
-    units = db.FloatField()
-    quarters = db.ListField(db.ReferenceField('Quarter', dbref=True))
+    prereq = db.ListField(db.ListField(db.ReferenceField('Course', dbref=True)), default=[])
+    units = db.FloatField(default=4)
+    quarters = db.ListField(db.ReferenceField('Quarter', dbref=True), default=[])
     upperOnly = db.BooleanField(default=False)
     # for sample data in db right now, the pub_date is not correct
     # change the way we load data will fix this problem
