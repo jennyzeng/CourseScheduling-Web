@@ -1,0 +1,132 @@
+{
+  "requirements": [
+    {
+      "name": "University",
+      "sub_reqs": [
+        {
+          "req_num": 1,
+          "req_list": [
+            "HISTORY 40A",
+            "HISTORY 40B",
+            "HISTORY 40C"
+          ]
+        },
+        {
+          "req_num": 1,
+          "req_list": [
+            "POLSCI 21A"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "GEI",
+      "sub_reqs": [
+        {
+          "req_num": 2,
+          "req_list": [
+            "WRITING LOW1",
+            "WRITING LOW2"
+          ]
+        }
+      ]
+    },
+     {
+       "name": "GEII",
+      "sub_reqs": [
+        {
+          "req_num": 3,
+          "req_list": [
+            "GEII -1",
+            "GEII -2",
+            "I&C SCI 31",
+            "I&C SCI 51"
+          ]
+        }
+      ]
+    },
+    {
+      "name":"GEIII",
+      "sub_reqs": [
+        {
+          "req_num": 3,
+          "req_list": [
+            "POLSCI 21A",
+            "GEIII -1",
+            "GEIII -2",
+            "GEIII -3"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "GEIV",
+      "sub_reqs": [
+        {
+          "req_num": 3,
+          "req_list": [
+            "HISTORY 40A",
+            "HISTORY 40B",
+            "HISTORY 40C",
+            "GEIV -1",
+            "GEIV -2",
+            "GEIV -3"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "GEV",
+      "sub_reqs": [
+        {
+          "req_num": 2,
+          "req_list": [
+            "I&C SCI 32",
+            "STATS 67",
+            "GEV -Va1"
+          ]
+        },
+        {
+          "req_num": 1,
+          "req_list": [
+            "I&C SCI 6B",
+            "GEV -Vb1"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "GEVI",
+      "sub_reqs": [
+        {
+          "req_num": 1,
+          "req_list": [
+            "GEVI -1"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "GEVII",
+      "sub_reqs": [
+        {
+          "req_num": 1,
+          "req_list": [
+            "GEVII -1"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "GEVIII",
+      "sub_reqs": [
+        {
+          "req_num": 1,
+          "req_list": [
+            "GEVIII -1"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -76,12 +76,12 @@ class WebSoc:
             class_=["course", "title", "prereq"])
 
     def _writeDeptCouresInfo(self, dept, lines):
-        deptEdited = dept.replace(" ", "")
+        # deptEdited = dept.replace(" ", "")
         for i in range(0, len(lines), 3):
             CourseNum, title, prereqs, condition = self._extractInfoFromLine(lines[i:i + 3])
             units, quarters = self._getMatchingUnitAndQuarter(dept, CourseNum)
             if quarters:
-                course = {"dept": deptEdited,
+                course = {"dept": dept,
                           "cid": CourseNum,
                           "name": title,
                           "prereqs": prereqs,
@@ -89,7 +89,7 @@ class WebSoc:
                           "quarters":quarters,
                           "upperOnly": condition
                           }
-                self.json[deptEdited + " " + CourseNum] = course
+                self.json[dept + " " + CourseNum] = course
 
                 print("wrote course", dept, CourseNum)
 
@@ -176,5 +176,5 @@ class WebSoc:
 if __name__ == "__main__":
     websoc = WebSoc()
 
-    websoc.main(["PHY SCI"], "database/txt_files/")
+    websoc.main(["COMPSCI"], "database/courses/")
     # websoc.forSingleCourse("PHYSICS", "2")
