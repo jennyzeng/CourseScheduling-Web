@@ -1,5 +1,5 @@
 """
-a crawler that crawl course information on UCI website
+a crawler that crawls course information on UCI website
 """
 from bs4 import BeautifulSoup
 import requests
