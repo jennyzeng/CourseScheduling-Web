@@ -16,6 +16,9 @@ def format_quarters(qlist, qdict):
         qlist[i] = qdict[qlist[i]]
     return qlist
 
+def getDeptCid(course):
+    a_tuple = course.strip().split(' ')
+    return ' '.join(a_tuple[:-1]), a_tuple[-1]
 
 def format_prereqs(prereqs):
     """
@@ -32,11 +35,10 @@ def format_prereqs(prereqs):
     output = []
     for or_set in prereqs:
         output.append([])
-        for course in or_set:
-            a_tuple = course.strip().split(' ')
+        for course in or_set:   
             # ex. PHY SCI 122B 
             # assume the last segment is the cid, everything in front of cid is a dept
-            dept, cid = ' '.join(a_tuple[:-1]), a_tuple[-1]
+            dept, cid = getDeptCid(course)
             course_obj = Course.objects(dept=dept, cid=cid).first()
             if course_obj:
                 output[-1].append(course_obj)
@@ -44,7 +46,7 @@ def format_prereqs(prereqs):
     return output
 
 
-def load_course(filename="database/txt_files/fullcourses_new.txt"):
+def load_course(filename):
     """
     load course info to database from txt file
     :param filename: txt file path
@@ -92,9 +94,9 @@ def load_course(filename="database/txt_files/fullcourses_new.txt"):
                     quarters=[Quarter.objects(code=x).first() for x in c['quarters']]).save()
 
     except FileNotFoundError as e:
-        print("txt loading ERROR: ", e)
+        print("json loading ERROR: ", e)
     else:
-        print("Successfully loaded txt file", filename)
+        print("Successfully loaded json file", filename)
         # to refer to the course object, we have to load courses without adding prereqs first,
         # and add the prereqs later
         with open(filename, 'r') as f:
@@ -103,51 +105,43 @@ def load_course(filename="database/txt_files/fullcourses_new.txt"):
 
         print ("updated prerequisites")
 
-def load_requirement(name='universal', filename='database/txt_files/universal.txt'):
+def load_requirement(name, filename):
     """
     load requirement info to database from txt file
     this one does not consider the recommand!
     :param filename: txt file path
     """
-    import re, os
 
-    spec = False
-    name = name.lower()
-    Major.objects(name=name).upsert_one(requirements=[])
+    Major.objects(name=name.upper()).upsert_one(requirements=[])
     major = Major.objects(name=name).first()
-    with open(filename) as f:
-        content = f.read().split(";")
-        for block in content:
-            block = block.strip().split("\n")
-            if not block[0]: continue
-            if block[0].lower() == 'spec':
-                spec = True
-                continue
-
-            Requirement.objects(name=block[0]).update_one(sub_reqs=[], upsert=True)
-            requirement = Requirement.objects(name=block[0]).first()
-            i = 1
-
-            while (i < len(block)):
-                if re.match("^([1-9][0-9]*)$", block[i]):
-                    subreq = SubReq(req_list=[], req_num=eval(block[i]))
-                    requirement["sub_reqs"].append(subreq)
-                    i += 2  # skip {
-                elif re.match("(\}|\{)", block[i]):
-                    i += 1
+    try:
+        with open(filename, 'r') as f:
+            content = json.load(f)
+            reqs = content.get('requirements', [])
+            specs = content.get('specs', [])
+            cnt = 0
+            for req in reqs+specs:
+                Requirement.objects(name=req['name']).update_one(sub_reqs=[], upsert=True)
+                requirement = Requirement.objects(name=req['name']).first()
+                for subr in req.get('sub_reqs', []):
+                    subreq = SubReq(req_list=[], req_num=subr['req_num'])
+                    for c in subr.get("req_list", []):
+                        dept, cid = getDeptCid(c)
+                        if not Course.objects(dept=dept, cid=cid).first():
+                            print("Error in ", dept, cid)
+                            continue
+                        subreq.req_list.append(Course.objects(dept=dept, cid=cid).first())
+                    requirement.sub_reqs.append(subreq)
+                requirement.save()
+                if cnt < len(reqs):
+                    major.requirements.append(requirement)
                 else:
-                    dept, cid = block[i].strip().split()
-                    if not Course.objects(dept=dept, cid=cid).first():
-                        print("Error in ", dept, cid)
-                        i += 1
-                        continue
-                    requirement.sub_reqs[-1].req_list.append(Course.objects(dept=dept, cid=cid).first())
-                    i += 1
-            print(requirement.name)
-            if spec:
-                major.specs.append(requirement)
-            else:
-                major.requirements.append(requirement)
-            requirement.save()
-        major.save()
+                    major.specs.append(requirement)
+                cnt += 1
+            major.save()
+    except FileNotFoundError as e:
+        print("json loading ERROR: ", e)
+    else:
+        print("Successfully loaded json file", filename)
 
+        
