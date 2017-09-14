@@ -91,11 +91,11 @@ class Major(db.Document):
                 R[r.name].append(subr.req_num)
                 for c in subr.req_list:
                     c_name = c.dept + " " + c.cid
-                c_set.add(c_name)
-                G[c_name] = cs.Course(name=c.name, units=c.units,
+                    c_set.add(c_name)
+                    G[c_name] = cs.Course(name=c.name, units=c.units,
                                       quarter_codes=convert_quarters(c.quarters),
                                       prereq=convert_prereq(c.prereq), is_upper_only=c.upperOnly)
-            R_detail[r.name].append(c_set)
+                R_detail[r.name].append(c_set)
         return G, R, R_detail
 
     def __unicode__(self):

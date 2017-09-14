@@ -112,10 +112,10 @@ def load_requirement(name, filename):
     :param filename: txt file path
     """
 
-    Major.objects(name=name.upper()).upsert_one(requirements=[])
-    major = Major.objects(name=name).first()
     try:
         with open(filename, 'r') as f:
+            Major.objects(name=name.upper()).upsert_one(requirements=[])
+            major = Major.objects(name=name).first()
             content = json.load(f)
             reqs = content.get('requirements', [])
             specs = content.get('specs', [])
@@ -144,4 +144,3 @@ def load_requirement(name, filename):
     else:
         print("Successfully loaded json file", filename)
 
-        
