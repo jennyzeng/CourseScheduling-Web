@@ -25,8 +25,6 @@ def launch():
     avoid = set()
 
     d = dgw_data.data(cookie)
-    d.fetch_student_id()
-    d.fetch_student_detail()
     d.fetch_xml()
     uni = Major.objects(name='UNIVERSAL').first()
     G, R, R_detail = uni.prepareScheduling()

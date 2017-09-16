@@ -1,5 +1,8 @@
 import requests, re
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, element
+
+disallowed_per_complete = ['Not Needed', 'Not Used'] 
+allowed_rule_type = ['Course', 'Group']
 
 # degreework data
 class data:
@@ -28,7 +31,16 @@ class data:
 			key, val = key_val.split('=', 1)
 			self.cookies[key] = val
 	
-	def fetch_student_id(self):
+	def fetch_xml(self):
+		# fetch student id needed to fetch courses page, which is the key element
+		self._fetch_student_id()
+		# fetch student information (name, degree, level)
+		# maybe we can get rid of this later so that we don't have to parse 3 xml files
+		self._fetch_student_detail()
+		# key component : fetch course applied, spec, units and etc
+		self._fetch_courses()
+
+	def _fetch_student_id(self):
 		if len(self.cookies) == 0:
 			return self.studentID
 
@@ -40,7 +52,7 @@ class data:
 			self.studentID = rl[0]
 		return self.studentID
 
-	def fetch_student_detail(self):
+	def _fetch_student_detail(self):
 		body = "SERVICE=SCRIPTER&SCRIPT=SD2STUGID&STUID={id}&DEBUG=OFF".format(id=self.studentID)
 		r = requests.post(self.url, cookies=self.cookies, data=body)
 
@@ -62,7 +74,7 @@ class data:
 		else:
 			self.level = None
 
-	def fetch_xml(self):
+	def _fetch_courses(self):
 		body = "SERVICE=SCRIPTER&REPORT=WEB31&SCRIPT=SD2GETAUD%%26ContentType%%3Dxml&ACTION=REVAUDIT&ContentType=xml&STUID=%s&DEBUG=OFF" % (self.studentID)
 		r = requests.post(self.url, cookies=self.cookies, data=body)
 
@@ -94,6 +106,32 @@ class data:
 
 			if len(disc) > 0 and len(num) > 0:
 	 			self.classes.add(disc + ' ' + num)
+
+	 	# check for each requirement 
+		for rule in soup.find_all('rule', attrs={'indentlevel':'1'}):
+			if rule and type(rule) == element.Tag \
+			and rule['ruletype'] in allowed_rule_type and rule['per_complete'] not in disallowed_per_complete:
+				# for development purpose, print out how many classes are missing for each requirement
+				print ('@@@', rule.get('label', '---'), 'missing', self.checkRequirement(rule), 'courses')
+
+	# return total missing courses for this rule
+	def checkRequirement(self, rule):
+		# unusable rules 
+		if not rule or type(rule) != element.Tag or rule['ruletype'] not in allowed_rule_type or rule['per_complete'] in disallowed_per_complete:
+			return 10000  # return a impossible number
+
+		if rule.requirement and rule.requirement.has_attr('numgroups'):
+			n = int(rule.requirement['numgroups'])
+			shortlist = list()
+			for child_rule in rule.find_all('rule'):
+				# in case there are multiple subrules
+				if child_rule.has_attr('per_complete') and child_rule.get('per_complete') not in disallowed_per_complete \
+				and child_rule['ruletype'] in allowed_rule_type:
+					shortlist.append(self.checkRequirement(child_rule))
+			# sort the list and choose the first n (smallest) subrules
+			return sum(sorted(shortlist)[:n])
+		else:
+			return int(rule.requirement['classes_begin']) - int(rule.classes_applied.text)
 
 
 
