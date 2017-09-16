@@ -93,6 +93,33 @@ Requirement
 Major
 - Requirement
 
+## XML parsing 
+
+Parsing student id and name are easy, but parsing requirements that student has completed and computing how many courses away from completion from degreework is hard.
+
+basic structure
+
+1,  
+```                        
+                            rule 
+ 	       
+ 	         /                |              \           \
+
+      requirement           rule             rule		... (mutiple rules)
+   (self-defining tag                    
+    describing how many
+    rules to pick)
+```
+2,    
+```                   
+                         rule
+ 
+		    /             |                \       
+    classes_applied      ...            requirement (attr : classes_begin)
+                                       /      |      \
+                                  course    course   ...
+```
+
 ## Reference
 
 [udemy: build a SAAS app with flask](https://www.udemy.com/the-build-a-saas-app-with-flask-course)

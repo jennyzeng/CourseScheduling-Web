@@ -133,10 +133,5 @@ class data:
 		else:
 			return int(rule.requirement['classes_begin']) - int(rule.classes_applied.text)
 
-
-
-
-
-
 		
 
