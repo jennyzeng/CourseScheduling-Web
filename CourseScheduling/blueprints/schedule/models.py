@@ -73,7 +73,7 @@ class Major(db.Document):
         ]
     }
 
-    def prepareScheduling(self, spec=[]):
+    def prepareScheduling(self, spec=[], ge_filter={}):
         G, R, R_detail = dict(), dict(), dict()
         req = list(self.requirements)
         if len(spec):
@@ -88,7 +88,14 @@ class Major(db.Document):
 
             for subr in r.sub_reqs:
                 c_set = set()
-                R[r.name].append(subr.req_num)
+
+                # for ge requirement, simply apply the missing courses number as requirement number
+                if r.name in ge_filter:
+                    R[r.name].append(ge_filter[r.name])
+                # otherwise, apply it as it is
+                else:
+                    R[r.name].append(subr.req_num)
+
                 for c in subr.req_list:
                     c_name = c.dept + " " + c.cid
                     c_set.add(c_name)

@@ -26,17 +26,17 @@ def launch():
 
     d = dgw_data.data(cookie)
     d.fetch_xml()
-    uni = Major.objects(name='UNIVERSAL').first()
-    G, R, R_detail = uni.prepareScheduling()
-    major = Major.objects(name=d.major[0].upper()).first()
-    Gm, Rm, R_detailm = major.prepareScheduling(d.spec)
-    G.update(Gm)
-    R.update(Rm)
-    R_detail.update(R_detailm)
+    G, R, R_detail = dict(), dict(), dict()
+    for mname in d.major:
+        major = Major.objects(name=mname.upper()).first()
+        if not major:
+            continue
+        g, r, r_detail = major.prepareScheduling(spec=d.spec, ge_filter=d.ge_table)
+        G.update(g)
+        R.update(r)
+        R_detail.update(r_detail)
 
     taken = d.classes
-
-    print (taken)
 
     # update requirement table based on the taken information
     cs.update_requirements(R_detail, R, taken)

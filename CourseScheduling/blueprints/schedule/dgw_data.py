@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup, element
 
 disallowed_per_complete = ['Not Needed', 'Not Used'] 
 allowed_rule_type = ['Course', 'Group']
+ge_filter = '^(M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3}))\..+$'
 
 # degreework data
 class data:
@@ -11,7 +12,7 @@ class data:
 		self.cookies = dict()
 		self.name = None
 		self.studentID = None
-		self.major = list()
+		self.major = ['UNIVERSAL']
 		self.minor = list()
 		# spec now only support for CS major
 		self.spec = list()
@@ -19,6 +20,7 @@ class data:
 		self.degree = None
 		self.level = None
 		self.units_applied = 0
+		self.ge_table = dict()
 		self.process_cookies(cookies)
 
 	def getDict(self):
@@ -111,8 +113,12 @@ class data:
 		for rule in soup.find_all('rule', attrs={'indentlevel':'1'}):
 			if rule and type(rule) == element.Tag \
 			and rule['ruletype'] in allowed_rule_type and rule['per_complete'] not in disallowed_per_complete:
+				ge = re.match(ge_filter, rule.get('label', ''))
+				if not ge:
+					continue
+				self.ge_table['GE'+ge.group(1)] = self.checkRequirement(rule)
 				# for development purpose, print out how many classes are missing for each requirement
-				print ('@@@', rule.get('label', '---'), 'missing', self.checkRequirement(rule), 'courses')
+				print ('@@@', 'GE'+ge.group(1), 'missing', self.ge_table['GE'+ge.group(1)], 'courses')
 
 	# return total missing courses for this rule
 	def checkRequirement(self, rule):
