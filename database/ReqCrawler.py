@@ -22,7 +22,7 @@ class ReqCrawler:
     def __init__(self):
         pass
 
-    def CrawlUrl(self, save_at="requirements/temp_COMPUTERSCIENCE.json",
+    def CrawlUrl(self, save_at="requirements/temp_COMPUTER SCIENCE.json",
                  url="http://catalogue.uci.edu/donaldbrenschoolofinformationandcomputersciences/departmentofcomputerscience/#majorstext"):
         self.json = {"requirements": [], "specs": []}
         self.curReq = None
@@ -41,7 +41,7 @@ class ReqCrawler:
         for tag in soup:
             self._ProcessTr(tag)
         with io.open(self.save_at, 'w', encoding='utf8') as outfile:
-            data = json.dumps(self.json, sort_keys=False, indent=4,
+            data = json.dumps(self.json, sort_keys=False, indent=2,
                               separators=(',', ': '), ensure_ascii=False)
 
             outfile.write(to_unicode(data))
@@ -76,8 +76,6 @@ class ReqCrawler:
                     self.curSubReqList = self.curReq['sub_reqs'][-1]['req_list']
                     # we are not able to get the req_num from crawler, so we should look at the
                     # comments and do that manually
-        else:
-            self._ProcessTrCourseWithComment(tag)
 
 
     def _ProcessTrCourseWithComment(self, tag):

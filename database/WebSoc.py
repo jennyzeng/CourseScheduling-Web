@@ -108,7 +108,7 @@ class WebSoc:
                 quarters.add(key)
                 units = temp
         if quarters:
-            return units, list(quarters)
+            return int(units), list(quarters)
         else:
             return None, None
 
@@ -131,7 +131,7 @@ class WebSoc:
                 if course == 'UPPER DIVISION STANDING ONLY':
                     condition = True
                 else:
-                    regexp = re.compile(r"(ONLY)|(^NO)|(^AP)|(^BETTER) \
+                    regexp = re.compile(r"(ONLY)|(^NO)|(^AP)|(BETTER) \
 							|(ENTRY LEVEL WRITING)|(^PLACEMENT)|(MAJORS ONLY)|(=)|(>)")
                     if not regexp.search(course) and len(course) < 15:
                         if course.startswith("LOWER DIVISION WRITING"): course="WRITING LOW2"
@@ -176,5 +176,5 @@ class WebSoc:
 if __name__ == "__main__":
     websoc = WebSoc()
 
-    websoc.main(["COMPSCI"], "database/courses/")
+    websoc.main(["IN4MATX"], "courses/")
     # websoc.forSingleCourse("PHYSICS", "2")

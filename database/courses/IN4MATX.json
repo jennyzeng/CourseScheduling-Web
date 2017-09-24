@@ -1,0 +1,782 @@
+{
+    "IN4MATX 101": {
+        "cid": "101",
+        "dept": "IN4MATX",
+        "name": "CONCEPT PGMG LANG I",
+        "prereqs": [
+            [
+                "EECS 31",
+                "CSE 31",
+                "I&C SCI 51"
+            ],
+            [
+                "I&C SCI 46",
+                "CSE 46"
+            ]
+        ],
+        "quarters": [
+            0,
+            3
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "IN4MATX 102": {
+        "cid": "102",
+        "dept": "IN4MATX",
+        "name": "CONCPT PGMG LANG II",
+        "prereqs": [
+            [
+                "CSE 141",
+                "COMPSCI 141",
+                "IN4MATX 101"
+            ]
+        ],
+        "quarters": [
+            2
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "IN4MATX 113": {
+        "cid": "113",
+        "dept": "IN4MATX",
+        "name": "REQT ANALYSIS & ENG",
+        "prereqs": [
+            [
+                "CSE 22",
+                "I&C SCI 22",
+                "IN4MATX 42",
+                "CSE 43",
+                "I&C SCI 33"
+            ],
+            [
+                "IN4MATX 43",
+                "I&C SCI 52"
+            ]
+        ],
+        "quarters": [
+            1,
+            4
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "IN4MATX 115": {
+        "cid": "115",
+        "dept": "IN4MATX",
+        "name": "SW TEST&QUAL ASSUR",
+        "prereqs": [
+            [
+                "I&C SCI 45J",
+                "CSE 23",
+                "I&C SCI 45C",
+                "IN4MATX 45",
+                "CSE 46",
+                "I&C SCI 65",
+                "I&C SCI 23",
+                "CSE 45C",
+                "I&C SCI 46"
+            ],
+            [
+                "IN4MATX 43",
+                "I&C SCI 52"
+            ]
+        ],
+        "quarters": [
+            0,
+            3
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "IN4MATX 117": {
+        "cid": "117",
+        "dept": "IN4MATX",
+        "name": "PROJ IN SFT SYS DES",
+        "prereqs": [
+            [
+                "IN4MATX 43",
+                "I&C SCI 52"
+            ],
+            [
+                "CSE 22",
+                "I&C SCI 22",
+                "IN4MATX 42",
+                "CSE 43",
+                "I&C SCI 33"
+            ]
+        ],
+        "quarters": [
+            0,
+            2,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "IN4MATX 121": {
+        "cid": "121",
+        "dept": "IN4MATX",
+        "name": "SOFTWARE DESIGN I",
+        "prereqs": [
+            [
+                "CSE 23",
+                "CSE 43",
+                "IN4MATX 45",
+                "I&C SCI H23",
+                "CSE 46",
+                "I&C SCI 33",
+                "I&C SCI 23",
+                "I&C SCI 46"
+            ]
+        ],
+        "quarters": [
+            0,
+            3
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "IN4MATX 122": {
+        "cid": "122",
+        "dept": "IN4MATX",
+        "name": "SFT DSN:STRC & IMPL",
+        "prereqs": [
+            [
+                "IN4MATX 45",
+                "I&C SCI 45J",
+                "I&C SCI 46"
+            ],
+            [
+                "CSE 141",
+                "COMPSCI 141",
+                "IN4MATX 101"
+            ]
+        ],
+        "quarters": [
+            1,
+            4
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "IN4MATX 124": {
+        "cid": "124",
+        "dept": "IN4MATX",
+        "name": "INTERNET APPS ENGR",
+        "prereqs": [
+            [
+                "COMPSCI 132",
+                "EECS 148"
+            ],
+            [
+                "I&C SCI 45J"
+            ]
+        ],
+        "quarters": [
+            2,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "IN4MATX 125": {
+        "cid": "125",
+        "dept": "IN4MATX",
+        "name": "CMPTR GAME DEVLPMNT",
+        "prereqs": [
+            [
+                "I&C SCI 163",
+                "ART 106B",
+                "COMPSCI 171",
+                "IN4MATX 121",
+                "COMPSCI 112",
+                "I&C SCI 166"
+            ]
+        ],
+        "quarters": [
+            0,
+            3
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "IN4MATX 131": {
+        "cid": "131",
+        "dept": "IN4MATX",
+        "name": "HUMAN CMPTR INTRACT",
+        "prereqs": [
+            [
+                "IN4MATX 41",
+                "EECS 10",
+                "I&C SCI H21",
+                "I&C SCI 31",
+                "ENGR 10",
+                "ENGRMAE 10",
+                "CSE 41",
+                "I&C SCI 10",
+                "CSE 21",
+                "I&C SCI 21"
+            ]
+        ],
+        "quarters": [
+            0,
+            1,
+            3,
+            4
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "IN4MATX 132": {
+        "cid": "132",
+        "dept": "IN4MATX",
+        "name": "PROJ IN HCI & EVAL",
+        "prereqs": [
+            [
+                "IN4MATX 131"
+            ]
+        ],
+        "quarters": [
+            2,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "IN4MATX 133": {
+        "cid": "133",
+        "dept": "IN4MATX",
+        "name": "USER INTERACTION SW",
+        "prereqs": [
+            [
+                "I&C SCI 45J"
+            ]
+        ],
+        "quarters": [
+            0,
+            3
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "IN4MATX 134": {
+        "cid": "134",
+        "dept": "IN4MATX",
+        "name": "PROJ IN USER INT SW",
+        "prereqs": [
+            [
+                "IN4MATX 131"
+            ],
+            [
+                "IN4MATX 133"
+            ]
+        ],
+        "quarters": [
+            4
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "IN4MATX 141": {
+        "cid": "141",
+        "dept": "IN4MATX",
+        "name": "INFRMTION RETRIEVAL",
+        "prereqs": [
+            [
+                "I&C SCI 45J",
+                "I&C SCI 45C"
+            ],
+            [
+                "STATS 67",
+                "STATS 7"
+            ]
+        ],
+        "quarters": [
+            1,
+            4,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "IN4MATX 143": {
+        "cid": "143",
+        "dept": "IN4MATX",
+        "name": "INFRMTION VISUALZTN",
+        "prereqs": [
+            [
+                "IN4MATX 43",
+                "IN4MATX 131",
+                "I&C SCI 52"
+            ],
+            [
+                "IN4MATX 41",
+                "I&C SCI 31",
+                "CSE 41",
+                "CSE 21",
+                "I&C SCI 21"
+            ]
+        ],
+        "quarters": [
+            2,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "IN4MATX 148": {
+        "cid": "148",
+        "dept": "IN4MATX",
+        "name": "PROJ UBIQUITOUS CMP",
+        "prereqs": [
+            [
+                "IN4MATX 41",
+                "I&C SCI 31",
+                "CSE 41",
+                "I&C SCI 10",
+                "CSE 21",
+                "I&C SCI 21"
+            ]
+        ],
+        "quarters": [
+            2,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "IN4MATX 151": {
+        "cid": "151",
+        "dept": "IN4MATX",
+        "name": "PROJECT MANAGEMENT",
+        "prereqs": [
+            [
+                "IN4MATX 43",
+                "I&C SCI 52"
+            ]
+        ],
+        "quarters": [
+            0,
+            1,
+            3,
+            4
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "IN4MATX 153": {
+        "cid": "153",
+        "dept": "IN4MATX",
+        "name": "CMPTR SUP COOP WORK",
+        "prereqs": [
+            [
+                "IN4MATX 43",
+                "IN4MATX 161",
+                "I&C SCI 52"
+            ],
+            [
+                "IN4MATX 41",
+                "I&C SCI 31",
+                "CSE 41",
+                "CSE 21",
+                "I&C SCI 21"
+            ]
+        ],
+        "quarters": [
+            2,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "IN4MATX 161": {
+        "cid": "161",
+        "dept": "IN4MATX",
+        "name": "SOC ANLYS OF CMPTNG",
+        "prereqs": [
+            [
+                "IN4MATX 41",
+                "EECS 10",
+                "I&C SCI H21",
+                "I&C SCI 31",
+                "ENGR 10",
+                "ENGRMAE 10",
+                "CSE 41",
+                "I&C SCI 10",
+                "CSE 21",
+                "I&C SCI 21"
+            ]
+        ],
+        "quarters": [
+            0,
+            3,
+            4
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "IN4MATX 162W": {
+        "cid": "162W",
+        "dept": "IN4MATX",
+        "name": "ORGNIZATNL INFO SYS",
+        "prereqs": [
+            [
+                "IN4MATX 161"
+            ]
+        ],
+        "quarters": [
+            1,
+            4
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "IN4MATX 163": {
+        "cid": "163",
+        "dept": "IN4MATX",
+        "name": "PRJ IN SOC IMP COMP",
+        "prereqs": [
+            [
+                "IN4MATX 162",
+                "IN4MATX 162W"
+            ]
+        ],
+        "quarters": [
+            2,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "IN4MATX 171": {
+        "cid": "171",
+        "dept": "IN4MATX",
+        "name": "MEDICAL INFORMATICS",
+        "prereqs": [],
+        "quarters": [
+            3
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "IN4MATX 172": {
+        "cid": "172",
+        "dept": "IN4MATX",
+        "name": "PROJ HEALTH IN4MATX",
+        "prereqs": [
+            [
+                "PUBHLTH 105",
+                "IN4MATX 171"
+            ]
+        ],
+        "quarters": [
+            1,
+            4
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "IN4MATX 191A": {
+        "cid": "191A",
+        "dept": "IN4MATX",
+        "name": "SENIOR DESIGN PROJ",
+        "prereqs": [
+            [
+                "IN4MATX 113"
+            ],
+            [
+                "IN4MATX 121"
+            ],
+            [
+                "IN4MATX 131"
+            ],
+            [
+                "IN4MATX 151"
+            ],
+            [
+                "IN4MATX 161"
+            ],
+            [
+                "SENI",
+                "ST"
+            ]
+        ],
+        "quarters": [
+            0,
+            1,
+            3,
+            4
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "IN4MATX 191B": {
+        "cid": "191B",
+        "dept": "IN4MATX",
+        "name": "SENIOR DESIGN PROJ",
+        "prereqs": [
+            [
+                "IN4MATX 191A"
+            ]
+        ],
+        "quarters": [
+            1,
+            2,
+            4,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "IN4MATX 203": {
+        "cid": "203",
+        "dept": "IN4MATX",
+        "name": "QUAL RSCH MTHDS",
+        "prereqs": [
+            [
+                "IN4MATX 251",
+                "IN4MATX 261"
+            ]
+        ],
+        "quarters": [
+            1,
+            4
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "IN4MATX 205": {
+        "cid": "205",
+        "dept": "IN4MATX",
+        "name": "QUAN RSCH MTHDS-IS",
+        "prereqs": [
+            [
+                "IN4MATX 251",
+                "IN4MATX 261"
+            ]
+        ],
+        "quarters": [
+            2,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "IN4MATX 225": {
+        "cid": "225",
+        "dept": "IN4MATX",
+        "name": "INFO RETRIEVAL",
+        "prereqs": [
+            [
+                "COMPSCI 161"
+            ],
+            [
+                "COMPSCI 171"
+            ],
+            [
+                "I&C SCI 6N",
+                "MATH 3A",
+                "MATH 6G"
+            ]
+        ],
+        "quarters": [
+            1,
+            4
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "IN4MATX 233": {
+        "cid": "233",
+        "dept": "IN4MATX",
+        "name": "INTELL USER INTERFC",
+        "prereqs": [
+            [
+                "COMPSCI 171"
+            ]
+        ],
+        "quarters": [
+            3
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "IN4MATX 242": {
+        "cid": "242",
+        "dept": "IN4MATX",
+        "name": "UBIQ COMP INTERACTN",
+        "prereqs": [
+            [
+                "IN4MATX 231"
+            ],
+            [
+                "IN4MATX 241"
+            ]
+        ],
+        "quarters": [
+            4
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "IN4MATX 244": {
+        "cid": "244",
+        "dept": "IN4MATX",
+        "name": "INTR EMBED UBIQ SYS",
+        "prereqs": [
+            [
+                "I&C SCI 51"
+            ],
+            [
+                "COMPSCI 152"
+            ],
+            [
+                "COMPSCI 161"
+            ],
+            [
+                "I&C SCI 6N",
+                "MATH 3A",
+                "MATH 6G",
+                "I&C SCI 6D"
+            ]
+        ],
+        "quarters": [
+            0,
+            3
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "IN4MATX 263": {
+        "cid": "263",
+        "dept": "IN4MATX",
+        "name": "CMPTRZN,WORK, ORGS",
+        "prereqs": [
+            [
+                "IN4MATX 251",
+                "IN4MATX 261"
+            ]
+        ],
+        "quarters": [
+            2
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "IN4MATX 265": {
+        "cid": "265",
+        "dept": "IN4MATX",
+        "name": "CMPUTRZATN INFO/SYS",
+        "prereqs": [
+            [
+                "IN4MATX 251",
+                "IN4MATX 261"
+            ]
+        ],
+        "quarters": [
+            4
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "IN4MATX 267": {
+        "cid": "267",
+        "dept": "IN4MATX",
+        "name": "DIGITIAL MEDIA &SOC",
+        "prereqs": [
+            [
+                "IN4MATX 251",
+                "IN4MATX 261"
+            ]
+        ],
+        "quarters": [
+            2
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "IN4MATX 283": {
+        "cid": "283",
+        "dept": "IN4MATX",
+        "name": "USER EXPERIENCE",
+        "prereqs": [
+            [
+                "IN4MATX 280"
+            ]
+        ],
+        "quarters": [
+            4
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "IN4MATX 284": {
+        "cid": "284",
+        "dept": "IN4MATX",
+        "name": "ADVANCED DESIGN",
+        "prereqs": [
+            [
+                "IN4MATX 282"
+            ]
+        ],
+        "quarters": [
+            4
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "IN4MATX 285": {
+        "cid": "285",
+        "dept": "IN4MATX",
+        "name": "INTERACTIVE TECH",
+        "prereqs": [
+            [
+                "IN4MATX 280"
+            ]
+        ],
+        "quarters": [
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "IN4MATX 287": {
+        "cid": "287",
+        "dept": "IN4MATX",
+        "name": "CAPSTONE PROJECT",
+        "prereqs": [
+            [
+                "IN4MATX 283"
+            ],
+            [
+                "IN4MATX 284"
+            ]
+        ],
+        "quarters": [
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "IN4MATX 43": {
+        "cid": "43",
+        "dept": "IN4MATX",
+        "name": "INTRO SOFTWARE ENGR",
+        "prereqs": [
+            [
+                "CSE 42",
+                "I&C SCI 32"
+            ]
+        ],
+        "quarters": [
+            0,
+            2,
+            3,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    }
+}

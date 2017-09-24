@@ -1,0 +1,1049 @@
+{
+    "MATH 105A": {
+        "cid": "105A",
+        "dept": "MATH",
+        "name": "NUMERICAL ANALYSIS",
+        "prereqs": [
+            [
+                "MATH 6G",
+                "MATH 3A"
+            ]
+        ],
+        "quarters": [
+            0,
+            3
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "MATH 105B": {
+        "cid": "105B",
+        "dept": "MATH",
+        "name": "NUMERICAL ANALYSIS",
+        "prereqs": [
+            [
+                "MATH 105A"
+            ]
+        ],
+        "quarters": [
+            1,
+            4
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "MATH 107": {
+        "cid": "107",
+        "dept": "MATH",
+        "name": "NUMERICAL DIFF EQNS",
+        "prereqs": [
+            [
+                "MATH 3D"
+            ],
+            [
+                "MATH 105B"
+            ]
+        ],
+        "quarters": [
+            2,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "MATH 112A": {
+        "cid": "112A",
+        "dept": "MATH",
+        "name": "INT PARTIAL DIF EQU",
+        "prereqs": [
+            [
+                "MATH 2E"
+            ],
+            [
+                "MATH 3D"
+            ]
+        ],
+        "quarters": [
+            0,
+            3
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "MATH 112B": {
+        "cid": "112B",
+        "dept": "MATH",
+        "name": "INT PARTIAL DIF EQU",
+        "prereqs": [
+            [
+                "MATH 2E"
+            ],
+            [
+                "MATH 112A"
+            ]
+        ],
+        "quarters": [
+            1,
+            4
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "MATH 112C": {
+        "cid": "112C",
+        "dept": "MATH",
+        "name": "INT PARTIAL DIF EQU",
+        "prereqs": [
+            [
+                "MATH 112B"
+            ]
+        ],
+        "quarters": [
+            2,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "MATH 113A": {
+        "cid": "113A",
+        "dept": "MATH",
+        "name": "MATH MODELNG IN BIO",
+        "prereqs": [
+            [
+                "MATH 2B",
+                "MATH 5B"
+            ]
+        ],
+        "quarters": [
+            0,
+            3
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "MATH 113B": {
+        "cid": "113B",
+        "dept": "MATH",
+        "name": "MATH MODELNG IN BIO",
+        "prereqs": [
+            [
+                "MATH 113A"
+            ]
+        ],
+        "quarters": [
+            1,
+            4
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "MATH 115": {
+        "cid": "115",
+        "dept": "MATH",
+        "name": "MATH MODELING",
+        "prereqs": [
+            [
+                "MATH 6C",
+                "MATH 6G",
+                "MATH 3A"
+            ],
+            [
+                "MATH 3D"
+            ],
+            [
+                "MATH 112A",
+                "ENGRMAE 140"
+            ]
+        ],
+        "quarters": [
+            2,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "MATH 117": {
+        "cid": "117",
+        "dept": "MATH",
+        "name": "DYNAMICAL SYSTEMS",
+        "prereqs": [
+            [
+                "MATH 3D"
+            ],
+            [
+                "MATH 140A"
+            ]
+        ],
+        "quarters": [
+            1,
+            4
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "MATH 118": {
+        "cid": "118",
+        "dept": "MATH",
+        "name": "THRY DIFF EQUATIONS",
+        "prereqs": [
+            [
+                "MATH 3D"
+            ],
+            [
+                "MATH 140A"
+            ]
+        ],
+        "quarters": [
+            0,
+            3
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "MATH 120A": {
+        "cid": "120A",
+        "dept": "MATH",
+        "name": "INTRO GROUP THEORY",
+        "prereqs": [
+            [
+                "MATH 6G",
+                "MATH 3A"
+            ],
+            [
+                "MATH 13"
+            ]
+        ],
+        "quarters": [
+            0,
+            1,
+            3,
+            4,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "MATH 120B": {
+        "cid": "120B",
+        "dept": "MATH",
+        "name": "INTRO RINGS/FIELDS",
+        "prereqs": [
+            [
+                "MATH 120A"
+            ]
+        ],
+        "quarters": [
+            0,
+            1,
+            2,
+            4,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "MATH 120C": {
+        "cid": "120C",
+        "dept": "MATH",
+        "name": "INTRO GALOIS THEORY",
+        "prereqs": [
+            [
+                "MATH 120B"
+            ]
+        ],
+        "quarters": [
+            2,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "MATH 121A": {
+        "cid": "121A",
+        "dept": "MATH",
+        "name": "LINEAR ALGEBRA",
+        "prereqs": [
+            [
+                "MATH 6G",
+                "MATH 3A"
+            ],
+            [
+                "MATH 13"
+            ]
+        ],
+        "quarters": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "MATH 121B": {
+        "cid": "121B",
+        "dept": "MATH",
+        "name": "LINEAR ALGEBRA",
+        "prereqs": [
+            [
+                "MATH 121A"
+            ]
+        ],
+        "quarters": [
+            1,
+            2,
+            4,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "MATH 13": {
+        "cid": "13",
+        "dept": "MATH",
+        "name": "INTRO ABSTRACT MATH",
+        "prereqs": [
+            [
+                "MATH 2A",
+                "I&C SCI 6D"
+            ]
+        ],
+        "quarters": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "MATH 130A": {
+        "cid": "130A",
+        "dept": "MATH",
+        "name": "PROB&STOCHASTC PROC",
+        "prereqs": [
+            [
+                "MATH 2A"
+            ],
+            [
+                "MATH 2B"
+            ],
+            [
+                "MATH 6G",
+                "MATH 3A"
+            ]
+        ],
+        "quarters": [
+            0,
+            1,
+            3,
+            4,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "MATH 130B": {
+        "cid": "130B",
+        "dept": "MATH",
+        "name": "PROB&STOCH PROCESS",
+        "prereqs": [
+            [
+                "MATH 131A",
+                "STATS 120A",
+                "MATH 130A"
+            ]
+        ],
+        "quarters": [
+            0,
+            1,
+            4,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "MATH 130C": {
+        "cid": "130C",
+        "dept": "MATH",
+        "name": "PROB & STOCH PROC",
+        "prereqs": [
+            [
+                "MATH 130B"
+            ]
+        ],
+        "quarters": [
+            2,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "MATH 133A": {
+        "cid": "133A",
+        "dept": "MATH",
+        "name": "STAT MTHD FINANCE I",
+        "prereqs": [
+            [
+                "MATH 131A",
+                "STATS 120A",
+                "MATH 130A"
+            ]
+        ],
+        "quarters": [
+            0,
+            1,
+            4
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "MATH 133B": {
+        "cid": "133B",
+        "dept": "MATH",
+        "name": "STAT MTHD FNANCE II",
+        "prereqs": [
+            [
+                "MATH 133A"
+            ]
+        ],
+        "quarters": [
+            2,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "MATH 140A": {
+        "cid": "140A",
+        "dept": "MATH",
+        "name": "ELEMENTARY ANALYSIS",
+        "prereqs": [
+            [
+                "MATH 2D"
+            ],
+            [
+                "MATH 3A"
+            ],
+            [
+                "MATH 13"
+            ]
+        ],
+        "quarters": [
+            0,
+            1,
+            3,
+            4,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "MATH 140B": {
+        "cid": "140B",
+        "dept": "MATH",
+        "name": "ELEMENTARY ANALYSIS",
+        "prereqs": [
+            [
+                "MATH 140A"
+            ]
+        ],
+        "quarters": [
+            0,
+            1,
+            2,
+            4,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "MATH 140C": {
+        "cid": "140C",
+        "dept": "MATH",
+        "name": "ANALY SEV VARIABLES",
+        "prereqs": [
+            [
+                "MATH 140B"
+            ]
+        ],
+        "quarters": [
+            2,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "MATH 141": {
+        "cid": "141",
+        "dept": "MATH",
+        "name": "INTRO TOPOLOGY",
+        "prereqs": [
+            [
+                "MATH 140A"
+            ]
+        ],
+        "quarters": [
+            2,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "MATH 147": {
+        "cid": "147",
+        "dept": "MATH",
+        "name": "COMPLEX ANALYSIS",
+        "prereqs": [
+            [
+                "MATH 140A"
+            ]
+        ],
+        "quarters": [
+            1,
+            4,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "MATH 150": {
+        "cid": "150",
+        "dept": "MATH",
+        "name": "INTRO TO MATH LOGIC",
+        "prereqs": [
+            [
+                "MATH 13",
+                "I&C SCI 6B",
+                "MATH 6B"
+            ],
+            [
+                "MATH 13",
+                "I&C SCI 6D",
+                "MATH 6D"
+            ]
+        ],
+        "quarters": [
+            0,
+            3
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "MATH 161": {
+        "cid": "161",
+        "dept": "MATH",
+        "name": "MODERN GEOMETRY",
+        "prereqs": [
+            [
+                "MATH 13",
+                "I&C SCI 6B"
+            ],
+            [
+                "MATH 13",
+                "I&C SCI 6D"
+            ]
+        ],
+        "quarters": [
+            1,
+            2,
+            4,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "MATH 162A": {
+        "cid": "162A",
+        "dept": "MATH",
+        "name": "INTRO DIFFRNTL GEOM",
+        "prereqs": [
+            [
+                "MATH 2E"
+            ],
+            [
+                "MATH 3A"
+            ],
+            [
+                "MATH 3D"
+            ]
+        ],
+        "quarters": [
+            1,
+            4
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "MATH 173A": {
+        "cid": "173A",
+        "dept": "MATH",
+        "name": "INTRO CRYPTOLOGY",
+        "prereqs": [
+            [
+                "MATH 2B"
+            ],
+            [
+                "MATH 6G",
+                "MATH 3A"
+            ],
+            [
+                "MATH 13",
+                "I&C SCI 6B"
+            ],
+            [
+                "MATH 13",
+                "I&C SCI 6D"
+            ]
+        ],
+        "quarters": [
+            0,
+            3
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "MATH 175": {
+        "cid": "175",
+        "dept": "MATH",
+        "name": "COMBINATORICS",
+        "prereqs": [
+            [
+                "MATH 2B"
+            ],
+            [
+                "MATH 13"
+            ]
+        ],
+        "quarters": [
+            1,
+            4
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "MATH 176": {
+        "cid": "176",
+        "dept": "MATH",
+        "name": "MATH OF FINANCE",
+        "prereqs": [
+            [
+                "MATH 3A"
+            ]
+        ],
+        "quarters": [
+            1,
+            4
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "MATH 180A": {
+        "cid": "180A",
+        "dept": "MATH",
+        "name": "NUMBER THEORY I",
+        "prereqs": [
+            [
+                "MATH 3A"
+            ],
+            [
+                "MATH 13"
+            ]
+        ],
+        "quarters": [
+            1,
+            4
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "MATH 180B": {
+        "cid": "180B",
+        "dept": "MATH",
+        "name": "NUMBER THEORY II",
+        "prereqs": [
+            [
+                "MATH 180A"
+            ]
+        ],
+        "quarters": [
+            2,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "MATH 184": {
+        "cid": "184",
+        "dept": "MATH",
+        "name": "HISTORY OF MATH",
+        "prereqs": [
+            [
+                "MATH 3D"
+            ],
+            [
+                "MATH 120A"
+            ],
+            [
+                "MATH 140A"
+            ]
+        ],
+        "quarters": [
+            2,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "MATH 1A": {
+        "cid": "1A",
+        "dept": "MATH",
+        "name": "PRE-CALCULUS",
+        "prereqs": [],
+        "quarters": [
+            0,
+            3
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "MATH 1B": {
+        "cid": "1B",
+        "dept": "MATH",
+        "name": "PRE-CALCULUS",
+        "prereqs": [
+            [
+                "MATH 1A"
+            ]
+        ],
+        "quarters": [
+            0,
+            1,
+            3,
+            4
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "MATH 2A": {
+        "cid": "2A",
+        "dept": "MATH",
+        "name": "CALCULUS",
+        "prereqs": [
+            [
+                "MATH 1B"
+            ]
+        ],
+        "quarters": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "MATH 2B": {
+        "cid": "2B",
+        "dept": "MATH",
+        "name": "CALCULUS",
+        "prereqs": [
+            [
+                "MATH 5A",
+                "MATH 2A"
+            ]
+        ],
+        "quarters": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "MATH 2D": {
+        "cid": "2D",
+        "dept": "MATH",
+        "name": "MULTIVAR CALCULUS",
+        "prereqs": [
+            [
+                "MATH 2B",
+                "MATH 5B"
+            ]
+        ],
+        "quarters": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "MATH 2E": {
+        "cid": "2E",
+        "dept": "MATH",
+        "name": "MULTIVAR CALCULUS",
+        "prereqs": [
+            [
+                "MATH H2D",
+                "MATH 2D"
+            ]
+        ],
+        "quarters": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "MATH 3A": {
+        "cid": "3A",
+        "dept": "MATH",
+        "name": "INTRO LINEAR ALGBRA",
+        "prereqs": [
+            [
+                "MATH 2B",
+                "MATH 5B"
+            ]
+        ],
+        "quarters": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "MATH 3D": {
+        "cid": "3D",
+        "dept": "MATH",
+        "name": "ELEM DIFF EQUATIONS",
+        "prereqs": [
+            [
+                "MATH 2B"
+            ],
+            [
+                "MATH H2D",
+                "MATH 2D"
+            ],
+            [
+                "MATH 2J",
+                "MATH 3A"
+            ]
+        ],
+        "quarters": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "MATH 4": {
+        "cid": "4",
+        "dept": "MATH",
+        "name": "MATH FOR ECONOMISTS",
+        "prereqs": [
+            [
+                "MATH 2B",
+                "MATH 5B"
+            ]
+        ],
+        "quarters": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "MATH 5A": {
+        "cid": "5A",
+        "dept": "MATH",
+        "name": "CALCULUS LIFE SCIEN",
+        "prereqs": [
+            [
+                "MATH 1B"
+            ]
+        ],
+        "quarters": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "MATH 5B": {
+        "cid": "5B",
+        "dept": "MATH",
+        "name": "CALCULUS LIFE SCIEN",
+        "prereqs": [
+            [
+                "MATH 5A",
+                "MATH 2A"
+            ]
+        ],
+        "quarters": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "MATH 8": {
+        "cid": "8",
+        "dept": "MATH",
+        "name": "FUNCTIONS &MODELING",
+        "prereqs": [
+            [
+                "MATH 2A"
+            ]
+        ],
+        "quarters": [
+            2,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "MATH 9": {
+        "cid": "9",
+        "dept": "MATH",
+        "name": "INTRO PROG NUM ANLY",
+        "prereqs": [
+            [
+                "MATH 2A"
+            ]
+        ],
+        "quarters": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "MATH H120A": {
+        "cid": "H120A",
+        "dept": "MATH",
+        "name": "HON GRAD ALGBR I",
+        "prereqs": [
+            [
+                "MATH 3A"
+            ]
+        ],
+        "quarters": [
+            0,
+            3
+        ],
+        "units": 5,
+        "upperOnly": false
+    },
+    "MATH H120B": {
+        "cid": "H120B",
+        "dept": "MATH",
+        "name": "HON GRAD ALGBR II",
+        "prereqs": [
+            [
+                "MATH H120A"
+            ]
+        ],
+        "quarters": [
+            1,
+            4
+        ],
+        "units": 5,
+        "upperOnly": false
+    },
+    "MATH H140A": {
+        "cid": "H140A",
+        "dept": "MATH",
+        "name": "HON GRAD ANLYS I",
+        "prereqs": [
+            [
+                "MATH 2E"
+            ],
+            [
+                "MATH 3A"
+            ],
+            [
+                "MATH 13"
+            ]
+        ],
+        "quarters": [
+            0,
+            3
+        ],
+        "units": 5,
+        "upperOnly": false
+    },
+    "MATH H140B": {
+        "cid": "H140B",
+        "dept": "MATH",
+        "name": "HON GRAD ANLYS II",
+        "prereqs": [
+            [
+                "MATH H140A"
+            ]
+        ],
+        "quarters": [
+            1,
+            4
+        ],
+        "units": 5,
+        "upperOnly": false
+    },
+    "MATH H3A": {
+        "cid": "H3A",
+        "dept": "MATH",
+        "name": "HON INTRO LIN ALG",
+        "prereqs": [
+            [
+                "MATH 2B",
+                "MATH 5B"
+            ]
+        ],
+        "quarters": [
+            0
+        ],
+        "units": 4,
+        "upperOnly": false
+    }
+}

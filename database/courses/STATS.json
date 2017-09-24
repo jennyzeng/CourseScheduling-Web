@@ -1,0 +1,512 @@
+{
+    "STATS 110": {
+        "cid": "110",
+        "dept": "STATS",
+        "name": "STATS METH DATA I",
+        "prereqs": [
+            [
+                "STATS 7",
+                "STATS 120A",
+                "STATS 8",
+                "MATH 131A"
+            ],
+            [
+                "STATS 7",
+                "MATH 131B",
+                "STATS 120B",
+                "STATS 8"
+            ],
+            [
+                "STATS 7",
+                "MATH 131C",
+                "STATS 8",
+                "STATS 120C"
+            ]
+        ],
+        "quarters": [
+            0,
+            3
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "STATS 111": {
+        "cid": "111",
+        "dept": "STATS",
+        "name": "STATS METH DATA II",
+        "prereqs": [
+            [
+                "STATS 110"
+            ]
+        ],
+        "quarters": [
+            1,
+            4
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "STATS 112": {
+        "cid": "112",
+        "dept": "STATS",
+        "name": "STATS METH DATA III",
+        "prereqs": [
+            [
+                "STATS 111"
+            ]
+        ],
+        "quarters": [
+            2,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "STATS 115": {
+        "cid": "115",
+        "dept": "STATS",
+        "name": "BAYES DATA ANALYSIS",
+        "prereqs": [
+            [
+                "STATS 120C"
+            ],
+            [
+                "STATS 110"
+            ]
+        ],
+        "quarters": [
+            4
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "STATS 120A": {
+        "cid": "120A",
+        "dept": "STATS",
+        "name": "INTRO PROB & STATS",
+        "prereqs": [
+            [
+                "MATH 2A"
+            ],
+            [
+                "MATH 2B"
+            ],
+            [
+                "MATH 2D",
+                "MATH 4"
+            ]
+        ],
+        "quarters": [
+            0,
+            3
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "STATS 120B": {
+        "cid": "120B",
+        "dept": "STATS",
+        "name": "INTRO PROB STATS II",
+        "prereqs": [
+            [
+                "STATS 120A"
+            ]
+        ],
+        "quarters": [
+            1,
+            4
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "STATS 120C": {
+        "cid": "120C",
+        "dept": "STATS",
+        "name": "INTRO PROB & STATS",
+        "prereqs": [
+            [
+                "STATS 120B"
+            ],
+            [
+                "MATH 3A",
+                "MATH 6G",
+                "I&C SCI 6N"
+            ]
+        ],
+        "quarters": [
+            2,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "STATS 140": {
+        "cid": "140",
+        "dept": "STATS",
+        "name": "MULTIVAR STAT METH",
+        "prereqs": [
+            [
+                "STATS 120C"
+            ],
+            [
+                "MATH 3A",
+                "I&C SCI 6N"
+            ]
+        ],
+        "quarters": [
+            3
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "STATS 200A": {
+        "cid": "200A",
+        "dept": "STATS",
+        "name": "INT PROB & STAT THY",
+        "prereqs": [
+            [
+                "STATS 120C"
+            ]
+        ],
+        "quarters": [
+            0,
+            3
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "STATS 200B": {
+        "cid": "200B",
+        "dept": "STATS",
+        "name": "INT PROB & STAT THY",
+        "prereqs": [
+            [
+                "STATS 200A"
+            ]
+        ],
+        "quarters": [
+            1,
+            4
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "STATS 200C": {
+        "cid": "200C",
+        "dept": "STATS",
+        "name": "INT PROB & STAT THY",
+        "prereqs": [
+            [
+                "STATS 200B"
+            ]
+        ],
+        "quarters": [
+            2,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "STATS 201": {
+        "cid": "201",
+        "dept": "STATS",
+        "name": "STATS METH DATA I",
+        "prereqs": [
+            [
+                "STATS 7",
+                "STATS 8"
+            ]
+        ],
+        "quarters": [
+            0,
+            3
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "STATS 202": {
+        "cid": "202",
+        "dept": "STATS",
+        "name": "STATS METH DATA II",
+        "prereqs": [
+            [
+                "STATS 210",
+                "STATS 201"
+            ]
+        ],
+        "quarters": [
+            1,
+            4
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "STATS 203": {
+        "cid": "203",
+        "dept": "STATS",
+        "name": "STATS METH DATA III",
+        "prereqs": [
+            [
+                "STATS 202"
+            ]
+        ],
+        "quarters": [
+            2,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "STATS 205": {
+        "cid": "205",
+        "dept": "STATS",
+        "name": "BAYES DATA ANALYSIS",
+        "prereqs": [
+            [
+                "STATS 120C"
+            ],
+            [
+                "STATS 201"
+            ],
+            [
+                "STATS 210"
+            ]
+        ],
+        "quarters": [
+            4
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "STATS 211": {
+        "cid": "211",
+        "dept": "STATS",
+        "name": "STATS METHOD II",
+        "prereqs": [
+            [
+                "STATS 210"
+            ]
+        ],
+        "quarters": [
+            1,
+            4
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "STATS 212": {
+        "cid": "212",
+        "dept": "STATS",
+        "name": "STATS METHODS III",
+        "prereqs": [
+            [
+                "STATS 211"
+            ]
+        ],
+        "quarters": [
+            2,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "STATS 220A": {
+        "cid": "220A",
+        "dept": "STATS",
+        "name": "ADV PROB&STATTOPICS",
+        "prereqs": [
+            [
+                "STATS 200C"
+            ]
+        ],
+        "quarters": [
+            4
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "STATS 220B": {
+        "cid": "220B",
+        "dept": "STATS",
+        "name": "ADV PROB&STATTOPICS",
+        "prereqs": [
+            [
+                "STATS 220A"
+            ],
+            [
+                "MATH 140B"
+            ]
+        ],
+        "quarters": [
+            2,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "STATS 225": {
+        "cid": "225",
+        "dept": "STATS",
+        "name": "BAYESIAN STATISTICS",
+        "prereqs": [
+            [
+                "STATS 205"
+            ],
+            [
+                "STATS 230"
+            ]
+        ],
+        "quarters": [
+            2,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "STATS 235": {
+        "cid": "235",
+        "dept": "STATS",
+        "name": "MOD DATA ANLYS METH",
+        "prereqs": [
+            [
+                "STATS 120C"
+            ],
+            [
+                "STATS 205"
+            ],
+            [
+                "STATS 210",
+                "STATS 201"
+            ]
+        ],
+        "quarters": [
+            0,
+            2
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "STATS 240": {
+        "cid": "240",
+        "dept": "STATS",
+        "name": "MULTIVAR STAT METH",
+        "prereqs": [
+            [
+                "STATS 120C"
+            ],
+            [
+                "MATH 3A",
+                "I&C SCI 6N"
+            ]
+        ],
+        "quarters": [
+            3
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "STATS 245": {
+        "cid": "245",
+        "dept": "STATS",
+        "name": "TIME SERIES ANALYS",
+        "prereqs": [
+            [
+                "STATS 200C"
+            ],
+            [
+                "STATS 210",
+                "STATS 201"
+            ]
+        ],
+        "quarters": [
+            4
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "STATS 250": {
+        "cid": "250",
+        "dept": "STATS",
+        "name": "BIOSTATISTICS",
+        "prereqs": [
+            [
+                "STATS 210"
+            ]
+        ],
+        "quarters": [
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "STATS 275": {
+        "cid": "275",
+        "dept": "STATS",
+        "name": "STAT CONSULTING",
+        "prereqs": [
+            [
+                "STATS 203",
+                "STATS 212"
+            ]
+        ],
+        "quarters": [
+            0,
+            1,
+            3
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "STATS 67": {
+        "cid": "67",
+        "dept": "STATS",
+        "name": "INTRO PROB&STAT/CS",
+        "prereqs": [
+            [
+                "MATH 2B"
+            ]
+        ],
+        "quarters": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "STATS 7": {
+        "cid": "7",
+        "dept": "STATS",
+        "name": "BASIC STATISTICS",
+        "prereqs": [],
+        "quarters": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    },
+    "STATS 8": {
+        "cid": "8",
+        "dept": "STATS",
+        "name": "INTRO TO BIO STATS",
+        "prereqs": [],
+        "quarters": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "units": 4,
+        "upperOnly": false
+    }
+}

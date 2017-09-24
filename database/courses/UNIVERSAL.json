@@ -1,0 +1,310 @@
+{
+  "WRITING LOW1": {
+    "cid": "LOW1",
+    "dept": "WRITING",
+    "name": "LOWER-DIVISION WRITING 1",
+    "prereqs": [],
+    "quarters":[
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "units": 4,
+    "upperOnly": false
+  },
+  "WRITING LOW2": {
+    "cid": "LOW2",
+    "dept": "WRITING",
+    "name": "LOWER-DIVISION WRITING 2",
+    "prereqs": [],
+    "quarters":[
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "units": 4,
+    "upperOnly": false
+  },
+  "GEII -1": {
+    "cid": "-1",
+    "dept": "GEII",
+    "name": "GEII.1",
+    "prereqs": [],
+    "quarters":[
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "units": 4,
+    "upperOnly": false
+  },
+  "GEII -2": {
+    "cid": "-2",
+    "dept": "GEII",
+    "name": "GEII.2",
+    "prereqs": [],
+    "quarters":[
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "units": 4,
+    "upperOnly": false
+  },
+  "GEII -3": {
+    "cid": "-3",
+    "dept": "GEII",
+    "name": "GEII.3",
+    "prereqs": [],
+    "quarters":[
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "units": 4,
+    "upperOnly": false
+  },
+  "GEIII -1": {
+    "cid": "-1",
+    "dept": "GEIII",
+    "name": "GEIII.1",
+    "prereqs": [],
+    "quarters":[
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "units": 4,
+    "upperOnly": false
+  },
+  "GEIII -2": {
+    "cid": "-2",
+    "dept": "GEIII",
+    "name": "GEIII.2",
+    "prereqs": [],
+    "quarters":[
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "units": 4,
+    "upperOnly": false
+  },
+  "GEIII -3": {
+    "cid": "-3",
+    "dept": "GEIII",
+    "name": "GEIII.3",
+    "prereqs": [],
+    "quarters":[
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "units": 4,
+    "upperOnly": false
+  },
+  "GEIV -1": {
+    "cid": "-1",
+    "dept": "GEIV",
+    "name": "GEIV.1",
+    "prereqs": [],
+    "quarters":[
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "units": 4,
+    "upperOnly": false
+  },
+  "GEIV -2": {
+    "cid": "-2",
+    "dept": "GEIV",
+    "name": "GEIV.2",
+    "prereqs": [],
+    "quarters":[
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "units": 4,
+    "upperOnly": false
+  },
+  "GEIV -3": {
+    "cid": "-3",
+    "dept": "GEIV",
+    "name": "GEIV.3",
+    "prereqs": [],
+    "quarters":[
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "units": 4,
+    "upperOnly": false
+  },
+    "GEV a": {
+    "cid": "a",
+    "dept": "GEV",
+    "name": "GEV.a",
+    "prereqs": [],
+    "quarters":[
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "units": 4,
+    "upperOnly": false
+  },
+    "GEV b": {
+    "cid": "b",
+    "dept": "GEV",
+    "name": "GEV.b",
+    "prereqs": [],
+    "quarters":[
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "units": 4,
+    "upperOnly": false
+  },
+  "GEVI -1": {
+    "cid": "-1",
+    "dept": "GEVI",
+    "name": "GEVI",
+    "prereqs": [],
+    "quarters":[
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "units": 4,
+    "upperOnly": false
+  },
+  "GEVII -1": {
+    "cid": "-1",
+    "dept": "GEVII",
+    "name": "GEVII",
+    "prereqs": [],
+    "quarters":[
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "units": 4,
+    "upperOnly": false
+  },
+  "GEVIII -1": {
+    "cid": "-1",
+    "dept": "GEVIII",
+    "name": "GEVIII.1",
+    "prereqs": [],
+    "quarters":[
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "units": 4,
+    "upperOnly": false
+  },
+  "HISTORY 40A": {
+    "cid": "40A",
+    "dept": "HISTORY",
+    "name": "COL AM:NEW WORLDS",
+    "prereqs": [],
+    "quarters": [
+      0,
+      3
+    ],
+    "units": 4,
+    "upperOnly": false
+  },
+  "HISTORY 40B": {
+    "cid": "40B",
+    "dept": "HISTORY",
+    "name": "19C US:CRISIS&EXPAN",
+    "prereqs": [],
+    "quarters": [
+      1,
+      4
+    ],
+    "units": 4,
+    "upperOnly": false
+  },
+  "HISTORY 40C": {
+    "cid": "40C",
+    "dept": "HISTORY",
+    "name": "MOD AM CLTR&POWER",
+    "prereqs": [],
+    "quarters": [
+      2,
+      5
+    ],
+    "units": 4,
+    "upperOnly": false
+  },
+  "POLSCI 21A": {
+    "cid": "21A",
+    "dept": "POLSCI",
+    "name": "INTRO AMERICAN GOVT",
+    "prereqs": [],
+    "quarters": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "units": 4,
+    "upperOnly": false
+  }
+}

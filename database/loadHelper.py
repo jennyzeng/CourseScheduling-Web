@@ -1,5 +1,6 @@
 from CourseScheduling.blueprints.schedule.models import Course, Requirement, SubReq, Major, Quarter
 import json
+from database.Validator import CourseValidator, InvalidJsonError, CourseSchema
 
 def load_quarters():
     qdict = ['fall 1', 'winter 1', 'spring 1', 'fall 2', 'winter 2', 'spring 2']
@@ -88,13 +89,19 @@ def load_course(filename):
                     course.save()
                     course = None;
             """
-            
-            for k, c in json.load(f).items():
-                Course(name=c['name'], cid=c['cid'], units=int(c['units']), upperOnly=c['upperOnly'], dept=c['dept'],
+            data = json.load(f)
+            CourseValidator(data, CourseSchema.SCHEMA)
+            for k, c in data.items():
+                Course(name=c['name'], cid=c['cid'], units=c['units'], upperOnly=c['upperOnly'], dept=c['dept'],
                     quarters=[Quarter.objects(code=x).first() for x in c['quarters']]).save()
 
     except FileNotFoundError as e:
         print("json loading ERROR: ", e)
+        raise e
+    except InvalidJsonError as e:
+        print("json validation ERROR", e)
+        raise e
+
     else:
         print("Successfully loaded json file", filename)
         # to refer to the course object, we have to load courses without adding prereqs first,
