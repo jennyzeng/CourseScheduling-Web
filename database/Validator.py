@@ -3,7 +3,7 @@ a tool for validating the json files
 """
 
 from jsonschema import validate, ValidationError
-from database.schemas import CourseSchema
+
 import json
 
 
@@ -23,9 +23,15 @@ def CourseValidator(data, schema):
         try:
             validate(val, schema)
         except ValidationError as e:
-            err_message += "validation error on key {k}, with validation error: \n{e}".format(k=key, e=e.message)
+            err_message += "validation error on key {k}, with validation error: \n{e}\n\n".format(k=key, e=e.message)
     if err_message:
         raise InvalidJsonError(err_message)
+
+def RequirementValidator(data, schema):
+    try:
+        validate(data,  schema)
+    except ValidationError as e:
+        raise InvalidJsonError(e.message)
 
 if __name__ == '__main__':
 
@@ -87,7 +93,7 @@ if __name__ == '__main__':
             "upperOnly": False
         },
     }
-    CourseValidator(test,CourseSchema.SCHEMA)
-    with open("courses/COMPSCI.json", 'r') as json_data:
-        d = json.load(json_data)
-        CourseValidator(d,CourseSchema.SCHEMA)
+    # CourseValidator(test,CourseSchema.SCHEMA)
+    # with open("courses/COMPSCI.json", 'r') as json_data:
+    #     d = json.load(json_data)
+    #     CourseValidator(d,CourseSchema.SCHEMA)

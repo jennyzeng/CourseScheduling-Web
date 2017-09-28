@@ -1,6 +1,8 @@
 from CourseScheduling.blueprints.schedule.models import Course, Requirement, SubReq, Major, Quarter
 import json
-from database.Validator import CourseValidator, InvalidJsonError, CourseSchema
+import warnings
+from database.Validator import CourseValidator, InvalidJsonError, RequirementValidator
+from database.schemas import CourseSchema, RequirementsSchema
 
 def load_quarters():
     qdict = ['fall 1', 'winter 1', 'spring 1', 'fall 2', 'winter 2', 'spring 2']
@@ -112,7 +114,7 @@ def load_course(filename):
 
         print ("updated prerequisites")
 
-def load_requirement(name, filename):
+def load_requirement(filename):
     """
     load requirement info to database from txt file
     this one does not consider the recommand!
@@ -121,12 +123,16 @@ def load_requirement(name, filename):
 
     try:
         with open(filename, 'r') as f:
+            content = json.load(f)
+            RequirementValidator(content, RequirementsSchema.SCHEMA)
+            name = content.get('major')
             Major.objects(name=name.upper()).upsert_one(requirements=[])
             major = Major.objects(name=name).first()
             content = json.load(f)
             reqs = content.get('requirements', [])
             specs = content.get('specs', [])
             cnt = 0
+            err_msg = ""
             for req in reqs+specs:
                 Requirement.objects(name=req['name']).update_one(sub_reqs=[], upsert=True)
                 requirement = Requirement.objects(name=req['name']).first()
@@ -135,7 +141,7 @@ def load_requirement(name, filename):
                     for c in subr.get("req_list", []):
                         dept, cid = getDeptCid(c)
                         if not Course.objects(dept=dept, cid=cid).first():
-                            print("Error in ", dept, cid)
+                            err_msg += "Error in {} \n".format(dept+cid)
                             continue
                         subreq.req_list.append(Course.objects(dept=dept, cid=cid).first())
                     requirement.sub_reqs.append(subreq)
@@ -148,6 +154,12 @@ def load_requirement(name, filename):
             major.save()
     except FileNotFoundError as e:
         print("json loading ERROR: ", e)
+        raise e
+    except InvalidJsonError as e:
+        print("json validation ERROR", e)
+        raise e
     else:
         print("Successfully loaded json file", filename)
+        if err_msg:
+            warnings.warn("error exists during loading, skipped: \n" + err_msg)
 

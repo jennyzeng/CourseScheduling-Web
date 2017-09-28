@@ -9,8 +9,8 @@ def load_course(filename="database/txt_files/fullcourses_new.txt"):
     loadHelper.load_course(filename)
 
 @manager.command
-def load_requirement(name='UNIVERSAL', filename='database/requirements/UNIVERSAL.json'):
-    loadHelper.load_requirement(name, filename)
+def load_requirement(filename='database/requirements/UNIVERSAL.json'):
+    loadHelper.load_requirement(filename)
 
 
 @manager.command
