@@ -35,6 +35,7 @@ class FileUploadView(BaseView):
 
             path = os.path.join(UPLOAD_FOLDER, file.filename)
             file.save(path)
+
             try:
                 file_type = request.form.getlist("file_type")[0]
                 if file_type == "course":

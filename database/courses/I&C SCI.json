@@ -449,7 +449,7 @@
         ],
         "units": 4,
         "upperOnly": false
-    }
+    },
     "I&C SCI 90": {
         "cid": "90",
         "dept": "I&C SCI",

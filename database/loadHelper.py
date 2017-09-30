@@ -123,14 +123,13 @@ def load_requirement(filename):
 
     try:
         with open(filename, 'r') as f:
-            content = json.load(f)
-            RequirementValidator(content, RequirementsSchema.SCHEMA)
-            name = content.get('major')
+            data = json.load(f)
+            RequirementValidator(data, RequirementsSchema.SCHEMA)
+            name = data.get('major')
             Major.objects(name=name.upper()).upsert_one(requirements=[])
             major = Major.objects(name=name).first()
-            content = json.load(f)
-            reqs = content.get('requirements', [])
-            specs = content.get('specs', [])
+            reqs = data.get('requirements', [])
+            specs = data.get('specs', [])
             cnt = 0
             err_msg = ""
             for req in reqs+specs:

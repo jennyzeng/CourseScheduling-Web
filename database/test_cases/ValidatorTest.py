@@ -70,7 +70,7 @@ def testReqs():
     RequirementValidator(ReqJson, RequirementsSchema.SCHEMA)
 
 def testReqsJson():
-    with open("../requirements/UNIVERSAL.json", 'r') as json_data:
+    with open("database/requirements/UNIVERSAL.json", 'r') as json_data:
         d = json.load(json_data)
         RequirementValidator(d, RequirementsSchema.SCHEMA)
 
