@@ -1,10 +1,13 @@
 {% extends 'admin/master.html' %}
 
 {% block body %}
-<h1>Upload New Course Data File</h1>
+<h1>Upload New JSON Data File</h1>
+<p>Choose 'Courses' to upload files in database/courses and choose 'Requirements' to upload files in database/requirements.
+    Those files should follow the format in database/schemas.
+</p>
 <form method=post enctype=multipart/form-data>
     <div class="form-group">
-        <label for="file">File input</label>
+        <label for="file">JSON File input</label>
         <input class="form-control-file" type="file" name="file" id="file">
         <select name="file_type" id="file_type">
             <option value="course">Courses</option>
