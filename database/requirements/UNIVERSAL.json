@@ -17,6 +17,13 @@
           "req_list": [
             "POLSCI 21A"
           ]
+        },
+                {
+          "req_num": 2,
+          "req_list": [
+            "MATH 1A",
+            "MATH 1B"
+          ]
         }
       ]
     },

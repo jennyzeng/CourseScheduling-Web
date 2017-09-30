@@ -42,7 +42,7 @@
         "cid": "139W",
         "dept": "I&C SCI",
         "name": "CRITICAL WRITING",
-        "prereqs": [],
+        "prereqs": [["WRITING LOW2"]],
         "quarters": [
             0,
             1,
@@ -363,7 +363,7 @@
         "upperOnly": false
     },
     "I&C SCI 53+53L": {
-        "cid": "53",
+        "cid": "53+53L",
         "dept": "I&C SCI",
         "name": "PRINCP IN SYS DESGN",
         "prereqs": [
