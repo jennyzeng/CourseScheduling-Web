@@ -44,15 +44,13 @@ class FileUploadView(BaseView):
                     load_requirement(path)
             except (FileNotFoundError, InvalidJsonError, Warning) as e:
                 flash("json loading ERROR: " + str(e))
-                return redirect(request.url)
 
             except Exception as e:
                 flash("UNKOWN ERROR: " + str(e))
-                return redirect(request.url)
             else:
                 flash("SUCCESS")
-                return redirect(url_for('admin.index'))
-
+            finally:
+                os.remove(path)
         return self.render('admin/fileUpload.html')
 
 
