@@ -12,7 +12,7 @@ def schedule_home():
     return render_template('schedule/input.html',
                             majors=getMajorsNames())
 
-@schedule.route('/detailedinput')
+@schedule.route('/detailedinput', methods=['POST', 'GET'])
 def detailed_input():
     # form = request.form
     # major = form.getlist("major")[0].upper()
