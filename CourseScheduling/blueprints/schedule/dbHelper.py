@@ -8,15 +8,60 @@ def getCourse(dept, cid):
     return cs.Course(name=c.name, units=c.units, quarter_codes=c.quarters,
                      prereq=c.prereq, is_upper_only=c.upperOnly)
 
+def getMajorsNames():
+    """
+    :return:  list of major names
+    """
+    return [m.name for m in Major.objects()]
 
-def getRequirements():
-    return {r.name for r in Requirement.objects()}
+def getMajorModel():
+    """
+    :return: all majors with their information defined in models.py
+    """
+    return list(Major.objects())
 
-def getMajorRequirements(major):
-    for m in Major.objects():
-        if m.name == major:
-            return set(m.requirements)
-    return set()
+
+def getMajorReqNspecs(major):
+    """
+    :param major: should be the model defined in models.py
+    :return:
+    """
+    if major:
+        return major.requirements, major.specs
+    return [], []
+
+def getMajorReqNspecsByName(major_name):
+    """
+    :param major_name: name of the major
+    :return: a list of major requirements, and a list of major sepcs
+    """
+    m = Major.objects(name=major_name)
+    if m.first():
+        return m.requirements, m.specs
+    return [],[]
+
+
+def getMajorRequirementsByName(major_name):
+    """
+    :param major_name: name of the major
+    :return: a list of major requirements, (requirement is defined in models.py)
+    """
+    m = Major.objects(name=major_name)
+    if m.first():
+        return m.requirements
+    return []
+
+def getMajorSpecsByName(major_name):
+    """
+    :param major_name: name of the major
+    :return: a list of major specs, (spec is also a requirement defined in models.py)
+    """
+    m = Major.objects(name=major_name)
+    if m.first():
+        return m.specs
+    return []
+
+
 
 def getInfo(req):
     G, R, R_detail = dict(), dict(), dict()

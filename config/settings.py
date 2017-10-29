@@ -24,4 +24,6 @@ DEBUG_TB_PANELS = (
 )
 DEBUG_TB_INTERCEPT_REDIRECTS = False
 
+# file upload in admin
+UPLOAD_FOLDER = '/CourseScheduling/database/txt_files/'
 

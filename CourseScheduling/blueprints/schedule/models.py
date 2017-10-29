@@ -112,5 +112,6 @@ class Major(db.Document):
 class Quarter(db.Document):
     name = db.StringField(max_length=40)
     code = db.IntField(min_value=0)
+    YearTermCode = db.StringField(max_length=8)
     def __unicode__(self):
         return self.name

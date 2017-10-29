@@ -1,20 +1,28 @@
 {% extends 'admin/master.html' %}
 
 {% block body %}
-<h1>Upload New JSON Data File</h1>
+<h1>Admin Utilities</h1>
+<h3>Upload New JSON Data File</h3>
 <p>Choose 'Courses' to upload files in database/courses and choose 'Requirements' to upload files in database/requirements.
     Those files should follow the format in database/schemas.
 </p>
-<form method=post enctype=multipart/form-data>
-    <div class="form-group">
-        <label for="file">JSON File input</label>
-        <input class="form-control-file" type="file" name="file" id="file">
-        <select name="file_type" id="file_type">
-            <option value="course">Courses</option>
-            <option value="requirement">Requirements</option>
-        </select>
-    </div>
-    <button class="btn btn-primary" type="submit" value="Upload">Submit </button>
+<form method="POST" enctype="multipart/form-data">
+      <div class="form-group">
+    {{ file_upload_form.csrf_token }}
+    {{ file_upload_form.file }}
+    {{ file_upload_form.fileType }}
 
+    <!--<div class="form-group">-->
+        <!--<label for="file">JSON File input</label>-->
+        <!--<input class="form-control-file" type="file" name="file" id="file">-->
+        <!--<select name="file_type" id="file_type">-->
+            <!--<option value="course">Courses</option>-->
+            <!--<option value="requirement">Requirements</option>-->
+        <!--</select>-->
+    </div>
+    {{ file_upload_form.submit(class="btn btn-primary") }}
+    <!--<button class="btn btn-primary" type="submit" value="Upload">Submit </button>-->
 </form>
+
+<h3>Update Course Information</h3>
 {% endblock %}
