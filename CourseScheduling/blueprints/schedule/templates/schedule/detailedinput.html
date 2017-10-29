@@ -14,8 +14,8 @@
 
   <h1>Course Scheduling</h1>
 
-   <form action="{{ url_for('schedule.detailed_input') }}" method="post">
-     <!-- <div>
+   <form action="{{ url_for('schedule.schedule_preview') }}" method="post">
+     <div>
        <div id="sendmessage"> Your message has been sent successfully. Thank you. </div>
 
        <div class="leftcontact">
@@ -26,40 +26,41 @@
              <option value="0" selected="true">Fall</option>
              <option value="1">Winter</option>
              <option value="2">Spring</option>
+             <!-- <option value="3">Summer Session I</option>
+             <option value="4">Summer Session II</option>
+             <option value="5">Summer Session 10-Week</option> -->
            </select>
          </div>
        </div>
 
        <div class="rightcontact">
          <div class="form-group">
-           <p>Major <span>*</span></p>
+           <p>Specialization Name </p>
            <span class="icon-case"><i class="fa fa-book"></i></span>
-           <select class="js-example-basic-multiple input-field" name="major" required>
-             {% for index in range(majors|length) %}
-             <option value="{{ majors[index] }}">{{ majors[index] }}</option>
+           <select class="js-example-basic-multiple input-field" name="specialization" required>
+             {% for index in range(specs|length) %}
+             <option value="{{ specs[index] }}">{{ specs[index] }}</option>
              {% endfor %}
+             <!-- <option value="Intelligent Systems" selected="true">Intelligent Systems</option>
+             <option value="Information">Information</option>
+             <option value="Algorithm">Algorithm</option>
+             <option value="Architecture and Embedded Systems">Architecture and Embedded Systems</option>
+             <option value="General Computer Science">General Computer Science</option>
+             <option value="Networked Systems">Networked Systems</option>
+             <option value="Systems and Software">Systems and Software</option>
+             <option value="Visual Computing">Visual Computing</option> -->
            </select>
          </div>
        </div>
 
-   </div> -->
-
-   <div>
-     <div class="form-group">
-       <p>Major <span>*</span></p>
-       <span class="icon-case"><i class="fa fa-book"></i></span>
-       <select class="js-example-basic-multiple input-field" name="major" required>
-         {% for index in range(majors|length) %}
-         <option value="{{ majors[index] }}">{{ majors[index] }}</option>
-         {% endfor %}
-       </select>
-     </div>
    </div>
+
+
    <!-- <a href="{{ url_for('schedule.schedule_output') }}" class="btn btn-lg button-send" role="button">Send</a> -->
    <div class="row">
      <div class="col-md-5 col-sm-5 col-xs-4"></div>
      <div class="col-md-2 col-sm-2 col-xs-4">
-       <button class="btn btn-success button-send submit" role="button">Next</button>
+       <button class="btn btn-success button-send submit" role="button">Send</button>
      </div>
      <div class="col-md-5 col-sm-5 col-xs-4"></div>
    </div>
