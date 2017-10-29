@@ -14,13 +14,13 @@ def schedule_home():
 
 @schedule.route('/detailedinput', methods=['POST', 'GET'])
 def detailed_input():
-    # form = request.form
-    # major = form.getlist("major")[0].upper()
-    # print("MAJOR: " + major)
-    # return render_template('schedule/detailedinput.html',
-    #                         specs=getMajorSpecsByName(major))
+    form = request.form
+    major = form.getlist("major")[0].upper()
+    print("MAJOR: " + major)
     return render_template('schedule/detailedinput.html',
-                            specs=getMajorSpecsByName("COMPUTER SCIENCE"))
+                            specs=getMajorSpecsByName(major))
+    # return render_template('schedule/detailedinput.html',
+    #                         specs=getMajorSpecsByName("COMPUTER SCIENCE"))
 
 
 @schedule.route('/saveme')
