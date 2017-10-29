@@ -27,9 +27,10 @@ def detailed_input():
 def saveme():
     return render_template('schedule/saveme.html')
 
-@schedule.route('/launch')
+@schedule.route('/launch', methods=['POST', 'GET'])
 def launch():
-    cookie = request.args.get('cookie', '')
+    cookie = request.form.getlist('cookie')[0]
+    print (cookie)
     upper_units = 90
     max_widths = {0: 13, 'else': 16}
     startQ = 0
