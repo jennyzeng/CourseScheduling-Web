@@ -47,9 +47,10 @@ class FileUploadForm(FlaskForm):
 class CourseInfoUpdateForm(FlaskForm):
     dept = fields.StringField(label="department")
     course_id = fields.StringField(label="course id")
-    quarter_code = fields.SelectField(label='quarter code')
-    year_term_code = fields.StringField(label='WebSoC YearTerm code', validators=[validators.required()])
+    quarter_code = fields.SelectField(label='quarter code*')
+    year_term_code = fields.StringField(label='WebSoC YearTerm code*', validators=[validators.DataRequired()])
     download = fields.SubmitField('download')
+
 
     def validate_on_submit(self):
         """
