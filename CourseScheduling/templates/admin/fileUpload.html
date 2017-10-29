@@ -12,17 +12,22 @@
     {{ file_upload_form.file }}
     {{ file_upload_form.fileType }}
 
-    <!--<div class="form-group">-->
-        <!--<label for="file">JSON File input</label>-->
-        <!--<input class="form-control-file" type="file" name="file" id="file">-->
-        <!--<select name="file_type" id="file_type">-->
-            <!--<option value="course">Courses</option>-->
-            <!--<option value="requirement">Requirements</option>-->
-        <!--</select>-->
     </div>
     {{ file_upload_form.submit(class="btn btn-primary") }}
-    <!--<button class="btn btn-primary" type="submit" value="Upload">Submit </button>-->
+
 </form>
 
 <h3>Update Course Information</h3>
+<form method="POST" enctype="multipart/form-data">
+    <div class="form-group">
+        {{ update_form.dept.label }} {{ update_form.dept(placeholder='COMPSCI') }}
+        {{ update_form.course_id.label }} {{ update_form.course_id(placeholder='161') }}
+        {{ update_form.quarter_code.label }} {{ update_form.quarter_code }}
+        {{ update_form.year_term_code.label }} {{ update_form.year_term_code(placeholder='2017-92')}}
+
+    </div>
+    <div>
+        {{update_form.download(class="btn btn-primary")}}
+    </div>
+</form>
 {% endblock %}

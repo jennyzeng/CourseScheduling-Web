@@ -1,4 +1,4 @@
-from CourseScheduling.blueprints.schedule.models import Course, Requirement, Major
+from CourseScheduling.blueprints.schedule.models import Course, Requirement, Major, Quarter
 import lib.CourseSchedulingAlgorithm as cs
 import warnings
 import logging
@@ -7,6 +7,7 @@ def getCourse(dept, cid):
     c = Course.objects(dept=dept, cid=cid).first()
     return cs.Course(name=c.name, units=c.units, quarter_codes=c.quarters,
                      prereq=c.prereq, is_upper_only=c.upperOnly)
+
 
 def getMajorsNames():
     """
@@ -37,7 +38,7 @@ def getMajorReqNspecsByName(major_name):
     """
     m = Major.objects(name=major_name)
     if m.first():
-        return m.requirements, m.specs
+        return m.first().requirements, m.first().specs
     return [],[]
 
 
@@ -48,7 +49,7 @@ def getMajorRequirementsByName(major_name):
     """
     m = Major.objects(name=major_name)
     if m.first():
-        return m.requirements
+        return m.first().requirements
     return []
 
 def getMajorSpecsByName(major_name):
@@ -58,10 +59,16 @@ def getMajorSpecsByName(major_name):
     """
     m = Major.objects(name=major_name)
     if m.first():
-        return m.specs
+        return m.first().specs
     return []
 
-
+def getQuarterCodes():
+    """
+    for admin use
+    :return:
+    """
+    quarters = Quarter.objects()
+    return [(q.code, q.name) for q in quarters]
 
 def getInfo(req):
     G, R, R_detail = dict(), dict(), dict()

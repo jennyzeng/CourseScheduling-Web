@@ -44,5 +44,23 @@ class FileUploadForm(FlaskForm):
         return request and request.method == "POST"
 
 
-# class CourseInfoUpdateForm(FlaskForm):
+class CourseInfoUpdateForm(FlaskForm):
+    dept = fields.StringField(label="department")
+    course_id = fields.StringField(label="course id")
+    quarter_code = fields.SelectField(label='quarter code')
+    year_term_code = fields.StringField(label='WebSoC YearTerm code', validators=[validators.required()])
+    download = fields.SubmitField('download')
 
+    def validate_on_submit(self):
+        """
+        Checks if form has been submitted and if so runs validate. This is
+        a shortcut, equivalent to ``form.is_submitted() and form.validate()``
+        """
+        return self.is_submitted() and self.validate()
+
+    def is_submitted(self):
+        """
+        Checks if form has been submitted. The default case is if the HTTP
+        method is **POST**.
+        """
+        return request and request.method == "POST"
