@@ -55,7 +55,26 @@
 								<p>Drag the bookmarklet below to your Bookmarks Bar.</p>
 								<p>Then simply click it once you&rsquo;re logged into <a target="_blank" href="https://www.reg.uci.edu/access/student/degreeworks/?seg=U">DegreeWorks</a>.</p>
 								<div class="flash flash_info clearfix padding-20">
-									<a class="js_bookmarklet button_black_outline" href="javascript:if(window.location.href.indexOf('reg.uci.edu/dgw/IRISLink.cgi')!==-1){var url='http://localhost:8000/launch?cookie='+encodeURIComponent(document.cookie);window.open(url);}else{window.location.href='https://www.reg.uci.edu/access/student/degreeworks/?seg=U';}" onclick="return explain_bookmarklet();">Launch Scheduler</a>
+									<a class="js_bookmarklet button_black_outline" 
+									href="javascript:if(window.location.href.indexOf('reg.uci.edu/dgw/IRISLink.cgi')!==-1)
+									{
+										var form = document.createElement('form');
+										form._submit_function_ = form.submit;
+										form.setAttribute('method', 'POST');
+    									form.setAttribute('action', 'http://localhost:8000/launch');
+    									form.setAttribute('target', '_blank');
+    									var hiddenField = document.createElement('input');
+    									hiddenField.setAttribute('type', 'hidden');
+        								hiddenField.setAttribute('name', 'cookie');
+        								hiddenField.setAttribute('value', document.cookie);
+        								form.appendChild(hiddenField);
+        								document.body.appendChild(form);
+        								form._submit_function_();
+									}
+									else
+									{
+										window.location.href='https://www.reg.uci.edu/access/student/degreeworks/?seg=U';
+									}" onclick="return explain_bookmarklet();">Launch Scheduler</a>
 									<span class="margin-left-10">&larr; Drag this button to your Bookmarks Bar.</span>
 								</div>
 								<p><strong>Note:</strong> If you click this bookmarklet on a page other than DegreeWorks, it will take you there first, and once you&rsquo;re logged in, another click will launch PeterPlanner.</p>

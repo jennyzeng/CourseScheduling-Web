@@ -1,4 +1,4 @@
-from CourseScheduling.blueprints.schedule.dbHelper import getInfo
+from CourseScheduling.blueprints.schedule.dbHelper import getInfo, getMajorsNames, getMajorSpecsByName
 from flask import Blueprint, render_template, request
 from CourseScheduling.blueprints.schedule.models import Course, Major
 import lib.CourseSchedulingAlgorithm as cs
@@ -9,16 +9,28 @@ schedule = Blueprint('schedule', __name__, template_folder='templates')
 
 @schedule.route('/')
 def schedule_home():
-    return render_template('schedule/input.html')
+    return render_template('schedule/input.html',
+                            majors=getMajorsNames())
+
+@schedule.route('/detailedinput', methods=['POST', 'GET'])
+def detailed_input():
+    form = request.form
+    major = form.getlist("major")[0].upper()
+    print("MAJOR: " + major)
+    return render_template('schedule/detailedinput.html',
+                            specs=getMajorSpecsByName(major))
+    # return render_template('schedule/detailedinput.html',
+    #                         specs=getMajorSpecsByName("COMPUTER SCIENCE"))
 
 
 @schedule.route('/saveme')
 def saveme():
     return render_template('schedule/saveme.html')
 
-@schedule.route('/launch')
+@schedule.route('/launch', methods=['POST', 'GET'])
 def launch():
-    cookie = request.args.get('cookie', '')
+    cookie = request.form.getlist('cookie')[0]
+    print (cookie)
     upper_units = 90
     max_widths = {0: 13, 'else': 16}
     startQ = 0

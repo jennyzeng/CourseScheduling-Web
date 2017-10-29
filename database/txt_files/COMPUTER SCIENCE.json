@@ -7,19 +7,19 @@
         {
           "req_num": 16,
           "req_list": [
-            "I&CSCI 31",
-            "I&CSCI 32",
-            "I&CSCI 33",
-            "I&CSCI 45C",
-            "I&CSCI 46",
-            "I&CSCI 51",
-            "I&CSCI 53+53L",
-            "I&CSCI 90",
+            "I&C SCI 31",
+            "I&C SCI 32",
+            "I&C SCI 33",
+            "I&C SCI 45C",
+            "I&C SCI 46",
+            "I&C SCI 51",
+            "I&C SCI 53+53L",
+            "I&C SCI 90",
             "IN4MATX 43",
             "MATH 2A",
             "MATH 2B",
-            "I&CSCI 6B",
-            "I&CSCI 6D",
+            "I&C SCI 6B",
+            "I&C SCI 6D",
             "STATS 67",
             "GEII -1",
             "GEII -2"
@@ -28,7 +28,7 @@
         {
           "req_num": 1,
           "req_list": [
-            "I&CSCI 6N",
+            "I&C SCI 6N",
             "MATH 3A"
           ]
         }
@@ -41,7 +41,7 @@
           "req_num": 2,
           "req_list": [
             "COMPSCI 161",
-            "I&CSCI 139W"
+            "I&C SCI 139W"
           ]
         },
         {
@@ -103,9 +103,9 @@
             "IN4MATX 131",
             "IN4MATX 133",
             "IN4MATX 134",
-            "I&CSCI 160",
-            "I&CSCI 161",
-            "I&CSCI 162"
+            "I&C SCI 160",
+            "I&C SCI 161",
+            "I&C SCI 162"
           ]
         },
         {
@@ -208,7 +208,7 @@
         {
           "req_num": 4,
           "req_list": [
-            "I&CSCI 45J",
+            "I&C SCI 45J",
             "COMPSCI 122B",
             "COMPSCI 125",
             "COMPSCI 132",
@@ -331,7 +331,7 @@
             "COMPSCI 114",
             "COMPSCI 116",
             "COMPSCI 117",
-            "I&CSCI 162"
+            "I&C SCI 162"
           ]
         }
       ]
@@ -347,7 +347,7 @@
             "COMPSCI 114",
             "COMPSCI 116",
             "COMPSCI 117",
-            "I&CSCI 162"
+            "I&C SCI 162"
           ]
         }
       ]
