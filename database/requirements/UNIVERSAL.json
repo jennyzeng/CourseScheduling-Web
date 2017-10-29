@@ -47,8 +47,8 @@
           "req_list": [
             "GEII -1",
             "GEII -2",
-            "I&C SCI 31",
-            "I&C SCI 51"
+            "I&CSCI 31",
+            "I&CSCI 51"
           ]
         }
       ]
@@ -89,7 +89,7 @@
         {
           "req_num": 2,
           "req_list": [
-            "I&C SCI 32",
+            "I&CSCI 32",
             "STATS 67",
             "GEV -Va1"
           ]
@@ -97,7 +97,7 @@
         {
           "req_num": 1,
           "req_list": [
-            "I&C SCI 6B",
+            "I&CSCI 6B",
             "GEV -Vb1"
           ]
         }

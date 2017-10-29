@@ -15,7 +15,6 @@ class FileUploadView(BaseView):
 
     @expose('/', methods=['GET', 'POST'])
     def index(self):
-
         file_upload_form = FileUploadForm()
         update_form = CourseInfoUpdateForm()
         update_form.quarter_code.choices = getQuarterCodes()
@@ -36,7 +35,7 @@ class FileUploadView(BaseView):
         file.save(path)
 
         try:
-            file_type = file_upload_form.fileType
+            file_type = file_upload_form.fileType.data.lower()
             if file_type == "courses":
                 load_course(path)
             elif file_type == "requirements":

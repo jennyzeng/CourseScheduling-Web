@@ -62,35 +62,6 @@ def load_course(filename):
     qdict = load_quarters()
     try:
         with open(filename, 'r') as f:
-            """
-            # give up ijson because we are plannin to decrease the workload by separating courses by dept, 
-            # so each file won't be too large. 
-
-            # use ijson in case we will parse large course json file in future
-            parser = parse(f)
-            course = None
-            for prefix, event, value in parser:
-                # the begin of the first course in the file 
-                if not course and prefix != '' and event == 'start_map':
-                    course = Course(cid='', dept='', name='')
-                # the rest of the conditional statements are supposed to be excuted line by line 
-                elif prefix[-4:] == '.cid' and event == 'string':
-                    course.cid= value
-                elif prefix.endswith('.dept') and event == 'string':
-                    course.dept = value
-                elif prefix.endswith('.name') and event == 'string':
-                    course.name = value
-                elif prefix[-14:] == '.quarters.item' and event == 'number':
-                    course.quarters.append(Quarter.objects(code=value).first())
-                elif prefix.endswith('.units') and event == 'string':
-                    course.units = int(value)
-                elif prefix.endswith('.upperOnly') and event == 'boolean':
-                    course.upperOnly = value
-                # when the course is loaded and event end_map is happening
-                elif course and prefix == course.dept+' '+course.cid and event == 'end_map':
-                    course.save()
-                    course = None;
-            """
             data = json.load(f)
             CourseValidator(data, CourseSchema.SCHEMA)
             for k, c in data.items():
@@ -140,7 +111,7 @@ def load_requirement(filename):
                     for c in subr.get("req_list", []):
                         dept, cid = getDeptCid(c)
                         if not Course.objects(dept=dept, cid=cid).first():
-                            err_msg += "Error in {} \n".format(dept+cid)
+                            err_msg += "Error in {} \n".format(dept+" "+cid)
                             continue
                         subreq.req_list.append(Course.objects(dept=dept, cid=cid).first())
                     requirement.sub_reqs.append(subreq)

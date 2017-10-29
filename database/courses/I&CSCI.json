@@ -1,7 +1,7 @@
 {
-    "I&C SCI 3": {
+    "I&CSCI 3": {
         "cid": "3",
-        "dept": "I&C SCI",
+        "dept": "I&CSCI",
         "name": "INTERNET TECH & SOC",
         "prereqs": [],
         "quarters": [
@@ -11,9 +11,9 @@
         "units": 4,
         "upperOnly": false
     },
-    "I&C SCI 5": {
+    "I&CSCI 5": {
         "cid": "3",
-        "dept": "I&C SCI",
+        "dept": "I&CSCI",
         "name": "GLBL DSRPT INF TECH",
         "prereqs": [],
         "quarters": [
@@ -25,9 +25,9 @@
         "units": 4,
         "upperOnly": false
     },
-    "I&C SCI 10": {
+    "I&CSCI 10": {
         "cid": "10",
-        "dept": "I&C SCI",
+        "dept": "I&CSCI",
         "name": "HOW COMPUTERS WORK",
         "prereqs": [],
         "quarters": [
@@ -38,9 +38,9 @@
         "units": 4,
         "upperOnly": false
     },
-    "I&C SCI 139W": {
+    "I&CSCI 139W": {
         "cid": "139W",
-        "dept": "I&C SCI",
+        "dept": "I&CSCI",
         "name": "CRITICAL WRITING",
         "prereqs": [["WRITING LOW2"]],
         "quarters": [
@@ -54,14 +54,14 @@
         "units": 4,
         "upperOnly": false
     },
-    "I&C SCI 161": {
+    "I&CSCI 161": {
         "cid": "161",
-        "dept": "I&C SCI",
+        "dept": "I&CSCI",
         "name": "DES&ANALYS OF ALGOR",
         "prereqs": [
             [
-                "I&C SCI 45C",
-                "I&C SCI 65"
+                "I&CSCI 45C",
+                "I&CSCI 65"
             ]
         ],
         "quarters": [
@@ -71,9 +71,9 @@
         "units": 4,
         "upperOnly": false
     },
-    "I&C SCI 162": {
+    "I&CSCI 162": {
         "cid": "162",
-        "dept": "I&C SCI",
+        "dept": "I&CSCI",
         "name": "MODELNG &WORLD BLDG",
         "prereqs": [
             [
@@ -86,22 +86,22 @@
         "units": 4,
         "upperOnly": false
     },
-    "I&C SCI 163": {
+    "I&CSCI 163": {
         "cid": "163",
-        "dept": "I&C SCI",
+        "dept": "I&CSCI",
         "name": "MOBILE & UBI GAMES",
         "prereqs": [
             [
-                "I&C SCI 61"
+                "I&CSCI 61"
             ],
             [
                 "IN4MATX 41",
-                "I&C SCI 31",
+                "I&CSCI 31",
                 "CSE 41",
-                "I&C SCI H21",
+                "I&CSCI H21",
                 "CSE 21",
-                "I&C SCI 10",
-                "I&C SCI 21"
+                "I&CSCI 10",
+                "I&CSCI 21"
             ]
         ],
         "quarters": [
@@ -112,16 +112,16 @@
         "units": 4,
         "upperOnly": false
     },
-    "I&C SCI 166": {
+    "I&CSCI 166": {
         "cid": "166",
-        "dept": "I&C SCI",
+        "dept": "I&CSCI",
         "name": "GAME DESIGN",
         "prereqs": [
             [
-                "I&C SCI 61"
+                "I&CSCI 61"
             ],
             [
-                "I&C SCI 52",
+                "I&CSCI 52",
                 "IN4MATX 43"
             ]
         ],
@@ -132,13 +132,13 @@
         "units": 4,
         "upperOnly": false
     },
-    "I&C SCI 167": {
+    "I&CSCI 167": {
         "cid": "167",
-        "dept": "I&C SCI",
+        "dept": "I&CSCI",
         "name": "MULTIPLAYER SYSTEMS",
         "prereqs": [
             [
-                "I&C SCI 51"
+                "I&CSCI 51"
             ]
         ],
         "quarters": [
@@ -148,17 +148,17 @@
         "units": 4,
         "upperOnly": false
     },
-    "I&C SCI 168": {
+    "I&CSCI 168": {
         "cid": "168",
-        "dept": "I&C SCI",
+        "dept": "I&CSCI",
         "name": "COMP&NETWRK SECURTY",
         "prereqs": [
             [
-                "I&C SCI 52",
+                "I&CSCI 52",
                 "IN4MATX 43"
             ],
             [
-                "I&C SCI 167"
+                "I&CSCI 167"
             ]
         ],
         "quarters": [
@@ -168,13 +168,13 @@
         "units": 4,
         "upperOnly": false
     },
-    "I&C SCI 169A": {
+    "I&CSCI 169A": {
         "cid": "169A",
-        "dept": "I&C SCI",
+        "dept": "I&CSCI",
         "name": "CAPSTONE GAME I",
         "prereqs": [
             [
-                "I&C SCI 168"
+                "I&CSCI 168"
             ]
         ],
         "quarters": [
@@ -184,13 +184,13 @@
         "units": 4,
         "upperOnly": false
     },
-    "I&C SCI 169B": {
+    "I&CSCI 169B": {
         "cid": "169B",
-        "dept": "I&C SCI",
+        "dept": "I&CSCI",
         "name": "CAPSTONE GAME II",
         "prereqs": [
             [
-                "I&C SCI 169A"
+                "I&CSCI 169A"
             ]
         ],
         "quarters": [
@@ -200,9 +200,9 @@
         "units": 4,
         "upperOnly": false
     },
-    "I&C SCI 31": {
+    "I&CSCI 31": {
         "cid": "31",
-        "dept": "I&C SCI",
+        "dept": "I&CSCI",
         "name": "INTRO TO PROGRMMING",
         "prereqs": [
         ],
@@ -217,14 +217,14 @@
         "units": 4,
         "upperOnly": false
     },
-    "I&C SCI 32": {
+    "I&CSCI 32": {
         "cid": "32",
-        "dept": "I&C SCI",
+        "dept": "I&CSCI",
         "name": "PROG SOFTWARE LIBR",
         "prereqs": [
             [
                 "CSE 41",
-                "I&C SCI 31"
+                "I&CSCI 31"
             ]
         ],
         "quarters": [
@@ -238,9 +238,9 @@
         "units": 4,
         "upperOnly": false
     },
-    "I&C SCI 32A": {
+    "I&CSCI 32A": {
         "cid": "32A",
-        "dept": "I&C SCI",
+        "dept": "I&CSCI",
         "name": "PYTHN PGMG LIBR/ACC",
         "prereqs": [],
         "quarters": [
@@ -249,14 +249,14 @@
         "units": 4,
         "upperOnly": false
     },
-    "I&C SCI 33": {
+    "I&CSCI 33": {
         "cid": "33",
-        "dept": "I&C SCI",
+        "dept": "I&CSCI",
         "name": "INTERMEDIATE PRGRMG",
         "prereqs": [
             [
                 "CSE 42",
-                "I&C SCI 32"
+                "I&CSCI 32"
             ]
         ],
         "quarters": [
@@ -270,16 +270,16 @@
         "units": 4,
         "upperOnly": false
     },
-    "I&C SCI 45C": {
+    "I&CSCI 45C": {
         "cid": "45C",
-        "dept": "I&C SCI",
+        "dept": "I&CSCI",
         "name": "PROGRAM IN C/C++",
         "prereqs": [
             [
                 "EECS 40",
                 "CSE 22",
-                "I&C SCI 33",
-                "I&C SCI 22",
+                "I&CSCI 33",
+                "I&CSCI 22",
                 "CSE 43",
                 "IN4MATX 42"
             ]
@@ -295,13 +295,13 @@
         "units": 4,
         "upperOnly": false
     },
-    "I&C SCI 45J": {
+    "I&CSCI 45J": {
         "cid": "45J",
-        "dept": "I&C SCI",
+        "dept": "I&CSCI",
         "name": "PROGRAMMING IN JAVA",
         "prereqs": [
             [
-                "I&C SCI 33",
+                "I&CSCI 33",
                 "CSE 43"
             ]
         ],
@@ -313,13 +313,13 @@
         "units": 4,
         "upperOnly": false
     },
-    "I&C SCI 46": {
+    "I&CSCI 46": {
         "cid": "46",
-        "dept": "I&C SCI",
+        "dept": "I&CSCI",
         "name": "DATA STRC IMPL&ANLS",
         "prereqs": [
             [
-                "I&C SCI 45C",
+                "I&CSCI 45C",
                 "CSE 45C"
             ]
         ],
@@ -334,21 +334,21 @@
         "units": 4,
         "upperOnly": false
     },
-    "I&C SCI 51": {
+    "I&CSCI 51": {
         "cid": "51",
-        "dept": "I&C SCI",
+        "dept": "I&CSCI",
         "name": "INTRO COMPUTER ORG",
         "prereqs": [
             [
-                "I&C SCI 21",
-                "I&C SCI 31",
-                "I&C SCI H21",
+                "I&CSCI 21",
+                "I&CSCI 31",
+                "I&CSCI H21",
                 "CSE 21",
                 "CSE 41",
                 "IN4MATX 42"
             ],
             [
-                "I&C SCI 6B"
+                "I&CSCI 6B"
             ]
         ],
         "quarters": [
@@ -362,13 +362,13 @@
         "units": 6,
         "upperOnly": false
     },
-    "I&C SCI 53+53L": {
+    "I&CSCI 53+53L": {
         "cid": "53+53L",
-        "dept": "I&C SCI",
+        "dept": "I&CSCI",
         "name": "PRINCP IN SYS DESGN",
         "prereqs": [
             [
-                "I&C SCI 51"
+                "I&CSCI 51"
             ]
         ],
         "quarters": [
@@ -380,9 +380,9 @@
         "units": 4,
         "upperOnly": false
     },
-    "I&C SCI 60": {
+    "I&CSCI 60": {
         "cid": "60",
-        "dept": "I&C SCI",
+        "dept": "I&CSCI",
         "name": "CMP GAMES & SOCIETY",
         "prereqs": [],
         "quarters": [
@@ -393,15 +393,15 @@
         "units": 4,
         "upperOnly": false
     },
-    "I&C SCI 62": {
+    "I&CSCI 62": {
         "cid": "62",
-        "dept": "I&C SCI",
+        "dept": "I&CSCI",
         "name": "GAME TECH&INT MEDIA",
         "prereqs": [
             [
-                "I&C SCI 21",
-                "I&C SCI 31",
-                "I&C SCI H21",
+                "I&CSCI 21",
+                "I&CSCI 31",
+                "I&CSCI H21",
                 "CSE 21",
                 "CSE 41",
                 "IN4MATX 42"
@@ -414,9 +414,9 @@
         "units": 4,
         "upperOnly": false
     },
-    "I&C SCI 6B": {
+    "I&CSCI 6B": {
         "cid": "6B",
-        "dept": "I&C SCI",
+        "dept": "I&CSCI",
         "name": "BOOLEAN ALG & LOGIC",
         "prereqs": [],
         "quarters": [
@@ -430,13 +430,13 @@
         "units": 4,
         "upperOnly": false
     },
-    "I&C SCI 6D": {
+    "I&CSCI 6D": {
         "cid": "6D",
-        "dept": "I&C SCI",
+        "dept": "I&CSCI",
         "name": "DISCRET MATH FOR CS",
         "prereqs": [
             [
-                "I&C SCI 6B"
+                "I&CSCI 6B"
             ]
         ],
         "quarters": [
@@ -450,9 +450,9 @@
         "units": 4,
         "upperOnly": false
     },
-    "I&C SCI 90": {
+    "I&CSCI 90": {
         "cid": "90",
-        "dept": "I&C SCI",
+        "dept": "I&CSCI",
         "name": "NEW STUDENTS SEMINR",
         "prereqs": [],
         "quarters": [
