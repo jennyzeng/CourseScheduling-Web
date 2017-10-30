@@ -5,19 +5,19 @@
         "name": "DIGITAL IMAGE PROC",
         "prereqs": [
             [
-                "I&C SCI 46",
+                "I&CSCI 46",
                 "CSE 23",
-                "I&C SCI 23",
+                "I&CSCI 23",
                 "CSE 46",
-                "I&C SCI H23"
+                "I&CSCI H23"
             ],
             [
-                "I&C SCI 6D"
+                "I&CSCI 6D"
             ],
             [
                 "MATH 3A",
                 "MATH 6G",
-                "I&C SCI 6N"
+                "I&CSCI 6N"
             ]
         ],
         "quarters": [
@@ -33,19 +33,19 @@
         "prereqs": [
             [
                 "CSE 43",
-                "I&C SCI 22",
-                "I&C SCI 33",
+                "I&CSCI 22",
+                "I&CSCI 33",
                 "CSE 22",
-                "I&C SCI H22"
+                "I&CSCI H22"
             ],
             [
-                "I&C SCI 45C",
+                "I&CSCI 45C",
                 "CSE 45C"
             ],
             [
                 "MATH 3A",
                 "MATH 6G",
-                "I&C SCI 6N"
+                "I&CSCI 6N"
             ]
         ],
         "quarters": [
@@ -62,11 +62,11 @@
         "prereqs": [
             [
                 "COMPSCI 112",
-                "I&C SCI 166",
+                "I&CSCI 166",
                 "COMPSCI 171",
                 "IN4MATX 121",
                 "ART 106B",
-                "I&C SCI 163"
+                "I&CSCI 163"
             ]
         ],
         "quarters": [
@@ -85,7 +85,7 @@
                 "COMPSCI 112"
             ],
             [
-                "I&C SCI 45C",
+                "I&CSCI 45C",
                 "CSE 45C"
             ],
             [
@@ -114,11 +114,11 @@
         "name": "COMPUTER SIMULATION",
         "prereqs": [
             [
-                "I&C SCI 6B"
+                "I&CSCI 6B"
             ],
             [
                 "MATH 6G",
-                "I&C SCI 6N"
+                "I&CSCI 6N"
             ],
             [
                 "STATS 67",
@@ -129,7 +129,7 @@
                 "STATS 120A"
             ],
             [
-                "I&C SCI 51"
+                "I&CSCI 51"
             ],
             [
                 "IN4MATX 43"
@@ -149,22 +149,22 @@
         "name": "COMP PHOTO & VISION",
         "prereqs": [
             [
-                "I&C SCI 6D"
+                "I&CSCI 6D"
             ],
             [
                 "MATH 3A",
                 "MATH 6G",
-                "I&C SCI 6N"
+                "I&CSCI 6N"
             ],
             [
                 "MATH 2B"
             ],
             [
-                "I&C SCI 46",
+                "I&CSCI 46",
                 "CSE 23",
-                "I&C SCI 23",
+                "I&CSCI 23",
                 "CSE 46",
-                "I&C SCI H23"
+                "I&CSCI H23"
             ]
         ],
         "quarters": [
@@ -180,22 +180,22 @@
         "name": "PROJ IN COMP VISION",
         "prereqs": [
             [
-                "I&C SCI 6D"
+                "I&CSCI 6D"
             ],
             [
                 "MATH 3A",
                 "MATH 6G",
-                "I&C SCI 6N"
+                "I&CSCI 6N"
             ],
             [
                 "MATH 2B"
             ],
             [
-                "I&C SCI 46",
+                "I&CSCI 46",
                 "CSE 23",
-                "I&C SCI 23",
+                "I&CSCI 23",
                 "CSE 46",
-                "I&C SCI H23"
+                "I&CSCI H23"
             ],
             [
                 "COMPSCI 112",
@@ -216,8 +216,8 @@
         "name": "INFRMTION RETRIEVAL",
         "prereqs": [
             [
-                "I&C SCI 45J",
-                "I&C SCI 45C",
+                "I&CSCI 45J",
+                "I&CSCI 45C",
                 "CSE 45C"
             ],
             [
@@ -241,7 +241,7 @@
             [
                 "CSE 43",
                 "EECS 114",
-                "I&C SCI 33"
+                "I&CSCI 33"
             ]
         ],
         "quarters": [
@@ -265,7 +265,7 @@
                 "COMPSCI 122A"
             ],
             [
-                "I&C SCI 45J"
+                "I&CSCI 45J"
             ]
         ],
         "quarters": [
@@ -307,8 +307,8 @@
             [
                 "IN4MATX 41",
                 "CSE 21",
-                "I&C SCI 31",
-                "I&C SCI 21",
+                "I&CSCI 31",
+                "I&CSCI 21",
                 "CSE 41"
             ]
         ],
@@ -325,7 +325,7 @@
         "name": "PARLLEL DIST CMPTNG",
         "prereqs": [
             [
-                "I&C SCI 53+53L",
+                "I&CSCI 53+53L",
                 "COMPSCI 143A"
             ]
         ],
@@ -377,15 +377,15 @@
         "name": "COMP&NETWRK SECURTY",
         "prereqs": [
             [
-                "I&C SCI 6D"
+                "I&CSCI 6D"
             ],
             [
                 "CSE 43",
-                "I&C SCI 22",
+                "I&CSCI 22",
                 "IN4MATX 42",
-                "I&C SCI 33",
+                "I&CSCI 33",
                 "CSE 22",
-                "I&C SCI H22"
+                "I&CSCI H22"
             ],
             [
                 "EECS 116",
@@ -412,7 +412,7 @@
                 "COMPSCI 132"
             ],
             [
-                "I&C SCI 45J"
+                "I&CSCI 45J"
             ]
         ],
         "quarters": [
@@ -428,13 +428,13 @@
         "name": "CONCEPT PGMG LANG I",
         "prereqs": [
             [
-                "I&C SCI 51",
+                "I&CSCI 51",
                 "EECS 31",
                 "CSE 31"
             ],
             [
                 "CSE 46",
-                "I&C SCI 46"
+                "I&CSCI 46"
             ]
         ],
         "quarters": [
@@ -468,14 +468,14 @@
         "name": "PRNCPLS OPERTNG SYS",
         "prereqs": [
             [
-                "I&C SCI 46",
+                "I&CSCI 46",
                 "CSE 23",
-                "I&C SCI 23",
+                "I&CSCI 23",
                 "CSE 46",
-                "I&C SCI H23"
+                "I&CSCI H23"
             ],
             [
-                "I&C SCI 51",
+                "I&CSCI 51",
                 "EECS 31",
                 "CSE 31"
             ]
@@ -515,11 +515,11 @@
         "prereqs": [
             [
                 "CSE 46",
-                "I&C SCI 46"
+                "I&CSCI 46"
             ],
             [
                 "EECS 112",
-                "I&C SCI 51",
+                "I&CSCI 51",
                 "CSE 132"
             ]
         ],
@@ -535,14 +535,14 @@
         "name": "MULTITASK OPER SYS",
         "prereqs": [
             [
-                "I&C SCI 46",
+                "I&CSCI 46",
                 "CSE 23",
-                "I&C SCI 23",
+                "I&CSCI 23",
                 "CSE 46",
-                "I&C SCI H23"
+                "I&CSCI H23"
             ],
             [
-                "I&C SCI 51"
+                "I&CSCI 51"
             ],
             [
                 "COMPSCI 143A"
@@ -562,21 +562,21 @@
         "prereqs": [
             [
                 "CSE 43",
-                "I&C SCI 46",
+                "I&CSCI 46",
                 "CSE 23",
-                "I&C SCI 23",
-                "I&C SCI 33",
+                "I&CSCI 23",
+                "I&CSCI 33",
                 "CSE 46",
-                "I&C SCI H23"
+                "I&CSCI H23"
             ],
             [
-                "I&C SCI 51"
+                "I&CSCI 51"
             ],
             [
-                "I&C SCI 6B"
+                "I&CSCI 6B"
             ],
             [
-                "I&C SCI 6D"
+                "I&CSCI 6D"
             ]
         ],
         "quarters": [
@@ -639,17 +639,17 @@
         "name": "DES&ANALYS OF ALGOR",
         "prereqs": [
             [
-                "I&C SCI 46",
+                "I&CSCI 46",
                 "CSE 23",
-                "I&C SCI 23",
+                "I&CSCI 23",
                 "CSE 46",
-                "I&C SCI H23"
+                "I&CSCI H23"
             ],
             [
-                "I&C SCI 6B"
+                "I&CSCI 6B"
             ],
             [
-                "I&C SCI 6D"
+                "I&CSCI 6D"
             ],
             [
                 "MATH 2B"
@@ -670,11 +670,11 @@
         "name": "FORMAL LANG & AUTM",
         "prereqs": [
             [
-                "I&C SCI 46",
+                "I&CSCI 46",
                 "CSE 23",
-                "I&C SCI 23",
+                "I&CSCI 23",
                 "CSE 46",
-                "I&C SCI H23"
+                "I&CSCI H23"
             ],
             [
                 "MATH 2A"
@@ -683,10 +683,10 @@
                 "MATH 2B"
             ],
             [
-                "I&C SCI 6B"
+                "I&CSCI 6B"
             ],
             [
-                "I&C SCI 6D"
+                "I&CSCI 6D"
             ]
         ],
         "quarters": [
@@ -718,11 +718,11 @@
         "name": "COMPUTATIONAL GEO",
         "prereqs": [
             [
-                "I&C SCI 46",
+                "I&CSCI 46",
                 "CSE 23",
-                "I&C SCI 23",
+                "I&CSCI 23",
                 "CSE 46",
-                "I&C SCI H23"
+                "I&CSCI H23"
             ]
         ],
         "quarters": [
@@ -741,7 +741,7 @@
                 "COMPSCI 161"
             ],
             [
-                "I&C SCI 45C"
+                "I&CSCI 45C"
             ]
         ],
         "quarters": [
@@ -774,7 +774,7 @@
             [
                 "MATH 3A",
                 "MATH 6G",
-                "I&C SCI 6N"
+                "I&CSCI 6N"
             ],
             [
                 "STATS 67"
@@ -805,7 +805,7 @@
             ],
             [
                 "CSE 46",
-                "I&C SCI 46"
+                "I&CSCI 46"
             ],
             [
                 "MATH 2B"
@@ -876,15 +876,15 @@
                 "STATS 67"
             ],
             [
-                "I&C SCI 6B"
+                "I&CSCI 6B"
             ],
             [
-                "I&C SCI 6D"
+                "I&CSCI 6D"
             ],
             [
                 "MATH 3A",
                 "MATH 6G",
-                "I&C SCI 6N"
+                "I&CSCI 6N"
             ]
         ],
         "quarters": [
@@ -900,15 +900,15 @@
         "name": "MACHINE/DATA MINING",
         "prereqs": [
             [
-                "I&C SCI 6B"
+                "I&CSCI 6B"
             ],
             [
-                "I&C SCI 6D"
+                "I&CSCI 6D"
             ],
             [
                 "MATH 3A",
                 "MATH 6G",
-                "I&C SCI 6N"
+                "I&CSCI 6N"
             ],
             [
                 "MATH 2B"
@@ -957,7 +957,7 @@
             [
                 "MATH 3A",
                 "MATH 6G",
-                "I&C SCI 6N"
+                "I&CSCI 6N"
             ]
         ],
         "quarters": [
@@ -1115,19 +1115,19 @@
         "name": "IMAGE UNDERSTANDING",
         "prereqs": [
             [
-                "I&C SCI 6D"
+                "I&CSCI 6D"
             ],
             [
                 "MATH 3A",
                 "MATH 6G",
-                "I&C SCI 6N"
+                "I&CSCI 6N"
             ],
             [
                 "MATH 2B"
             ],
             [
                 "CSE 46",
-                "I&C SCI 46"
+                "I&CSCI 46"
             ]
         ],
         "quarters": [
@@ -1151,7 +1151,7 @@
             [
                 "MATH 3A",
                 "MATH 6G",
-                "I&C SCI 6N"
+                "I&CSCI 6N"
             ]
         ],
         "quarters": [
@@ -1210,8 +1210,8 @@
             [
                 "IN4MATX 41",
                 "CSE 21",
-                "I&C SCI 31",
-                "I&C SCI 21",
+                "I&CSCI 31",
+                "I&CSCI 21",
                 "CSE 41"
             ]
         ],
@@ -1278,7 +1278,7 @@
         "name": "INTR EMBED UBIQ SYS",
         "prereqs": [
             [
-                "I&C SCI 51"
+                "I&CSCI 51"
             ],
             [
                 "COMPSCI 152"
@@ -1286,8 +1286,8 @@
             [
                 "MATH 3A",
                 "MATH 6G",
-                "I&C SCI 6D",
-                "I&C SCI 6N"
+                "I&CSCI 6D",
+                "I&CSCI 6N"
             ],
             [
                 "COMPSCI 161"
@@ -1306,7 +1306,7 @@
         "name": "SW 4 EMBEDDED SYS",
         "prereqs": [
             [
-                "I&C SCI 51"
+                "I&CSCI 51"
             ],
             [
                 "COMPSCI 152"
@@ -1317,8 +1317,8 @@
             [
                 "MATH 3A",
                 "MATH 6G",
-                "I&C SCI 6D",
-                "I&C SCI 6N"
+                "I&CSCI 6D",
+                "I&CSCI 6N"
             ]
         ],
         "quarters": [
@@ -1401,7 +1401,7 @@
         "name": "DATA STRUCTURES",
         "prereqs": [
             [
-                "I&C SCI 46"
+                "I&CSCI 46"
             ],
             [
                 "COMPSCI 161"
@@ -1480,7 +1480,7 @@
             [
                 "MATH 3A",
                 "MATH 6G",
-                "I&C SCI 6N"
+                "I&CSCI 6N"
             ]
         ],
         "quarters": [

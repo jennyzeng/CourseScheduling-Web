@@ -7,10 +7,10 @@
             [
                 "EECS 31",
                 "CSE 31",
-                "I&C SCI 51"
+                "I&CSCI 51"
             ],
             [
-                "I&C SCI 46",
+                "I&CSCI 46",
                 "CSE 46"
             ]
         ],
@@ -45,14 +45,14 @@
         "prereqs": [
             [
                 "CSE 22",
-                "I&C SCI 22",
+                "I&CSCI 22",
                 "IN4MATX 42",
                 "CSE 43",
-                "I&C SCI 33"
+                "I&CSCI 33"
             ],
             [
                 "IN4MATX 43",
-                "I&C SCI 52"
+                "I&CSCI 52"
             ]
         ],
         "quarters": [
@@ -68,19 +68,19 @@
         "name": "SW TEST&QUAL ASSUR",
         "prereqs": [
             [
-                "I&C SCI 45J",
+                "I&CSCI 45J",
                 "CSE 23",
-                "I&C SCI 45C",
+                "I&CSCI 45C",
                 "IN4MATX 45",
                 "CSE 46",
-                "I&C SCI 65",
-                "I&C SCI 23",
+                "I&CSCI 65",
+                "I&CSCI 23",
                 "CSE 45C",
-                "I&C SCI 46"
+                "I&CSCI 46"
             ],
             [
                 "IN4MATX 43",
-                "I&C SCI 52"
+                "I&CSCI 52"
             ]
         ],
         "quarters": [
@@ -97,14 +97,14 @@
         "prereqs": [
             [
                 "IN4MATX 43",
-                "I&C SCI 52"
+                "I&CSCI 52"
             ],
             [
                 "CSE 22",
-                "I&C SCI 22",
+                "I&CSCI 22",
                 "IN4MATX 42",
                 "CSE 43",
-                "I&C SCI 33"
+                "I&CSCI 33"
             ]
         ],
         "quarters": [
@@ -124,11 +124,11 @@
                 "CSE 23",
                 "CSE 43",
                 "IN4MATX 45",
-                "I&C SCI H23",
+                "I&CSCI H23",
                 "CSE 46",
-                "I&C SCI 33",
-                "I&C SCI 23",
-                "I&C SCI 46"
+                "I&CSCI 33",
+                "I&CSCI 23",
+                "I&CSCI 46"
             ]
         ],
         "quarters": [
@@ -145,8 +145,8 @@
         "prereqs": [
             [
                 "IN4MATX 45",
-                "I&C SCI 45J",
-                "I&C SCI 46"
+                "I&CSCI 45J",
+                "I&CSCI 46"
             ],
             [
                 "CSE 141",
@@ -171,7 +171,7 @@
                 "EECS 148"
             ],
             [
-                "I&C SCI 45J"
+                "I&CSCI 45J"
             ]
         ],
         "quarters": [
@@ -187,12 +187,12 @@
         "name": "CMPTR GAME DEVLPMNT",
         "prereqs": [
             [
-                "I&C SCI 163",
+                "I&CSCI 163",
                 "ART 106B",
                 "COMPSCI 171",
                 "IN4MATX 121",
                 "COMPSCI 112",
-                "I&C SCI 166"
+                "I&CSCI 166"
             ]
         ],
         "quarters": [
@@ -210,14 +210,14 @@
             [
                 "IN4MATX 41",
                 "EECS 10",
-                "I&C SCI H21",
-                "I&C SCI 31",
+                "I&CSCI H21",
+                "I&CSCI 31",
                 "ENGR 10",
                 "ENGRMAE 10",
                 "CSE 41",
-                "I&C SCI 10",
+                "I&CSCI 10",
                 "CSE 21",
-                "I&C SCI 21"
+                "I&CSCI 21"
             ]
         ],
         "quarters": [
@@ -251,7 +251,7 @@
         "name": "USER INTERACTION SW",
         "prereqs": [
             [
-                "I&C SCI 45J"
+                "I&CSCI 45J"
             ]
         ],
         "quarters": [
@@ -285,8 +285,8 @@
         "name": "INFRMTION RETRIEVAL",
         "prereqs": [
             [
-                "I&C SCI 45J",
-                "I&C SCI 45C"
+                "I&CSCI 45J",
+                "I&CSCI 45C"
             ],
             [
                 "STATS 67",
@@ -309,14 +309,14 @@
             [
                 "IN4MATX 43",
                 "IN4MATX 131",
-                "I&C SCI 52"
+                "I&CSCI 52"
             ],
             [
                 "IN4MATX 41",
-                "I&C SCI 31",
+                "I&CSCI 31",
                 "CSE 41",
                 "CSE 21",
-                "I&C SCI 21"
+                "I&CSCI 21"
             ]
         ],
         "quarters": [
@@ -333,11 +333,11 @@
         "prereqs": [
             [
                 "IN4MATX 41",
-                "I&C SCI 31",
+                "I&CSCI 31",
                 "CSE 41",
-                "I&C SCI 10",
+                "I&CSCI 10",
                 "CSE 21",
-                "I&C SCI 21"
+                "I&CSCI 21"
             ]
         ],
         "quarters": [
@@ -354,7 +354,7 @@
         "prereqs": [
             [
                 "IN4MATX 43",
-                "I&C SCI 52"
+                "I&CSCI 52"
             ]
         ],
         "quarters": [
@@ -374,14 +374,14 @@
             [
                 "IN4MATX 43",
                 "IN4MATX 161",
-                "I&C SCI 52"
+                "I&CSCI 52"
             ],
             [
                 "IN4MATX 41",
-                "I&C SCI 31",
+                "I&CSCI 31",
                 "CSE 41",
                 "CSE 21",
-                "I&C SCI 21"
+                "I&CSCI 21"
             ]
         ],
         "quarters": [
@@ -399,14 +399,14 @@
             [
                 "IN4MATX 41",
                 "EECS 10",
-                "I&C SCI H21",
-                "I&C SCI 31",
+                "I&CSCI H21",
+                "I&CSCI 31",
                 "ENGR 10",
                 "ENGRMAE 10",
                 "CSE 41",
-                "I&C SCI 10",
+                "I&CSCI 10",
                 "CSE 21",
-                "I&C SCI 21"
+                "I&CSCI 21"
             ]
         ],
         "quarters": [
@@ -576,7 +576,7 @@
                 "COMPSCI 171"
             ],
             [
-                "I&C SCI 6N",
+                "I&CSCI 6N",
                 "MATH 3A",
                 "MATH 6G"
             ]
@@ -627,7 +627,7 @@
         "name": "INTR EMBED UBIQ SYS",
         "prereqs": [
             [
-                "I&C SCI 51"
+                "I&CSCI 51"
             ],
             [
                 "COMPSCI 152"
@@ -636,10 +636,10 @@
                 "COMPSCI 161"
             ],
             [
-                "I&C SCI 6N",
+                "I&CSCI 6N",
                 "MATH 3A",
                 "MATH 6G",
-                "I&C SCI 6D"
+                "I&CSCI 6D"
             ]
         ],
         "quarters": [
@@ -767,7 +767,7 @@
         "prereqs": [
             [
                 "CSE 42",
-                "I&C SCI 32"
+                "I&CSCI 32"
             ]
         ],
         "quarters": [
