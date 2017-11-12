@@ -8,6 +8,7 @@
 <form action="{{ url_for('schedule.schedule_output') }}" method="post" id="preview-form">
   <input type="hidden" name="quarter" value="{{ quarter }}">
   <input type="hidden" name="specialization" value="{{ specialization }}">
+  <input type="hidden" name="taken" value="{{ taken }}">
   <div class=" sm-margin-top">
     <div class="row text-center lg-margin-bottom">
       <h2>Your Schedule Preview</h2>
