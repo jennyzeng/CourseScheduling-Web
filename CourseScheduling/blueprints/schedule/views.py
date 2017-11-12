@@ -19,7 +19,8 @@ def schedule_home():
     """
     home_input_form = HomeInputForm()
     home_input_form.firstQuarter.choices=getQuarterCodes()
-    home_input_form.majors.choices=list(map(lambda x: (x,x), getMajorsNames()))
+    majorNames = getMajorsNames()
+    home_input_form.majors.choices=list(map(lambda x: (x,x), majorNames))
     return render_template('schedule/input.html',form=home_input_form)#, majordata=majordata)
 
 @schedule.route('/detailedinput', methods=['POST', 'GET'])

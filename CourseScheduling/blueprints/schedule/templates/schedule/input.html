@@ -63,7 +63,10 @@
 </div>
 <script type="text/javascript">
     $(document).ready(function() {
-        $('#{{ form.majors.id }}').multiselect();
+        $('#{{ form.majors.id }}').multiselect({
+            enableFiltering: true,
+                includeSelectAllOption: true
+        });
         $('#{{ form.firstQuarter.id }}').multiselect();
     });
 </script>
