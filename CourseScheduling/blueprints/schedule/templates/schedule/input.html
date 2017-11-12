@@ -3,67 +3,68 @@
 {% block title %}Course Scheduling{% endblock %}
 {% block meta_description %}Course Scheduling Home Page{% endblock %}
 
+{% block extra %}
+<!--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>-->
+<link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css"
+      rel="stylesheet" type="text/css"/>
+<script type="text/javascript"
+        src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<link href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css"
+      rel="stylesheet" type="text/css"/>
+<script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js"
+        type="text/javascript"></script>
+<link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='styles/mystyle.css') }}">
+<!-- Latest compiled and minified JavaScript -->
+<!--<script ype="text/javascript" src="{{ url_for('static', filename='scripts/vendor/bootstrap-3.3.2.min.js') }}" ></script>-->
+<!--<script type="text/javascript" src="{{ url_for('static', filename='scripts/vendor/bootstrap.min.js')}}"></script>-->
+<!--<script type="text/javascript" src="{{ url_for('static', filename='scripts/vendor/bootstrap-multiselect.js')}}"></script>-->
+<!--<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/vendor/bootstrap-multiselect.css')}}" >-->
+{% endblock %}
 
 
 
 {% block body %}
 
+
+<!--<h1>Course Scheduling</h1>-->
+<div class="container">
+    <div class="row">
+        <div class=".col-sm-5 .col-md-6">
+            <h1>Course Scheduling</h1>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <form id="multiselectForm" class="form-horizontal">
+
+
+        <div class="form-group">
+            <label class="col-xs-3 control-label">{{ form.firstQuarter.label }}</label>
+            <div class="col-xs-5">
+                {{ form.firstQuarter(class="form-control") }}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-3 control-label">{{ form.majors.label }}</label>
+            <div class="col-xs-5">
+                {{ form.majors(class="form-control") }}
+
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-5 col-xs-offset-3">
+                {{ form.next(class="btn btn-success button-send submit") }}
+            </div>
+        </div>
+
+    </form>
+</div>
 <script type="text/javascript">
-
+    $(document).ready(function() {
+        $('#{{ form.majors.id }}').multiselect();
+        $('#{{ form.firstQuarter.id }}').multiselect();
+    });
 </script>
-
-  <h1>Course Scheduling</h1>
-
-   <form action="{{ url_for('schedule.detailed_input') }}" method="post">
-     <!-- <div>
-       <div id="sendmessage"> Your message has been sent successfully. Thank you. </div>
-
-       <div class="leftcontact">
-         <div class="form-group">
-           <p>Current Quarter <span>*</span></p>
-           <span class="icon-case"><i class="fa fa-calendar"></i></span>
-           <select class="js-example-basic-single input-field" name='quarter' required>
-             <option value="0" selected="true">Fall</option>
-             <option value="1">Winter</option>
-             <option value="2">Spring</option>
-           </select>
-         </div>
-       </div>
-
-       <div class="rightcontact">
-         <div class="form-group">
-           <p>Major <span>*</span></p>
-           <span class="icon-case"><i class="fa fa-book"></i></span>
-           <select class="js-example-basic-multiple input-field" name="major" required>
-             {% for index in range(majors|length) %}
-             <option value="{{ majors[index] }}">{{ majors[index] }}</option>
-             {% endfor %}
-           </select>
-         </div>
-       </div>
-
-   </div> -->
-
-   <div>
-     <div class="form-group">
-       <p>Major <span>*</span></p>
-       <span class="icon-case"><i class="fa fa-book"></i></span>
-       <select class="js-example-basic-multiple input-field" name="major" required>
-         {% for index in range(majors|length) %}
-         <option value="{{ majors[index] }}">{{ majors[index] }}</option>
-         {% endfor %}
-       </select>
-     </div>
-   </div>
-   <!-- <a href="{{ url_for('schedule.schedule_output') }}" class="btn btn-lg button-send" role="button">Send</a> -->
-   <div class="row">
-     <div class="col-md-5 col-sm-5 col-xs-4"></div>
-     <div class="col-md-2 col-sm-2 col-xs-4">
-       <button class="btn btn-success button-send submit" role="button">Next</button>
-     </div>
-     <div class="col-md-5 col-sm-5 col-xs-4"></div>
-   </div>
-
-  </form>
-
 {% endblock %}

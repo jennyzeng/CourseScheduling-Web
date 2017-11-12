@@ -2,8 +2,7 @@ from wtforms import form, fields, validators
 from CourseScheduling.blueprints.user.models import User
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileRequired, FileAllowed, FileField
-from flask_uploads import UploadSet
-from werkzeug.utils import secure_filename
+
 from flask import request
 
 # Define login and registration forms (for flask-login)

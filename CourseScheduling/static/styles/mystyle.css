@@ -16,7 +16,7 @@
     width:100%;
     margin: 2% auto;
     background-color: #FFFFFF;
-    overflow: hidden;
+    overflow: visible;
   }
 
   p span {
@@ -57,7 +57,7 @@
   }
 
   .form-group {
-    overflow: hidden;
+    overflow: visible;
     clear: both;
   }
 

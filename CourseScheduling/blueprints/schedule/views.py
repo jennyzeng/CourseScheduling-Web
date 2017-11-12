@@ -1,9 +1,10 @@
-from CourseScheduling.blueprints.schedule.dbHelper import getInfo, getMajorsNames, getMajorSpecsByName
+from CourseScheduling.blueprints.schedule.dbHelper import getInfo, getMajorsNames, getMajorSpecsByName, getQuarterCodes
 from flask import Blueprint, render_template, request
 from CourseScheduling.blueprints.schedule.models import Course, Major
 import lib.CourseSchedulingAlgorithm as cs
 import ast
 from CourseScheduling.blueprints.schedule import dgw_data
+from CourseScheduling.blueprints.schedule.forms import HomeInputForm
 
 schedule = Blueprint('schedule', __name__, template_folder='templates')
 
@@ -13,8 +14,13 @@ def index():
 
 @schedule.route('/input')
 def schedule_home():
-    return render_template('schedule/input.html',
-                            majors=getMajorsNames())
+    """
+    input page 1 for major selection
+    """
+    home_input_form = HomeInputForm()
+    home_input_form.firstQuarter.choices=getQuarterCodes()
+    home_input_form.majors.choices=list(map(lambda x: (x,x), getMajorsNames()))
+    return render_template('schedule/input.html',form=home_input_form)#, majordata=majordata)
 
 @schedule.route('/detailedinput', methods=['POST', 'GET'])
 def detailed_input():

@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description"
           content="{% block meta_description %}{% endblock %}">
@@ -19,14 +19,15 @@
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='styles/vendor/font-awesome.min.css') }}">
-
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='styles/mystyle.css') }}">
 
-    <script src="https://code.jquery.com/jquery-1.12.2.min.js"
-            integrity="sha256-lZFHibXzMHo3GGeehn1hudTAP3Sc0uKXBXAzHX1sjtk="
-            crossorigin="anonymous"></script>
+<script src="{{ url_for('static', filename='scripts/vendor/jquery-2.1.3.min.js') }}"></script>
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+    <!--<script src="https://code.jquery.com/jquery-1.12.2.min.js"-->
+            <!--integrity="sha256-lZFHibXzMHo3GGeehn1hudTAP3Sc0uKXBXAzHX1sjtk="-->
+            <!--crossorigin="anonymous"></script>-->
 
     {% if config['ANALYTICS_GOOGLE_UA'] %}
       <script>
@@ -38,7 +39,9 @@
         ga('create', "{{ config['ANALYTICS_GOOGLE_UA'] }}", 'auto');
         ga('send', 'pageview');
       </script>
+
     {% endif %}
+    {% block extra %}{% endblock %}
   </head>
 
   <script>

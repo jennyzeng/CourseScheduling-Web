@@ -64,7 +64,6 @@ def getMajorSpecsByName(major_name):
 
 def getQuarterCodes():
     """
-    for admin use
     :return:
     """
     quarters = Quarter.objects()
