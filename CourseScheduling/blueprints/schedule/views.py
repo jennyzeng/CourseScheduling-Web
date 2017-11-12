@@ -8,6 +8,10 @@ from CourseScheduling.blueprints.schedule import dgw_data
 schedule = Blueprint('schedule', __name__, template_folder='templates')
 
 @schedule.route('/')
+def index():
+    return render_template('schedule/index.html')
+
+@schedule.route('/input')
 def schedule_home():
     return render_template('schedule/input.html',
                             majors=getMajorsNames())
@@ -49,7 +53,7 @@ def launch():
         R_detail.update(r_detail)
 
     taken = d.classes
-
+    print (taken)
     # update requirement table based on the taken information
     cs.update_requirements(R_detail, R, taken)
     # construct CourseGraph. graph is labeled after init

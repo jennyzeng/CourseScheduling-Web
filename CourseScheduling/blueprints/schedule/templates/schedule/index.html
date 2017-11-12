@@ -1,0 +1,60 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Course Scheduling{% endblock %}
+{% block meta_description %}Course Scheduling Home Page{% endblock %}
+
+
+{% block body %}
+
+<!-- bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+<h1>Course Scheduling</h1>
+<br>
+<h3 class="font-italic">We are a group of UCI CS students and we know, sometimes, it is hard to plan your academic journey. Course Scheduler is here to help.</h3>
+<br>
+<div class="cotainer">
+	<div class="card" style="height=400px; border-radius: 15px;">
+   		<div class="card-block">
+    		<h4 class="card-title">Do-it-yourself</h4>
+    		<div class="card-text">
+    			<h5>Fill out a questionaire, tell us your major, specialization (if applicable) and progress. Then, we will create a schedule for you.</h5> 
+    		</div>
+    		<a href="/input">Continue</a>
+   		</div>
+  	</div>
+  	<div class="card" style="height=400px; border-radius: 15px;">
+   		<div class="card-block">
+    		<h4 class="card-title">Let-us-work</h4>
+    		<div class="card-text">
+    			<h5>Drag this link below to bookmark bar and click into the link. After Login to the student access, click the 'Launch Scheduler' bookmark again. We will take care of the rest.</h5> 
+    		</div>
+    		<a class="js_bookmarklet button_black_outline" 
+						href="javascript:if(window.location.href.indexOf('reg.uci.edu/dgw/IRISLink.cgi')!==-1)
+									{
+										var form = document.createElement('form');
+										form._submit_function_ = form.submit;
+										form.setAttribute('method', 'POST');
+    									form.setAttribute('action', 'http://localhost:8000/launch');
+    									form.setAttribute('target', '_blank');
+    									var hiddenField = document.createElement('input');
+    									hiddenField.setAttribute('type', 'hidden');
+        								hiddenField.setAttribute('name', 'cookie');
+        								hiddenField.setAttribute('value', document.cookie);
+        								form.appendChild(hiddenField);
+        								document.body.appendChild(form);
+        								form._submit_function_();
+									}
+									else
+									{
+										window.location.href='https://www.reg.uci.edu/access/student/degreeworks/?seg=U';
+									}" onclick="return explain_bookmarklet();">
+									Launch
+			</a>
+   		</div>
+  	</div>
+</div>
+{% endblock %}

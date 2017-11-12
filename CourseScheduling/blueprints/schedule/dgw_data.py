@@ -83,7 +83,7 @@ class data:
 		soup = BeautifulSoup(r.text, 'lxml')
 
 		block = soup.find('block')
-		self.units_applied = int(block['credits_applied'])
+		self.units_applied = float(block['credits_applied'])
 
 		for goal in soup.find('deginfo').findAll('goal'):
 			if goal['code'].lower() == 'major':
