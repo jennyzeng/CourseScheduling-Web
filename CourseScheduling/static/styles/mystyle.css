@@ -19,6 +19,9 @@
     overflow: visible;
   }
 
+  td {
+    cursor: pointer;
+  }
   p span {
     color: #F00;
   }
@@ -129,6 +132,13 @@
     color: #DE5959;
   }
 
+  .form-group table th{
+    padding: 10px 15px;
+  }
+  .form-group table td{
+    padding: 10px 10px 10px 10px;
+  }
+
   #sendmessage {
     border:1px solid #fff;
     display:none;
@@ -145,7 +155,7 @@
   }
 
 
-
   #sendmessage.show,.show  {
     display:block;
   }
+

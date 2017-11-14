@@ -24,11 +24,8 @@
 {% endblock %}
 
 
-
 {% block body %}
 
-
-<!--<h1>Course Scheduling</h1>-->
 <div class="container">
     <div class="row">
         <div class=".col-sm-5 .col-md-6">
@@ -41,33 +38,91 @@
 
 
         <div class="form-group">
-            <label class="col-xs-3 control-label">{{ form.firstQuarter.label }}</label>
-            <div class="col-xs-5">
+            <label class="col-xs-4 col-xs-offset-2 control-label">{{ form.firstQuarter.label }}</label>
+            <div class="col-xs-6">
                 {{ form.firstQuarter(class="form-control") }}
             </div>
         </div>
         <div class="form-group">
-            <label class="col-xs-3 control-label">{{ form.majors.label }}</label>
-            <div class="col-xs-5">
+            <label class="col-xs-4 col-xs-offset-2 control-label">{{ form.majors.label }}</label>
+            <div class="col-xs-6">
                 {{ form.majors(class="form-control") }}
-
             </div>
         </div>
         <div class="form-group">
-            <div class="col-xs-5 col-xs-offset-3">
+            <label class="col-xs-4 col-xs-offset-2 control-label">{{ form.quarterCreditDefault.label }}</label>
+            <div class="col-xs-2">
+                {{ form.quarterCreditDefault(class="form-control") }}
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-6 col-xs-offset-4">
+                <div data-toggle="fieldset" id="QuarterCredits-fieldset">
+                    {{ form.quarterCredits.label }} <button class="btn btn-info" type="button" data-toggle="fieldset-add-row" data-target="#QuarterCredits-fieldset">+</button>
+                    <table>
+                        <tr>
+                            <th>quarter id </th>
+                            <th>maximum credit allowed</th>
+                        </tr>
+                        {% for quarter in form.quarterCredits %}
+                        <tr data-toggle="fieldset-entry">
+                            <td>{{ quarter.quarterId(class="form-control") }}</td>
+                            <td>{{ quarter.credit(class="form-control") }}</td>
+                            <td><button class="btn btn-danger" type="button" data-toggle="fieldset-remove-row" id="quarter-{{ loop.index0 }}-remove">-</button> </td>
+                        </tr >
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5 col-sm-5 col-xs-4"></div>
+            <div class="col-md-2 col-sm-2 col-xs-4">
                 {{ form.next(class="btn btn-success button-send submit") }}
             </div>
+            <div class="col-md-5 col-sm-5 col-xs-4"></div>
         </div>
 
     </form>
 </div>
 <script type="text/javascript">
-    $(document).ready(function() {
+// use template from https://gist.github.com/kageurufu/6813878 for dynamic forms
+$(function() {
+    $("div[data-toggle=fieldset]").each(function() {
+        var $this = $(this);
+
+            //Add new entry
+        $this.find("button[data-toggle=fieldset-add-row]").click(function() {
+            var target = $($(this).data("target"));
+            var oldrow = target.find("tr[data-toggle=fieldset-entry]:last");
+            var row = oldrow.clone(true, true);
+            var elem_id = row.find(":input")[0].id;
+            var elem_num = parseInt(elem_id.replace(/.*-(\d{1,4})-.*/m, '$1')) + 1;
+            row.attr('data-id', elem_num);
+            row.find(":input").each(function() {
+                var id = $(this).attr('id').replace('-' + (elem_num - 1) + '-', '-' + (elem_num) + '-');
+                $(this).attr('name', id).attr('id', id).val('').removeAttr("checked");
+            });
+            oldrow.after(row);
+        }); //End add new entry
+
+                //Remove row
+        $this.find("button[data-toggle=fieldset-remove-row]").click(function() {
+            if($this.find("tr[data-toggle=fieldset-entry]").length > 1) {
+                var thisRow = $(this).closest("tr[data-toggle=fieldset-entry]");
+                thisRow.remove();
+            }
+        }); //End remove row
+    });
+});
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
         $('#{{ form.majors.id }}').multiselect({
-            enableFiltering: true,
-                includeSelectAllOption: true
+            enableFiltering: true
         });
         $('#{{ form.firstQuarter.id }}').multiselect();
+        $('#{{ form.quarterCreditDefault.id }}').multiselect();
     });
 </script>
 {% endblock %}
