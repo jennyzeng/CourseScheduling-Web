@@ -12,7 +12,7 @@ schedule = Blueprint('schedule', __name__, template_folder='templates')
 def index():
     return render_template('schedule/index.html')
 
-@schedule.route('/input')
+@schedule.route('/input', methods=['GET', 'POST'])
 def schedule_home():
     """
     input page 1 for major selection
@@ -21,7 +21,19 @@ def schedule_home():
     home_input_form.firstQuarter.choices=getQuarterCodes()
     majorNames = getMajorsNames()
     home_input_form.majors.choices=list(map(lambda x: (x,x), majorNames))
+    if home_input_form.next.data:
+        print("has data")
+        if home_input_form.validate_on_submit():
+            print(home_input_form.firstQuarter.raw_data)
+        else:
+            print ("not validated")
+            print(home_input_form.firstQuarter.raw_data)
+
     return render_template('schedule/input.html',form=home_input_form)
+
+@schedule.route('/validateinput', methods=['POST'])
+def validate_input():
+    pass
 
 @schedule.route('/detailedinput', methods=['POST', 'GET'])
 def detailed_input():
