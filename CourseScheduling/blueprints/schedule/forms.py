@@ -11,6 +11,7 @@ class QuarterCreditForm(form.Form):
 
 class HomeInputForm(form.Form):
     majors =fields.SelectMultipleField(label="majors", validators=[validators.DataRequired()])
+    specs =fields.SelectMultipleField(label="specs")
     firstQuarter = fields.SelectField(label="start quarter for scheduling", default=(0,0))
     quarterCreditDefault = fields.SelectField(label="default maximum credits per quarter" ,validators=[validators.DataRequired()],
                                 choices=[(x,x) for x in range(30)], default=(16,16))

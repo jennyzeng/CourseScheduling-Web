@@ -28,7 +28,7 @@
     </div>
 </div>
 <div class="container">
-    <form id="multiselectForm" class="form-horizontal" method="POST" enctype="multipart/form-data" action="{{ url_for('schedule.schedule_home')}}">
+    <form id="multiselectForm" class="form-horizontal" method="POST" enctype="multipart/form-data" action="{{ url_for('schedule.schedule_preview')}}">
 
         <div class="form-group">
             <label class="col-xs-4 col-xs-offset-2 control-label">{{ form.firstQuarter.label }}</label>
@@ -43,6 +43,12 @@
             </div>
         </div>
         <div class="form-group">
+            <label class="col-xs-4 col-xs-offset-2 control-label">{{ form.specs.label }}</label>
+            <div class="col-xs-6">
+                {{ form.specs(class="form-control") }}
+            </div>
+        </div>
+        <div class="form-group">
             <label class="col-xs-4 col-xs-offset-2 control-label">{{ form.quarterCreditDefault.label }}</label>
             <div class="col-xs-2">
                 {{ form.quarterCreditDefault(class="form-control") }}
@@ -52,13 +58,13 @@
             <div class="col-xs-6 col-xs-offset-4">
                 <div data-toggle="fieldset" id="QuarterCredits-fieldset">
                     {{ form.quarterCredits.label }} <button class="btn btn-info" type="button" data-toggle="fieldset-add-row" data-target="#QuarterCredits-fieldset">+</button>
-                    <table>
+                    <table id="cur_widths">
                         <tr>
                             <th>quarter id </th>
                             <th>maximum credit allowed</th>
                         </tr>
                         {% for quarter in form.quarterCredits %}
-                        <tr data-toggle="fieldset-entry">
+                        <tr class="quarter" data-toggle="fieldset-entry">
                             <td>{{ quarter.quarterId(class="form-control") }}</td>
                             <td>{{ quarter.credit(class="form-control") }}</td>
                             <td><button class="btn btn-danger" type="button" data-toggle="fieldset-remove-row" id="quarter-{{ loop.index0 }}-remove">-</button> </td>
@@ -68,7 +74,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row" style="padding-bottom:50px;">
             <div class="col-md-5 col-sm-5 col-xs-4"></div>
             <div class="col-md-2 col-sm-2 col-xs-4">
                 {{ form.next(class="btn btn-success button-send submit") }}
@@ -120,6 +126,27 @@ $(function() {
         );
         $('#{{ form.quarterCreditDefault.id }}').multiselect({
             maxHeight: 450
+        });
+        $("#multiselectForm").submit( function() {
+            var quarters = "{";
+            var index = 0;
+            $("#cur_widths tr").each(function() {
+                if ($(this).hasClass("quarter")) {
+                    var qi = document.getElementById("quarterCredits-" + index + "-quarterId").selectedIndex;
+                    var ui = document.getElementById("quarterCredits-" + index + "-credit").selectedIndex;
+                    if (qi > -1 || ui > -1) {
+                        quarters = quarters + qi + ":" + ui + ",";
+                    }
+                    index++;
+                }
+        })
+        quarters = quarters + "}";
+        $('<input />').attr('type', 'hidden')
+        .attr('name', "quarters")
+        .attr('value', quarters)
+        .appendTo('#multiselectForm');
+
+        return true;
         });
     });
 </script>
