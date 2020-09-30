@@ -1,6 +1,6 @@
 # README
 
-## Set up
+## my awesome website setup
 
 ```
 git clone https://github.com/jennyzeng/CourseScheduling-Web.git
