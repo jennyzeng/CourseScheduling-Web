@@ -1,5 +1,5 @@
 # README
-
+Amazing Course Scheduler
 ## Set up
 
 ```
