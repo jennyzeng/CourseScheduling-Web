@@ -1,6 +1,6 @@
-# README
+# README its my website
 
-## Set up
+## Set up for course scheduling
 
 ```
 git clone https://github.com/jennyzeng/CourseScheduling-Web.git
@@ -64,7 +64,7 @@ Upload Requirements
 - Select  'Requirements' in the selectbox
 - Choose json files in the database/requirements/ folder, and upload them one by one.
 
-### Option2: Upload in terminal
+### Option2: Upload in another terminal
 
 When our services are running, in another terminal, do
 
@@ -148,6 +148,6 @@ basic structure
                                   course    course   ...
 ```
 
-## Reference
+## Reference for my code
 
 [udemy: build a SAAS app with flask](https://www.udemy.com/the-build-a-saas-app-with-flask-course)
