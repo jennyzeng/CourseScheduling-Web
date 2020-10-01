@@ -1,4 +1,4 @@
-# README
+# README amazing scheduling web
 
 ## Set up
 
