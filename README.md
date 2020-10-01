@@ -66,7 +66,7 @@ Upload Requirements
 
 ### Option2: Upload in terminal
 
-When our services are running, in another terminal, do
+When our services are running, in another terminal, You can follow these directories
 
 ```
 # To load course: 
@@ -123,7 +123,7 @@ Major
 
 ## XML parsing 
 
-Parsing student id and name are easy, but parsing requirements that student has completed and computing how many courses away from completion from degreework is hard.
+Parsing student id and name are preety easy, but parsing the requirements that student has completed and computing how many courses away from completion from degreework is hard.
 
 basic structure
 
