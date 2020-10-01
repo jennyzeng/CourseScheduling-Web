@@ -7,7 +7,7 @@ Flask-Login>=0.3.0
 # Admin
 flask_admin==1.5.0
 
-# File Uplod
+# File Uploads
 Flask-Uploads==0.2.1
 # Security
 flask_security==3.0.0
