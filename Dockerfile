@@ -1,5 +1,6 @@
 FROM python:3.5-slim
 # MAINTAINER Nick Janetakis <nick.janetakis@gmail.com>
+# Ajit Jha <ajha6732@gmail.com>
 
 ENV INSTALL_PATH /CourseScheduling
 RUN mkdir -p $INSTALL_PATH
