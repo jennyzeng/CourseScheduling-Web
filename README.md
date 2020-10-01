@@ -94,7 +94,7 @@ docker-compose exec website python database/WebSoc.py
 ```
 dept list and save path can be edited in database/WebSoc.py main
 
-## about testing
+## About Testing
 
 write tests in CourseScheduling/tests, following the test pattern in page folder.
 
