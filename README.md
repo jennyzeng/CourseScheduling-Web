@@ -8,7 +8,7 @@ git clone https://github.com/jennyzeng/CourseScheduling-Web.git
 
 install Docker at [https://www.docker.com/](https://www.docker.com/)
 
-Then, `cd` to the repo, run
+Then, `cd` to the repo and run
 
 ```
 $ docker-compose up --build
