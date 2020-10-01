@@ -3,6 +3,7 @@
 ## Set up
 
 ```
+Git :
 git clone https://github.com/jennyzeng/CourseScheduling-Web.git
 ```
 
