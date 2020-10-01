@@ -26,7 +26,7 @@ to start it, and
 ```
 $ docker-compose down
 ```
-to stop. Note that use Ctrl-C to stop the service after you enter `docker-compose up` does not stop it, so
+Note that use Ctrl-C to stop the service after you enter `docker-compose up` does not stop it, so
 you should do `docker-compose down` to ensure it is not running anymore actually.
 
 some other related operations:
@@ -66,7 +66,7 @@ Upload Requirements
 
 ### Option2: Upload in terminal
 
-When our services are running, in another terminal, do
+When our services are running in another terminal, do
 
 ```
 # To load course: 
@@ -83,7 +83,7 @@ docker-compose exec website python database/manage.py load_requirement -f databa
 ## cs major:
 docker-compose exec website python database/manage.py load_requirement -f "database/requirements/COMPUTER SCIENCE.json" 
 ```
-remember that if you want to access the database in docker, the host name is the name of the database container name. 
+remember that if you want to access the database in docker, the host name is the name of database container name. 
 That is, 'mongodb' in our case (You can see it in docker-compose.yml). 
 
 
